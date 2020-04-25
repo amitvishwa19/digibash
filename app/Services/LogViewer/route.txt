@@ -1,0 +1,1 @@
+Route::get('/log', 'Admin\LogViewer\LogViewerController@index')->name('app.logs');

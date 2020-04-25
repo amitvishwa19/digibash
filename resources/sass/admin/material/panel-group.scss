@@ -1,0 +1,67 @@
+.panel-group{
+	
+	.panel{
+		border-radius:1px !important;
+		padding: 0 !important;
+		
+		
+		.title{
+			font-size: 13px;
+			font-weight: 600;
+		}
+
+		h4{
+			font-size: 13px;
+			font-weight: 600;
+		}
+
+		.panel-heading{
+			border-radius:1px !important;
+			line-height: 20px;
+			background-color: #FFFFFF !important;
+			padding: 8px 10px !important;
+
+			.title{
+				color: #000;
+			    color: #2A5D84;
+        		font-weight: 600;
+			}
+
+			.time{
+				font-weight: 400;
+				color: #aaa;
+				font-size:11px;
+			}
+
+			.action-text{
+			    margin: 0 10px;
+			    a{
+			      color: #2980B9;
+			      font-weight: 500;
+			      font-size:12px;
+			    }
+			    button{
+			      color: #2980B9;
+			      font-weight: 500;
+			      font-size:12px;
+			    }
+			}
+			.action-text.subscription{
+				.unsubscribe{
+					color: #FF9600;
+					font-weight: 400;
+					font-size:11px;
+				}
+				.subscribe{
+					color: #2B982B;
+					font-weight: 400;
+					font-size:11px;
+				}
+			}
+		}
+
+		.panel-footer{
+			padding: 0 !important;
+		}
+	}
+}

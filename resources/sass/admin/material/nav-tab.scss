@@ -1,0 +1,164 @@
+//Nav Tab
+.material-tab-pane{
+	margin: 0 !important;
+	
+	.nav-tabs {
+		border-bottom: 2px solid #eee;
+		margin-bottom: 10px;
+
+		li {
+	    	position: relative;
+	    	top: 3px;
+	    	left: -2px;
+
+	    	a {
+	      		border: none !important;
+	      		color: #999 !important;
+	      		-webkit-border-radius: 0;
+	      		-moz-border-radius: 0;
+	      		-ms-border-radius: 0;
+	      		border-radius: 0; 
+	  		}
+	  		a:hover{
+	        	background-color: transparent !important;
+	        }
+	        a:active{
+				background-color: transparent !important;
+	        }
+	        a:focus{
+				background-color: transparent !important;
+	        }
+	  		a:before {
+	  			content: '';
+		        position: absolute;
+		        left: 0;
+		        width: 100%;
+		        height: 0;
+		        border-bottom: 2px solid #2196F3;
+		        bottom: 2px;
+		        -moz-transform: scaleX(0);
+		        -ms-transform: scaleX(0);
+		        -o-transform: scaleX(0);
+		        -webkit-transform: scaleX(0);
+		        transform: scaleX(0);
+		        -moz-transition: 0.1s ease-in;
+		        -o-transition: 0.1s ease-in;
+		        -webkit-transition: 0.1s ease-in;
+		        transition: 0.1s ease-in;
+	  		}
+	  		a .material-icons {
+	        	position: relative;
+	        	top: 7px;
+	        	margin-bottom: 8px; 
+	    	}
+		}
+		li.active a {
+	    	color: #222 !important; 
+		}
+		li.active a:before {
+	    	-moz-transform: scaleX(1);
+	      	-ms-transform: scaleX(1);
+	      	-o-transform: scaleX(1);
+	      	-webkit-transform: scaleX(1);
+	      	transform: scaleX(1); 
+	  	}
+		a:hover {
+	      	background-color: transparent !important;
+	    }
+
+	    a:active {
+	      	background-color: transparent !important; 
+	    }
+	      
+	    a:focus {
+	    	background-color: transparent !important; 
+	    }    
+	}
+
+	.tab-content{
+		padding: 15px 0;
+
+		.panel-post{
+			-webkit-border-radius: 0;
+  			-moz-border-radius: 0;
+  			-ms-border-radius: 0;
+  			border-radius: 0;
+
+  			.panel-heading {
+    			background-color: #fff !important;
+    			-webkit-border-radius: 0;
+    			-moz-border-radius: 0;
+    			-ms-border-radius: 0;
+   			 	border-radius: 0;
+
+   			 	.media {
+				    margin-bottom: 0;
+
+				    a img {
+				        width: 42px;
+				        -webkit-border-radius: 50%;
+				        -moz-border-radius: 50%;
+				        -ms-border-radius: 50%;
+				        border-radius: 50%; 
+				    }
+				    .media-body {
+				        padding-top: 5px;
+				        h4 {
+				        	font-size: 14px;
+				        	a {
+					            color: #666; 
+					        } 
+				      	}
+				    } 
+				} 
+			}
+			.panel-body {
+			    padding: 0;
+			    background-color: #fff !important;
+			    .post{
+			    	.post-heading {
+				        padding: 12px 15px;
+				        p {
+					        margin-bottom: 0; 
+					    } 
+				    }
+			    } 
+			}
+			.panel-footer {
+			    background-color: #fff !important;
+			    border: none;
+			    ul {
+				    margin: 0;
+				    padding: 0;
+				    list-style: none;
+				    li {
+				        display: inline-block;
+				        margin-right: 12px;
+				        a {
+					        color: #777;
+					        text-decoration: none;
+					        i {
+					            font-size: 16px;
+					            position: relative;
+					            top: 4px;
+					            margin-right: 2px;
+					            span {
+						            font-size: 13px; 
+						        } 
+					        } 
+					    } 
+				    }
+				    li:last-child {
+				        float: right;
+				        margin-right: 0; 
+				    } 
+				}
+				.form-group {
+			      	margin-bottom: 5px;
+			    	margin-top: 20px; 
+			  	}
+			}
+		}
+	}
+}
+
