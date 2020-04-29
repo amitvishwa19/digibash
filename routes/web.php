@@ -17,6 +17,8 @@
 */
 
 Route::get('/', function () { 
+
+	return '<h1>Home Page</h1>';
 	//$name = AppConfig::get_value('app_description');//get_value('app_name');//get_value('app_name');
 	//return $name;
 	//AppConfig::set_setting('app_name','digizigs');
