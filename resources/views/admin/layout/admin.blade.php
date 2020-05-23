@@ -2,7 +2,7 @@
 <html lang="en">
   
 
-  @include('admin.partials.head')
+  @include('admin.partials.header')
 
   <body>
     @include('sweetalert::alert')
@@ -10,9 +10,9 @@
     @include('admin.partials.sidebar')
 
 
-    <div class="content ht-100v pd-0">
+    <div class="content ht-100v pd-0" id="root">
 
-      	@include('admin.partials.content_header')
+      	@include('admin.partials.nav')
 
       	@yield('content')
 
@@ -20,7 +20,7 @@
 
     	@yield('modal')
 
-  @include('admin.partials.javascript')  
+  @include('admin.partials.footer')  
 
    
   </body>

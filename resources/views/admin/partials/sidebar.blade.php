@@ -1,7 +1,11 @@
 <aside class="sidenav aside aside-fixed">
 
   <div class="aside-header">
-    <a href="{{route('app.admin.home')}}" class="aside-logo">Laksh<span>digital</span></a>
+    <a href="{{route('app.admin.home')}}" class="aside-logo" style="text-align:center">
+      <img src="{{asset('public/admin/assets/d-logo.png')}}" alt="d-logo" style="height:25px;">
+      digi<span>zigs</span>
+    </a>
+    <img src="" alt="">
     <a href="" class="aside-menu-link">
       <i data-feather="menu"></i>
       <i data-feather="x"></i>
@@ -18,13 +22,14 @@
         </a>
       </li>
       
-      <li class="nav-label mg-t-15">Publish</li>
+      <li class="nav-label mg-t-15">CMS</li>
       <li class="nav-item with-sub">
         <a href="" class="nav-link"><i class="fa fa-puzzle-piece"></i> <span>Publish</span></a>
         <ul>
           <li><a href="{{route('post.index')}}">Posts</a></li>
-          <li><a href="page-connections.html">Pages</a></li>
-          <li><a href="page-connections.html">Categories</a></li>
+          <li><a href="{{route('page.index')}}">Pages</a></li>
+          <li><a href="{{route('category.index')}}">Categories</a></li>
+          <li><a href="{{route('menu.index')}}">Menus</a></li>
         </ul>
       </li>
       

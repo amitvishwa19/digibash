@@ -23,7 +23,7 @@
     <meta name="user-id" content="{{Auth::check() ? Auth::user()->id : ''}}">
 
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('public/images/brand_assets/d-fevi-orange.png')}}" type="image/ico" />
+    <link rel="icon" href="{{asset('public/admin/assets/d-fevicon.png')}}" type="image/ico" />
 
     <title>DIgibash | @yield('title') </title>
 
@@ -32,10 +32,10 @@
     <link href="{{asset('public/admin/lib/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('public/admin/lib/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
 
-@yield('style')
+    @yield('style')
 
     <!-- DashForge CSS -->
-    <link rel="stylesheet" href="{{asset('public/admin/css/admin.css')}}">
+    <link rel="stylesheet" href="{{asset('public/admin/css/app.css')}}">
     <!--link rel="stylesheet" href="{{asset('public/admin/css/dashforge.css')}}"-->
     <link rel="stylesheet" href="{{asset('public/admin/css/dashforge.dashboard.css')}}">
     <link rel="stylesheet" href="{{asset('public/admin/css/skin.charcoal.css')}}">

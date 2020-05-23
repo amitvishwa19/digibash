@@ -1,6 +1,9 @@
 
 <?php
 
+use Illuminate\Support\Facades\Cache;
+
+
 
 
 
@@ -18,15 +21,18 @@
 
 Route::get('/', function () { 
 
-	return '<h1>Home Page</h1>';
-	//$name = AppConfig::get_value('app_description');//get_value('app_name');//get_value('app_name');
-	//return $name;
-	//AppConfig::set_setting('app_name','digizigs');
+	//$value = Cache::forever('item', 'wola');
+	return Cache::get('item');;
+	// dd(config('settings.app_name'));
+	// return '<h1>Home Page</h1>';
+	// //$name = AppConfig::get_value('app_description');//get_value('app_name');//get_value('app_name');
+	// //return $name;
+	// //AppConfig::set_setting('app_name','digizigs');
 
-	$setting = Settings::get('app_description');
-	dd($setting);
-	config(['TEST' => 'NEW_VALUE']);
-	return config('TEST');
+	// $setting = Settings::get('app_description');
+	// dd($setting);
+	// config(['TEST' => 'NEW_VALUE']);
+	// return config('TEST');
  });
 
 Route::get('/test', function () {  
@@ -56,6 +62,13 @@ Route::group(['prefix' => 'appadmin','middleware'=>['auth']],function(){
 
 	//Pages
 	Route::resource('/page','Admin\PageController');
+
+	//Categoty
+	Route::resource('/category','Admin\CategoryController');
+
+	//Menu
+	Route::post('/menu/{action?}','Admin\MenuController@selectMenu')->name('menu.select');
+	Route::resource('/menu','Admin\MenuController');
 
 
 	//Themes

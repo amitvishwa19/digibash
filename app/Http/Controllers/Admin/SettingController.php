@@ -17,9 +17,8 @@ class SettingController extends Controller
 	public function __construct()
 	{
 		$this->setting = Valuestore::make(storage_path('app\setting.json'));
-
-		
         $dirs = File::directories(resource_path('views\content\themes'));
+
         foreach($dirs as $dir){
             $this->themes[] = array(
                 'folder' => basename($dir),
@@ -49,14 +48,14 @@ class SettingController extends Controller
             $destinationPath = public_path().'/assets/';
             $img = Image::make($request->app_icon);
             $img->save($destinationPath.$image_name);
-            $this->setting->put('app_icon','/assets/'. $image_name);
+            $this->setting->put('app_icon',url('public/assets/'. $image_name));
     	}
     	if($request->app_fevicon){
     		$image_name = time().$request->app_fevicon->getClientOriginalName();
             $destinationPath = public_path().'/assets/';
             $img = Image::make($request->app_fevicon);
             $img->save($destinationPath.$image_name);
-            $this->setting->put('app_fevicon','/assets/'. $image_name);
+            $this->setting->put('app_fevicon',url('public/assets/'. $image_name));
     	}
 
 

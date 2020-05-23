@@ -11,7 +11,7 @@ class CrudGenerator extends Command
      *
      * @var string
      */
-    protected $signature = 'crud:generator {name : Class (singular) for example User}';
+    protected $signature = 'crud:generate {name : Class (singular) for example User}';
 
     /**
      * The console command description.
@@ -64,6 +64,7 @@ class CrudGenerator extends Command
         );
 
         file_put_contents(app_path("/Models/{$name}.php"), $modelTemplate);
+        $this->info('Model created successfully');
     }
 
 
@@ -85,6 +86,7 @@ class CrudGenerator extends Command
         );
 
         file_put_contents(app_path("/Http/Controllers/Admin/{$name}Controller.php"), $controllerTemplate);
+        $this->info('Controller created successfully');
     }
 
     //Request Stub
@@ -100,6 +102,7 @@ class CrudGenerator extends Command
             mkdir($path, 0777, true);
 
         file_put_contents(app_path("/Http/Requests/{$name}Request.php"), $requestTemplate);
+        $this->info('Request created successfully');
     }
 
     //View List Stub
@@ -116,6 +119,7 @@ class CrudGenerator extends Command
             mkdir($path, 0777, true);
 
         file_put_contents(base_path("/resources/views/admin/pages/{$folder}/{$folder}.blade.php"), $requestTemplate);
+        $this->info('Views created successfully');
     }
 
     //View New Stub
@@ -164,6 +168,7 @@ class CrudGenerator extends Command
         $name  = str_plural($name);
         
         file_put_contents(base_path("/database/migrations/{$datePrefix}_create_{$name}_table.php"), $requestTemplate);
+        $this->info('Migration created successfully');
     }
 
 }

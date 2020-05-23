@@ -1,4 +1,17 @@
 
+body {
+	margin: 0;
+	font-family: 'IBM Plex Sans',Helvetica,Arial,serif;
+	font-size: 0.875rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #22282F;
+	text-align: left;
+	background-color: #fff; 
+	overflow: hidden;
+}
+
+
 input:focus {
   border: none !important;
 }
@@ -232,4 +245,18 @@ input:focus {
 	width: 80px;
 	margin-left: -250px;
 	margin-top: 40px;
+}
+
+//Form label bold
+.fw6{
+	font-weight: 600 !important;
+	color:#22282F !important;
+}
+
+
+//Category page category recrussive display list
+.cat-list-display{
+	li{
+		list-style: none;
+	}
 }

@@ -1,7 +1,7 @@
 
 @extends('admin.layout.admin')
 
-@section('title','{{modelName}}')
+@section('title','Menu')
 
 
 @section('style')
@@ -22,7 +22,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb breadcrumb-style1 mg-b-10">
             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{modelName}}</li>
+            <li class="breadcrumb-item active" aria-current="page">Menu</li>
           </ol>
         </nav>
       </div> 

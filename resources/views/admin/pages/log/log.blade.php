@@ -15,7 +15,7 @@
 	
 <div class="content-body " id="contentbody">
     
-
+   <div class="card">
       <div class="d-sm-flex align-items-right justify-content-between mg-b-5 mg-lg-b-5 mg-xl-b-5">
         <div>
           <nav aria-label="breadcrumb">
@@ -107,8 +107,8 @@
             @endif 
 
          </div>
-
       </div><!-- row -->
+   </div>
 
 </div>
 	    

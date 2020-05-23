@@ -8,14 +8,30 @@ class Category extends Model
 {
     protected $guarded = ['id'];
 
+    // public function parent()
+    // {
+    //     return $this->belongsTo($this,'parent_id');
+    // }
+
+    // public function child()
+    // {
+    //     return $this->hasMany($this, 'parent_id','id');
+    // }
+
     public function parent()
     {
-        return $this->belongsTo($this,'parent_id');
+        return $this->belongsTo($this, 'parent_id');
     }
 
     public function child()
     {
-        return $this->hasMany($this, 'parent_id','id');
+        return $this->hasMany($this, 'parent_id');
+    }
+
+    // recursive, loads all descendants
+    public function childrenRecursive()
+    {
+        return $this->child()->with('childrenRecursive');
     }
 
     //Delete

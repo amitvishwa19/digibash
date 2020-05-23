@@ -35,3 +35,16 @@
     </div>
   </div>
 @endif
+
+@if($errors->any())
+  <div id="toasty" class="show danger">
+    <div id="desc">
+      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+      @foreach($errors->all() as $error)
+        <ul>
+          <li>{{$error}}</li>
+        </ul>
+      @endforeach
+    </div>
+  </div>
+@endif
