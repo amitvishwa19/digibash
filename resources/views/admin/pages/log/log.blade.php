@@ -85,13 +85,13 @@
                             <td class="nowrap text-{{{$log['level_class']}}}" >
                               <span class="" aria-hidden="true"></span>&nbsp;&nbsp;{{$log['level']}}
                             </td>
-                            <td class="text">{{$log['context']}}</td>
-                            <td class="date">{{{$log['date']}}}</td>
+                            <td class="text"><small>{{$log['context']}}</small></td>
+                            <td class="date"><small>{{{$log['date']}}}</small></td>
                           
                             
                             <td class="text hidden-xs" width="50%">
                              
-                              {{{$log['text']}}}
+                              <small>{{{$log['text']}}}</small>
                               
                               @if (isset($log['in_file']))
                                 <br/>{{{$log['in_file']}}}

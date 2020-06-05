@@ -1,7 +1,7 @@
 
 @extends('admin.layout.admin')
 
-@section('title','Menu')
+@section('title','New Menu')
 
 
 @section('style')
@@ -23,27 +23,26 @@
           <ol class="breadcrumb breadcrumb-style1 mg-b-10">
             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
             <li class="breadcrumb-item"><a href="{{route('menu.index')}}">Menu</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+            <li class="breadcrumb-item active" aria-current="page">Add Menu</li>
           </ol>
         </nav>
       </div> 
     </div>
 
     <div class="">
-      <h4>Edit Menu</h4>
+        <h4>Add New Menu</h4>
 
-      <div class="mg-t-50">
-        <form method="POST" action="{{route('menu.update', $menu->id)}}">
-          @csrf
-          {{method_field('PUT')}}
-          <div class="form-group">
-            <label class="d-block">Menu Name</label>
-            <input type="text" class="form-control" placeholder="Menu Name" name="name" value="{{$menu->name}}{{old('name')}}">
-          </div>
-          <button class="btn btn-primary btn-xs">Update</button>
-          <a href="{{route('menu.index')}}" class="btn btn-dark btn-xs">Cancel</a>
-        </form>
-      </div>
+        <div class="mg-t-50">
+            <form method="POST" action="{{route('menu.store')}}">
+            @csrf
+                <div class="wpinput form-group">
+                    <label class="d-block">Menu Name</label>
+                    <input type="text" class="form-control" placeholder="Enter name for Menu" name="name" value="{{old('name')}}">
+                </div>
+                <button class="btn btn-primary btn-xs">Add Menu</button>
+                <a href="{{route('menu.index')}}" class="btn btn-dark btn-xs">Cancel</a>
+            </form>
+        </div>
     </div><!-- row -->
 
   </div>

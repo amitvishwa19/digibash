@@ -9,14 +9,15 @@ $('.aside-body').find('a[href="' + CURRENT_URL + '"]').parents('ul').closest('li
 
 
 //App toadt
-window.setTimeout(function() {;
-    $("#toasty").fadeOut(1000, function(){
-        $(this).remove(); 
+window.setTimeout(function () {
+    ;
+    $("#toasty").fadeOut(1000, function () {
+        $(this).remove();
     });
 }, 5000);
 //console.log(CURRENT_URL)
 
 //Post delete confirmation
-$('.del-button').click(function(){
-	alert('Delete clicked');
+$('.del-button').click(function () {
+    alert('Delete clicked');
 });

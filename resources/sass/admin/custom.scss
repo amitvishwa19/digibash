@@ -9,6 +9,11 @@ body {
 	text-align: left;
 	background-color: #fff; 
 	overflow: hidden;
+	ul{
+		li{
+			list-style: none;
+		}
+	}
 }
 
 
@@ -173,6 +178,9 @@ input:focus {
 }
 
 //Action button button default
+.btn-default{
+	background-color: none !important;
+}
 .btn-default.edit{
   margin:0 !important;
 	//padding: 0 !important;
@@ -183,6 +191,7 @@ input:focus {
 	//-border: 1px solid grey;
 	color: $wp_color !important;
 	font-weight: 600;
+	
 }
 
 //badge col
@@ -258,5 +267,33 @@ input:focus {
 .cat-list-display{
 	li{
 		list-style: none;
+	}
+}
+
+//Swal action buttion
+.swal2-actions{
+	.btn-danger {
+		color: #fff;
+		background-color: #6e141d;
+		border-color: #6e141d;
+		margin-right: 10px;
+	}
+}
+
+//Admin menu builder menu items draggable
+.dd-list{
+
+	.dd-handle{
+		display: block;
+		//height: 50px;
+		margin: 5px 0;
+		padding: 10px 10px;
+		color: #333;
+		text-decoration: none;
+		font-weight: 700;
+		border: 1px solid #ccc;
+		background: #fafafa;
+		border-radius: 3px;
+		box-sizing: border-box;
 	}
 }

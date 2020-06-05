@@ -46,13 +46,13 @@
           <table id="example2" class="table table-color-primary">
             <thead>
               <tr>
-                <th class="">ID</th>
-                <th class="">Title</th>
-                <th class="">Author</th>
-                <th class="">Category</th>
-                <th class="">Status</th>
-                <th class="">Created</th>
-                <th class="">Action</th>
+                <th class=""><b>Id</b></th>
+                <th class=""><b>Title</b></th>
+                <th class=""><b>Author</b></th>
+                <th class=""><b>Category</b></th>
+                <th class=""><b>Status</b></th>
+                <th class=""><b>Created</b></th>
+                <th class=""><b>Action</b></th>
               </tr>
             </thead>
             

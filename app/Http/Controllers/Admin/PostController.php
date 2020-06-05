@@ -73,7 +73,7 @@ class PostController extends Controller
 
                     return $link;
                 })
-                 ->rawColumns(['category','action','status'])
+                ->rawColumns(['category','action','status'])
                 ->make(true);
         }
 

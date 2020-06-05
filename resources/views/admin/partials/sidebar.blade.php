@@ -131,6 +131,11 @@
       
 
     </ul>
+
+
+
+    <!-- {{menu('admin test','admin.partials.menus.admin_sidebar')}} -->
+
   </div>
 
 </aside>

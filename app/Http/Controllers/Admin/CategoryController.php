@@ -90,6 +90,7 @@ class CategoryController extends Controller
     
     public function destroy($id)
     {   
+        
         $category = Category::find($id);
 
         if($category->child){
@@ -100,6 +101,7 @@ class CategoryController extends Controller
 
         
         $is_deleted=$category->delete();
+        
         Cache::forget('categories');
 
         if($is_deleted){

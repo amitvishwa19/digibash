@@ -6,7 +6,8 @@
 
 @section('style')
 
-	
+   <link href="{{asset('public/admin/lib/datatables.net-dt/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+   <link href="{{asset('public/admin/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css')}}" rel="stylesheet">
 
 @endsection
 
@@ -15,53 +16,61 @@
 	
 <div class="content-body " id="contentbody">
     
-  <div class="card">
+   <div class="card">
 
-    <div class="d-sm-flex align-items-right justify-content-between mg-b-5 mg-lg-b-5 mg-xl-b-5">
-      <div>
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb breadcrumb-style1 mg-b-10">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Menu</li>
-          </ol>
-        </nav>
-      </div> 
-    </div>
-
-    <div class="row row-xs">
-    
-      <div class="d-flex">
-        <span class="mg-r-5">Select the menu you want to edit </span>
-        <form action="{{route('menu.index','menuselected=true')}}" method='post'>
-          @csrf
-          <select name="selectedmenu" id="" class="mg-r-5" required>
-            <option value="" selected>--Select Menu--</option>
-            @foreach($menus as $menu)
-              <option value="{{$menu->slug}}">{{$menu->name}}</option>
-            @endforeach
-            <!-- <option value="header-menu" @if($item == 'header-menu') selected="selected" @endif>Header Menu</option>
-            <option value="footer-menu">Footer Menu</option>
-            <option value="sidebar-menu">Sidebar Menu</option>
-            <option value="test-menu">Test Menu</option> -->
-          </select>
-          <button class="btn btn-primary btn-xs mg-r-10" style="margin-top:-5px">Choose</button>
-        </form>
+      <div class="d-sm-flex align-items-right justify-content-between mg-b-5 mg-lg-b-5 mg-xl-b-5">
+         <div>
+               <nav aria-label="breadcrumb">
+               <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+                  <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Menu</li>
+               </ol>
+               </nav>
+         </div> 
       </div>
-      
-      or <a href="{{route('menu.index','addmenu=true')}}" class="mg-l-10">Create new menu</a>
 
-    </div><!-- row -->
-    {{request()->menuselected}}
-    @if(request()->menuselected )
-      {{$item}} -  Selected menu will display here
-    @endif
+      @include('admin.partials.alerts') 
 
-    @if(request()->addmenu)
-      Add menu form here
-    @endif
-  
+      <div class="">
+         
+         <div class="d-flex mg-b-20">
+            <h4>Menus</h4>
+            <a href="{{route('menu.create')}}" class="btn btn-success btn-xs mg-l-10">Add New Menu</a>
+         </div>
+         <!-- Menu info -->
+         <div class="alert alert-primary" role="alert" style="margin:0">
+            <b>How To Use:</b>
+            <p>
+               You can output a menu anywhere on your site by calling
+               <b>menu('name')</b>
+            </p>
+         </div>
+         <!-- Menu info -->
 
-  </div>
+
+         <div class="mg-t-20">
+            <div data-label="Example" class="mg-t-15">
+               <table id="example2" class="table table-color-primary">
+                  <thead>
+                  <tr style="padding-left:20px">
+                     <th style="width:80%" class=""><b>Menu Name</b></th>
+                     <th style="width:15%" class=""><b>Actions</b></th>
+                  </tr>
+                  </thead>
+                  
+                  <tbody>
+                  </tbody>
+                  
+               </table>
+            </div><!-- df-example -->
+         </div>
+
+      </div><!-- row -->
+ 
+    
+    
+
+   </div>
 
 </div>
 	    
@@ -76,10 +85,91 @@
 
 
 @section('javascript')
-
+   <script src="{{asset('public/admin/lib/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('public/admin/lib/datatables.net-dt/js/dataTables.dataTables.min.js')}}"></script>
+  <script src="{{asset('public/admin/lib/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
+  <script src="{{asset('public/admin/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js')}}"></script>
 	
   	<script>
-  		
+      
+      function deletemenu(e){
+         swalWithBootstrapButtons({
+            title: "Delete Selected Menu?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Delete",
+            cancelButtonText: "Cancel",
+            reverseButtons: true
+         }).then(result => {
+            if (result.value) {
+               var id = e;
+               var token = $("meta[name='csrf-token']").attr("content");
+               $.ajax(
+               {
+                  url: "menu/"+id,
+                  type: 'DELETE',
+                  data: {
+                        "id": id,
+                        "_token": token,
+                  },
+                  error:function(e){
+                     console.log(e)
+                  },
+                  success: function (){
+                        console.log("it Works");
+                  }
+               });
+            }
+         });
+      }
+
+      $(function(){
+         'use strict'
+
+         $('#example2').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('menu.index') !!}',
+            columns:[
+               { data: 'name', name: 'name',orderable:true},
+               { data: 'action', name: 'action' },
+            ]
+         });
+
+         $('.btn-del').on('click', function (e) {
+            console.log('Delete clicked');
+         });
+
+         $(document).on('click','.delete',function(){
+            var id =  $(this).attr('id');
+            swalWithBootstrapButtons({
+               title: "Delete Selected Menu?",
+               text: "You won't be able to revert this!",
+               type: "warning",
+               showCancelButton: true,
+               confirmButtonText: "Delete",
+               cancelButtonText: "Cancel",
+               reverseButtons: true
+            }).then(result => {
+               if (result.value) {
+                  $.ajax({
+                     url: "menu/"+id,
+                     type:"post",
+                     data: {_method: 'delete', _token: "{{ csrf_token() }}"},
+                     success: function(result){
+                        location.reload();
+                        toast({
+                           type: "success",
+                           title: "Menu Deleted Successfully"
+                        });
+                     }
+                  });
+               }
+            });
+         });
+
+      });
   	</script>
 
 @endsection

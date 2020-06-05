@@ -23,18 +23,27 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     encrypted: true
 // });
 
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-//import App from './App';
+//Sweet Alert
+import Swal from 'sweetalert2';
+window.swal = Swal;
+const toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+});
 
-// ReactDOM.render(<App />, document.getElementById('root')
-// );
+const swalWithBootstrapButtons = Swal.mixin({
+    confirmButtonClass: 'btn btn-success',
+    cancelButtonClass: 'btn btn-danger',
+    buttonsStyling: false,
+})
+
+window.toast = toast;
+window.swalWithBootstrapButtons = swalWithBootstrapButtons;
 
 
 
-
-
-require('../components/Example');
-
-
+require('nestable2');
 require('./custom');
+require('./vue');

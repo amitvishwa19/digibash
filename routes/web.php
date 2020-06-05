@@ -1,39 +1,44 @@
 
 <?php
 
+use App\Facades\Digizig;
 use Illuminate\Support\Facades\Cache;
 
 
-
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () { 
+	app('log')->debug(app_setting('app_name'));
+	//return setting('app.name');
+	//return $this->digizigs();
+	return menu('Main Menu');
+	//return url()->current();
+	//return route('mail.index');
 
-	//$value = Cache::forever('item', 'wola');
-	return Cache::get('item');;
-	// dd(config('settings.app_name'));
-	// return '<h1>Home Page</h1>';
-	// //$name = AppConfig::get_value('app_description');//get_value('app_name');//get_value('app_name');
-	// //return $name;
-	// //AppConfig::set_setting('app_name','digizigs');
+	
 
-	// $setting = Settings::get('app_description');
-	// dd($setting);
-	// config(['TEST' => 'NEW_VALUE']);
-	// return config('TEST');
- });
+
+
+
+
+
+
+
+
+
+	// //Digizigs::test();
+	// //digizigs()->test();
+	// //$value = Cache::forever('item', 'wola');
+	// return Cache::get('item');;
+	// // dd(config('settings.app_name'));
+	// // return '<h1>Home Page</h1>';
+	// // //$name = AppConfig::get_value('app_description');//get_value('app_name');//get_value('app_name');
+	// // //return $name;
+	// // //AppConfig::set_setting('app_name','digizigs');
+
+	// // $setting = Settings::get('app_description');
+	// // dd($setting);
+	// // config(['TEST' => 'NEW_VALUE']);
+	// // return config('TEST');
+ })->name('app.home');
 
 Route::get('/test', function () {  
 	$test = TestFcd::TestFunction();
@@ -41,7 +46,7 @@ Route::get('/test', function () {
 	//sTestFcd::TestFunction(); 
 	//return $test->TestFunction();
 
-	return $test;
+	return 'sdasdasd';
 });
 
 Route::post('/subscribe','Admin\SubscriptionController@store')->name('app.web.subscribe');
@@ -67,8 +72,14 @@ Route::group(['prefix' => 'appadmin','middleware'=>['auth']],function(){
 	Route::resource('/category','Admin\CategoryController');
 
 	//Menu
-	Route::post('/menu/{action?}','Admin\MenuController@selectMenu')->name('menu.select');
 	Route::resource('/menu','Admin\MenuController');
+	Route::get('/menu/{menu}/builder','Admin\MenuController@builder')->name('menu.builder');
+	Route::post('/menu/{menu}/builder/order','Admin\MenuController@order_item')->name('menu.builder.order.item');
+	Route::get('/menu/{menu}/builder/create','Admin\MenuController@addMenuItem_create')->name('menu.item.create');
+	Route::post('/menu/{menu}/builder/create','Admin\MenuController@addMenuItem')->name('menu.item.add');
+	Route::get('/menu/{menu}/builder/{item}/edit','Admin\MenuController@editMenuItem')->name('menu.item.edit');
+	Route::put('/menu/{menu}/builder/{item}/edit','Admin\MenuController@updateMenuItem')->name('menu.item.update');
+	Route::delete('/menu/{menu}/builder/{item}/delete','Admin\MenuController@deleteMenuItem')->name('menu.item.delete');
 
 
 	//Themes

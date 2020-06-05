@@ -13,15 +13,30 @@ class CreateMenusTable extends Migration
      */
     public function up()
     {
-        Schema::create('Menus', function (Blueprint $table) {
-            
+        Schema::create('Menus', function (Blueprint $table) {  
             $table->increments('id');
             $table->string('name')->unique();
-            $table->string('slug');
-            $table->text('description')->nullable();
-            $table->softDeletes();
             $table->timestamps();
+        });
 
+        Schema::create('menu_items', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('menu_id')->nullable();
+            $table->string('title');
+            $table->string('url');
+            $table->string('target')->default('_self');
+            $table->string('class')->nullable();
+            $table->string('icon_class')->nullable();
+            $table->string('color')->nullable();
+            $table->integer('parent_id')->nullable();
+            $table->integer('order');
+            $table->string('route')->nullable()->default(null);
+            $table->text('parameters')->nullable()->default(null);
+            $table->timestamps();
+        });
+
+        Schema::table('menu_items', function (Blueprint $table) {
+            $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
         });
     }
 
@@ -32,6 +47,7 @@ class CreateMenusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Menus');
+        Schema::drop('menu_items');
+        Schema::drop('menus');
     }
 }

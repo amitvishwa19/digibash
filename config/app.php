@@ -181,6 +181,7 @@ return [
         App\Providers\TestServiceProvider::class,
         App\Providers\AppConfigServiceProvider::class,
         App\Providers\SettingServiceProvider::class,
+        App\Providers\DigizigsServiceProvider::class,
 
     ],
 
@@ -236,6 +237,7 @@ return [
         'AppConfig' => App\Facades\AppConfigFacade::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Settings' => App\Facades\SettingFacade::class,
+        'Digizigs' => App\Facades\Digizigs::class,
 
     ],
 
