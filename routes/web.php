@@ -1,28 +1,16 @@
 
 <?php
 
-use App\Facades\Digizig;
-use Illuminate\Support\Facades\Cache;
+Route::get('/','Client\ClientController@home');
 
 
-Route::get('/', function () { 
-	app('log')->debug(app_setting('app_name'));
+//Route::get('/', function () { 
+	//app('log')->debug(app_setting('app_name'));
 	//return setting('app.name');
 	//return $this->digizigs();
-	return menu('Main Menu');
+	//return menu('Main Menu');
 	//return url()->current();
 	//return route('mail.index');
-
-	
-
-
-
-
-
-
-
-
-
 
 	// //Digizigs::test();
 	// //digizigs()->test();
@@ -38,16 +26,9 @@ Route::get('/', function () {
 	// // dd($setting);
 	// // config(['TEST' => 'NEW_VALUE']);
 	// // return config('TEST');
- })->name('app.home');
+//})->name('app.home');
 
-Route::get('/test', function () {  
-	$test = TestFcd::TestFunction();
-	//return $test->TestFunction();
-	//sTestFcd::TestFunction(); 
-	//return $test->TestFunction();
 
-	return 'sdasdasd';
-});
 
 Route::post('/subscribe','Admin\SubscriptionController@store')->name('app.web.subscribe');
 
@@ -82,6 +63,9 @@ Route::group(['prefix' => 'appadmin','middleware'=>['auth']],function(){
 	Route::delete('/menu/{menu}/builder/{item}/delete','Admin\MenuController@deleteMenuItem')->name('menu.item.delete');
 
 
+	//Media
+	Route::get('/media','Admin\MediaController@index')->name('media.index');
+
 	//Themes
 	Route::resource('/theme','Admin\ThemeController');
 
@@ -93,8 +77,10 @@ Route::group(['prefix' => 'appadmin','middleware'=>['auth']],function(){
     //Mail
     Route::resource('/mail','Admin\MailController');
 
-    //Settings
-    Route::resource('/setting','Admin\SettingController');
+	 //Settings
+	 Route::resource('/setting','Admin\SettingController');
+	 
+	 Route::resource('/test','Admin\TestController');
 
     //Logs
     Route::get('/log','Admin\LogController@index')->name('app.admin.log');    

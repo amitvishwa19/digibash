@@ -16,11 +16,6 @@ body {
 	}
 }
 
-
-input:focus {
-  border: none !important;
-}
-
 //Tags input
 .tag {
     margin-right: 2px;
@@ -39,6 +34,9 @@ input:focus {
 	}
 
 } 
+.nav-aside .with-sub.show ul {
+	padding-bottom: 0 !important;
+}
 
 //Content header fa icons
 .content-header{
@@ -297,3 +295,23 @@ input:focus {
 		box-sizing: border-box;
 	}
 }
+
+//Admin setting side list
+.setting-list{
+
+	li{
+		cursor: pointer;
+		a{
+			text-decoration: none !important;
+			color: #000000 !important;
+		}
+	}
+	li.active{
+		background-color: #F0F3F9;
+		border: none;
+		font-weight: bold;
+	}
+
+}
+
+

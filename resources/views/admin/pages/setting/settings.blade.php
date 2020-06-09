@@ -26,135 +26,65 @@
 
     @include('admin.partials.alerts')
 
-    <div class="row row-xs">
-
-      <div data-label="Example" class="df-example" style="width:100%">
-
-        <ul class="nav nav-line " id="myTab5" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="home-tab5" data-toggle="tab" href="#home5" role="tab" aria-controls="home" aria-selected="true">General</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="profile-tab5" data-toggle="tab" href="#profile5" role="tab" aria-controls="profile" aria-selected="false">Writing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="contact-tab5" data-toggle="tab" href="#contact5" role="tab" aria-controls="contact" aria-selected="false">Reading</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="contact-tab5" data-toggle="tab" href="#contact5" role="tab" aria-controls="contact" aria-selected="false">Discussion</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="contact-tab5" data-toggle="tab" href="#contact5" role="tab" aria-controls="contact" aria-selected="false">Media</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="contact-tab5" data-toggle="tab" href="#contact5" role="tab" aria-controls="contact" aria-selected="false">Permalinks</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="contact-tab5" data-toggle="tab" href="#contact5" role="tab" aria-controls="contact" aria-selected="false">Privacy</a>
-          </li>
-        </ul>
-
-        <div class="tab-content mg-t-20" id="myTabContent5">
-
-          <div class="tab-pane fade show active container col-md-12 col-lg-12" id="home5" role="tabpanel" aria-labelledby="home-tab5">
-
-            <form method="post" action="{{route('setting.update', '1')}}" enctype="multipart/form-data">
-              @csrf
-              {{method_field('PUT')}}
 
 
-              <!-- App NAme -->
-              <div class="form-group row wpinput">
-                <label for="inputEmail3" class="col-sm-2 col-form-label fw6" style="font-weight:600">App Name</label>
-                <input type="text" class="col-md-6" name="app_name" placeholder="App Name" value="{{$settings['app_name']}}">
-              </div>
+    <div class="">
+      <div><h4>Settings</h4></div>
 
-              <!-- App Description -->
-              <div class="form-group row wpinput">
-                <label for="inputPassword3" class="col-sm-2 col-form-label fw6">App Description</label>
-                <input type="text" class="col-md-6" placeholder="App Description" name="app_desc" value="{{$settings['app_description']}}">
-              </div>
+      <!-- Menu info -->
+      <div class="alert alert-primary mg-t-10 mg-b-10" role="alert">
+        <b>How To Use:</b>
+        <p>
+          You can get the value of each setting anywhere on your site by calling
+            <b>Setting('key')</b>
+        </p>
+      </div>
+      <!-- Menu info -->
 
-              <!-- App icon -->
-              <div class="form-group row wpinput">
-                <label for="" class="col-sm-2 col-form-label fw6">App Icon</label>
-                <div class="d-flex">
+      <div class="row row-md">
 
-                  <input type="file" class="" id="imageUpload" name="app_icon" value="Upload Image">
+        <div class="col-md-3">
+          <ul class="list-group setting-list">
+            <li class="list-group-item {{(request()->type =='global') ? 'active' : 'null'}}">
+              <a href="{{route('setting.index',['type'=>'global'])}}">Global Setting</a>
+            </li>
+            <li class="list-group-item {{(request()->type =='localization') ? 'active' : 'null'}}">
+              <a href="{{route('setting.index',['type'=>'localization'])}}">Localization</a>
+            </li>
+            <li class="list-group-item {{(request()->type =='social') ? 'active' : 'null'}}">
+              <a href="{{route('setting.index',['type'=>'social'])}}">Social Authentication</a>
+            </li>
+            <li class="list-group-item {{(request()->type =='payment') ? 'active' : 'null'}}">
+              <a href="{{route('setting.index',['type'=>'payment'])}}">Payment</a>
+            </li>
+            <li class="list-group-item {{(request()->type =='notification') ? 'active' : 'null'}}">
+              <a href="{{route('setting.index',['type'=>'notification'])}}">Push Notification</a>
+            </li>
+            <li class="list-group-item {{(request()->type =='mail') ? 'active' : 'null'}}">
+              <a href="{{route('setting.index',['type'=>'mail'])}}">Mail</a>
+            </li>
+            <li class="list-group-item {{(request()->type =='translation') ? 'active' : 'null'}}">
+              <a href="{{route('setting.index',['type'=>'translation'])}}">Translation</a>
+            </li>
+            <li class="list-group-item {{(request()->type =='currency') ? 'active' : 'null'}}">
+              <a href="{{route('setting.index',['type'=>'currency'])}}">Currencies</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="col-md-9">
+          <div class="card ">
 
-                  <div id="" class="mg-t-20 icon-preview avatar-preview img-thumbnail pull-left" @if($settings['app_icon']) style="
-                      display:block;
-                      background-image:url({{$settings['app_icon']}});" @else style="display:none" @endif>
-                  </div>
-                </div>
-                <div class="remove-image" style="display:none"><b>Remove image</b></div>
-              </div>
-
-              <!-- App Fevicon -->
-              <div class="form-group row wpinput">
-                <label for="" class="col-sm-2 col-form-label fw6">App Fevicon</label>
-                <div class="">
-                  <input type="file" class="" id="appicon" name="app_fevicon" value="Upload Image">
-                </div>
-                <div id="" class="mg-t-20 icon-preview avatar-preview img-thumbnail pull-left" @if($settings['app_fevicon']) style="
-                      display:block;
-                      background-image:url({{$settings['app_fevicon']}});" @else style="display:none" @endif>
-                </div>
-                <div class="remove-image" style="display:none"><b>Remove image</b></div>
-              </div>
-
-              <!-- App Theme -->
-              <div class="form-group row wpinput">
-                <label for="formGroupExampleInput2" class="col-sm-2 col-form-label fw6">Theme</label>
-                <select name="app_theme">
-                  @foreach($themes as $theme)
-                  <option value="{{$theme['folder']}}" {{ $theme['folder'] == $settings['app_theme'] ? 'selected' : ''}}>{{ucfirst($theme['folder'])}}</option>
-                  @endforeach
-                </select>
-              </div>
-
-              <!-- Post Per Page -->
-              <div class="form-group row wpinput">
-                <label for="formGroupExampleInput2" class="col-sm-2 col-form-label fw6">Posts per page</label>
-                <input type="number" class="mg-l-20" name="post_per_page" value="{{$settings['post_per_page']}}">
-              </div>
-
-              <!-- App Home Page -->
-              <div class="form-group row wpinput">
-                <label for="formGroupExampleInput2" class="col-sm-2 col-form-label fw6">Home Page</label>
-                <select name="app_page" id="" style="" value="blog">
-                  <option value="home" {{$settings['app_page'] == "home" ? 'selected' : ''}}>Home</option>
-                  <option value="blog" {{$settings['app_page'] == "blog" ? 'selected' : ''}}>Blog</option>
-                </select>
-              </div>
-
-              <!-- User registration -->
-              <div class="form-group row wpinput">
-                <label for="formGroupExampleInput2" class="col-sm-2 col-form-label fw6">Home Page</label>
-
-              </div>
-
-              <div id="example"></div>
-
-              <button class="btn btn-primary btn-xs mg-t-20" type="submit" id="btnpublish">Save</button>
-
-            </form>
-
+            @if(request()->type == 'global')
+              @include('admin.pages.setting.global')
+            @elseif(request()->type == 'localization')
+              @include('admin.pages.setting.localization')
+            @endif
+           
           </div>
-
-          <div class="tab-pane fade" id="profile5" role="tabpanel" aria-labelledby="profile-tab5">
-            <h6>Profile</h6>
-            <p class="mg-b-0">Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat.</p>
-          </div>
-
-          <div class="tab-pane fade" id="contact5" role="tabpanel" aria-labelledby="contact-tab5">
-            <h6>Contact</h6>
-            <p class="mg-b-0">Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.</p>
-          </div>
-
         </div>
 
-      </div><!-- df-example -->
+      </div>
 
     </div><!-- row -->
     

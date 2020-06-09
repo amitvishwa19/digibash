@@ -6,8 +6,8 @@
 
 @section('style')
 
-   <link href="{{asset('public/admin/lib/datatables.net-dt/css/jquery.dataTables.min.css')}}" rel="stylesheet">
-   <link href="{{asset('public/admin/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css')}}" rel="stylesheet">
+   <!-- <link href="{{asset('public/admin/lib/datatables.net-dt/css/jquery.dataTables.min.css')}}" rel="stylesheet"> -->
+   <!-- <link href="{{asset('public/admin/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css')}}" rel="stylesheet"> -->
 
 @endsection
 
@@ -22,7 +22,7 @@
          <div>
                <nav aria-label="breadcrumb">
                <ol class="breadcrumb breadcrumb-style1 mg-b-10">
-                  <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                  <li class="breadcrumb-item"><a href="{{route('app.admin.home')}}">Dashboard</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Menu</li>
                </ol>
                </nav>
@@ -37,6 +37,7 @@
             <h4>Menus</h4>
             <a href="{{route('menu.create')}}" class="btn btn-success btn-xs mg-l-10">Add New Menu</a>
          </div>
+
          <!-- Menu info -->
          <div class="alert alert-primary" role="alert" style="margin:0">
             <b>How To Use:</b>
@@ -86,9 +87,9 @@
 
 @section('javascript')
    <script src="{{asset('public/admin/lib/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-  <script src="{{asset('public/admin/lib/datatables.net-dt/js/dataTables.dataTables.min.js')}}"></script>
-  <script src="{{asset('public/admin/lib/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-  <script src="{{asset('public/admin/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js')}}"></script>
+   <!-- <script src="{{asset('public/admin/lib/datatables.net-dt/js/dataTables.dataTables.min.js')}}"></script> -->
+   <!-- <script src="{{asset('public/admin/lib/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script> -->
+   <!-- <script src="{{asset('public/admin/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js')}}"></script> -->
 	
   	<script>
       

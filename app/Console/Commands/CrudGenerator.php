@@ -42,7 +42,7 @@ class CrudGenerator extends Command
         $this->controller($name);
         $this->request($name);
         $this->view($name);
-        $this->view_new($name);
+        $this->view_add($name);
         $this->view_edit($name);
         $this->migration($name);
 
@@ -109,9 +109,17 @@ class CrudGenerator extends Command
     protected function view($name){
 
         $requestTemplate = str_replace(
-            ['{{modelName}}'],
-            [$name],
-            $this->getStub('View')
+            [
+                '{{modelName}}',
+                '{{modelNamePluralLowerCase}}',
+                '{{modelNameSingularLowerCase}}'
+            ],
+            [
+                $name,
+                strtolower(str_plural($name)),
+                strtolower($name)
+            ],
+            $this->getStub('view')
         );
 
         $folder = strtolower($name);
@@ -123,28 +131,44 @@ class CrudGenerator extends Command
     }
 
     //View New Stub
-    protected function view_new($name){
+    protected function view_add($name){
 
         $requestTemplate = str_replace(
-            ['{{modelName}}'],
-            [$name],
-            $this->getStub('View')
+            [
+                '{{modelName}}',
+                '{{modelNamePluralLowerCase}}',
+                '{{modelNameSingularLowerCase}}'
+            ],
+            [
+                $name,
+                strtolower(str_plural($name)),
+                strtolower($name)
+            ],
+            $this->getStub('view_add')
         );
 
         $folder = strtolower($name);
         if(!file_exists($path = base_path("/resources/views/admin/pages/{$folder}")))
             mkdir($path, 0777, true);
 
-        file_put_contents(base_path("/resources/views/admin/pages/{$folder}/{$folder}_new.blade.php"), $requestTemplate);
+        file_put_contents(base_path("/resources/views/admin/pages/{$folder}/{$folder}_add.blade.php"), $requestTemplate);
     }
 
     //View Edit Stub
     protected function view_edit($name){
 
         $requestTemplate = str_replace(
-            ['{{modelName}}'],
-            [$name],
-            $this->getStub('View')
+            [
+                '{{modelName}}',
+                '{{modelNamePluralLowerCase}}',
+                '{{modelNameSingularLowerCase}}'
+            ],
+            [
+                $name,
+                strtolower(str_plural($name)),
+                strtolower($name)
+            ],
+            $this->getStub('view_edit')
         );
 
         $folder = strtolower($name);

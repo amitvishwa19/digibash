@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-
+use Illuminate\Support\Str;
 use App\Events\Post\PostPublishEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
@@ -64,11 +64,7 @@ class PostController extends Controller
                     $link = '<div class="d-flex">'.
                                 '<a href="#" class="btn btn-default btn-xs mg-r-10 dt-action-btn">view</a>'.
                                 '<a href="'.route('post.edit',$data->id).'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn">Edit</a>'.
-                                '<form action="'.route('post.destroy',$data->id).'" method="post">'.
-                                    csrf_field().
-                                    '<input name="_method" type="hidden" value="DELETE">'.
-                                    '<button class="btn btn-default btn-xs del-button dt-action-btn">Delete</button>'.
-                                '</form>'.
+                                '<a href="javascript:void(0);" id="'.$data->id.'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn btn-del delete">Delete</a>'.
                             '</div>';
 
                     return $link;
@@ -102,7 +98,7 @@ class PostController extends Controller
         $post = new Post;
         $post->user_id = Auth::user()->id;
         $post->title = $request->title;
-        $post->slug = str_slug($request->title);
+        $post->slug = Str::slug($request->title,'-');
         $post->description = $request->description;
         $post->body = $request->body;
 
@@ -163,7 +159,12 @@ class PostController extends Controller
 
         $posts = Post::latest()->get();
         //return view('admin.pages.post.post',compact('posts'))->with('success','Post created successfully');
-        return redirect() ->route('post.index')->with('success','Post created successfully');
+        return redirect() ->route('post.index')
+        ->with([
+           'message'    =>'Post Created Successfully',
+           'alert-type' => 'success',
+      ]);
+
     }
 
     public function show($id)
@@ -191,7 +192,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->user_id = Auth::user()->id;
         $post->title = $request->title;
-        $post->slug = str_slug($request->title);
+        $post->slug = Str::slug($request->title,'-');
         $post->description = $request->description;
         $post->body = $request->body;
 
@@ -249,7 +250,12 @@ class PostController extends Controller
             event(new PostPublishEvent($request));
         }
         
-        return redirect() ->route('post.index')->with('success','Post updated successfully');
+        return redirect() ->route('post.index')
+        ->with([
+            'message'    =>'Post Updated Successfully',
+            'alert-type' => 'success',
+        ]);
+ 
     }
 
     public function destroy($id)
@@ -258,7 +264,12 @@ class PostController extends Controller
         Post::destroy($id);
 
         //return response()->json(null, 204);
-        return redirect() ->route('post.index')->with('success','Post deleted successfully');
+        return redirect() ->route('post.index')
+        ->with([
+            'message'    =>'Post Deleted Successfully',
+            'alert-type' => 'success',
+        ]);
+ 
     }
 
     public function defaultCategory(){

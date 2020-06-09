@@ -81,7 +81,7 @@ class Menu extends Model
         }
 
         if ($type == 'admin') {
-            $type = 'admin.pages.menu.menu.'.$type;
+            $type = 'admin.partials.menus.default.'.$type;
         } else {
             if (is_null($type)) {
                 $type = 'admin.partials.menus.default';

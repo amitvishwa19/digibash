@@ -4,31 +4,61 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\{{modelName}}Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 use App\Models\{{modelName}};
 
 class {{modelName}}Controller extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        ${{modelNamePluralLowerCase}} = {{modelName}}::latest()->get();
+        if ($request->ajax()) {
+            ${{modelNamePluralLowerCase}} = {{modelName}}::orderby('created_at','desc')->get();
 
-        return view('admin.pages.{{modelNameSingularLowerCase}}.{{modelNameSingularLowerCase}}',compact('{{modelNamePluralLowerCase}}'));
+            return Datatables::of(${{modelNamePluralLowerCase}})
+            ->editColumn('created_at',function({{modelName}} ${{modelNameSingularLowerCase}}){
+                    return ${{modelNameSingularLowerCase}}->created_at->diffForHumans();
+                })
+            ->addColumn('action',function($data){
+                        $link = '<div class="d-flex">'.
+                                    '<a href="'.route('{{modelNameSingularLowerCase}}.show',$data->id).'" class="btn btn-default btn-xs mg-r-10 dt-action-btn">View</a>'.
+                                    '<a href="'.route('{{modelNameSingularLowerCase}}.edit',$data->id).'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn">Edit</a>'.
+                                    '<a href="javascript:void(0);" id="'.$data->id.'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn btn-del delete">Delete</a>'.
+                                '</div>';   
+                        return $link;
+                    })
+            ->rawColumns(['action'])
+            ->make(true);
 
-        //return response()->json(${{modelNamePluralLowerCase}});
+
+        }
+        
+
+        return view('admin.pages.{{modelNameSingularLowerCase}}.{{modelNameSingularLowerCase}}');
+
     }
 
     public function create()
     {
-        ${{modelNamePluralLowerCase}} = {{modelName}}::latest()->get();
-
-        return response()->json(${{modelNamePluralLowerCase}});
+        return view('admin.pages.{{modelNameSingularLowerCase}}.{{modelNameSingularLowerCase}}_add');
     }
 
     public function store({{modelName}}Request $request)
     {
-        ${{modelNameSingularLowerCase}} = {{modelName}}::create($request->all());
+        $validate = $request->validate([
+            'name' => 'required'
+        ]);
 
-        return response()->json(${{modelNameSingularLowerCase}}, 201);
+        ${{modelNameSingularLowerCase}} = New {{modelName}};
+        ${{modelNameSingularLowerCase}}->name = $request->name;
+        ${{modelNameSingularLowerCase}}->save();
+
+        return redirect()->route('{{modelNameSingularLowerCase}}.index')
+        ->with([
+            'message'    =>'{{modelName}} Added Successfully',
+            'alert-type' => 'success',
+        ]);
+
     }
 
     public function show($id)
@@ -49,10 +79,22 @@ class {{modelName}}Controller extends Controller
 
     public function update({{modelName}}Request $request, $id)
     {
-        ${{modelNameSingularLowerCase}} = {{modelName}}::findOrFail($id);
-        ${{modelNameSingularLowerCase}}->update($request->all());
 
-        return response()->json(${{modelNameSingularLowerCase}}, 200);
+        $validate = $request->validate([
+            'name' => 'required'
+        ]);
+
+        ${{modelNameSingularLowerCase}} = {{modelName}}::findOrFail($id);
+        ${{modelNameSingularLowerCase}}->name = $request->name;
+        ${{modelNameSingularLowerCase}}->save();
+
+        return redirect()->route('{{modelNameSingularLowerCase}}.index')
+        ->with([
+            'message'    =>'{{modelName}} Updated Successfully',
+            'alert-type' => 'success',
+        ]);
+
+        
     }
 
     public function destroy($id)

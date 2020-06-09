@@ -8,10 +8,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Page extends Model
 {
 
-	use SoftDeletes;
+	
 
 	protected $dates = ['deleted_at'];
 
-    protected $guarded = ['id'];
+	protected $guarded = ['id'];
+	
+	public function author()
+	{
+		//return $this->belongsTo('App\Models\Tag');
+		return $this->belongsTo('App\User','user_id');
+	}
     
 }

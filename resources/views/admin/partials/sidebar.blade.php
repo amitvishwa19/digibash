@@ -16,7 +16,7 @@
     
     <ul class="nav nav-aside">
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a href="{{route('app.admin.home')}}" class="nav-link">
           <i class="fa fa-tachometer" aria-hidden="true"></i> <span>Dashboard</span>
         </a>
@@ -31,10 +31,10 @@
           <li><a href="{{route('category.index')}}">Categories</a></li>
           <li><a href="{{route('menu.index')}}">Menus</a></li>
         </ul>
-      </li>
+      </li> -->
       
 
-      <li class="nav-label mg-t-15">Apps</li>
+      <!-- <li class="nav-label mg-t-15">Apps</li>
       <li class="nav-item">
         <a href="{{route('app.admin.calendar')}}" class="nav-link">
           <i class="fa fa-calendar" aria-hidden="true"></i> <span>Calendar</span>
@@ -57,10 +57,10 @@
         <a href="" class="nav-link">
           <i class="fa fa-file-text" aria-hidden="true"></i> <span>Documents</span>
         </a>
-      </li>
+      </li> -->
       
 
-      <li class="nav-label mg-t-15">CRM</li>
+      <!-- <li class="nav-label mg-t-15">CRM</li>
       <li class="nav-item with-sub">
         <a href="" class="nav-link"><i class="fa fa-line-chart" aria-hidden="true"></i> <span>Marketing</span></a>
         <ul>
@@ -99,9 +99,9 @@
           <li><a href="page-connections.html">Products & Services</a></li>
           <li><a href="page-groups.html">Vendors</a></li>
         </ul>
-      </li>
+      </li> -->
       
-      <li class="nav-label mg-t-15">Social</li>
+      <!-- <li class="nav-label mg-t-15">Social</li>
       <li class="nav-item with-sub">
         <a href="" class="nav-link"><i class="fa fa-bullhorn" aria-hidden="true"></i> <span>Social</span></a>
         <ul>
@@ -110,10 +110,10 @@
           <li><a href="page-connections.html">Instagram</a></li>
           <li><a href="page-groups.html">Twitter</a></li>
         </ul>
-      </li>
+      </li> -->
 
       
-      <li class="nav-label mg-t-15">System</li>
+      <!-- <li class="nav-label mg-t-15">System</li>
       <li class="nav-item">
         <a href="{{route('setting.index')}}" class="nav-link">
           <i class="fa fa-cogs" aria-hidden="true"></i> 
@@ -126,16 +126,24 @@
           <i class="fa fa-bug" aria-hidden="true"></i> 
           <span>Logs</span>
         </a>
+      </li> -->
+      
+      
+
+    
+
+    
+
+    {{menu('admin','admin.partials.menus.admin_sidebar')}}
+
+    
+      <li class="nav-item">
+        <a href="{{route('setting.index',['type'=>'global'])}}" class="nav-link">
+          <i class="fa fa-cogs" aria-hidden="true"></i> <span>Settings</span>
+        </a>
       </li>
-      
-      
 
     </ul>
-
-
-
-    <!-- {{menu('admin test','admin.partials.menus.admin_sidebar')}} -->
-
   </div>
 
 </aside>

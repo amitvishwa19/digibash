@@ -56,6 +56,10 @@
           }
       
         @endif
+
+        @if(Session::has('errors'))
+          
+        @endif
       </script>
   </body>
 </html>

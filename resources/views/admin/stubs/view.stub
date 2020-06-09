@@ -3,11 +3,7 @@
 
 @section('title','{{modelName}}')
 
-
 @section('style')
-
-	
-
 @endsection
 
 
@@ -21,14 +17,39 @@
       <div>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb breadcrumb-style1 mg-b-10">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{route('app.admin.home')}}">Dashboard</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{modelName}}</li>
           </ol>
         </nav>
       </div> 
     </div>
 
-    <div class="row row-xs">
+    <div class="">
+
+      <div class="d-flex mg-b-20">
+        <h4>{{modelName}}s</h4>
+        <a href="{{route('{{modelNameSingularLowerCase}}.create')}}" class="btn btn-success btn-xs mg-l-10">Add New Menu</a>
+      </div>
+
+
+      <div class="mg-t-20">
+        <div data-label="Example" class="mg-t-15">
+            <table id="datatable" class="table table-color-primary">
+              <thead>
+              <tr style="padding-left:20px">
+                  <th style="width:70%" class=""><b>Name</b></th>
+                  <th style="width:15%" class=""><b>Created</b></th>
+                  <th style="width:15%" class=""><b>Actions</b></th>
+              </tr>
+              </thead>
+              
+              <tbody>
+              </tbody>
+              
+            </table>
+        </div><!-- df-example -->
+      </div>
+
     </div><!-- row -->
 
   </div>
@@ -46,10 +67,57 @@
 
 
 @section('javascript')
-
+  <script src="{{asset('public/admin/lib/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 	
-  	<script>
-  		
-  	</script>
+  <script>
+    $(function(){
+      'use strict'
+
+
+      //Datatable
+      $('#datatable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{!! route('{{modelNameSingularLowerCase}}.index') !!}',
+        columns:[
+            { data: 'name', name: 'name'},
+            { data: 'created_at', name: 'created_at' },
+            { data: 'action', name: 'action' },
+        ]
+      });
+
+
+      //Action Delete function
+      $(document).on('click','.delete',function(){
+        var id =  $(this).attr('id');
+        swalWithBootstrapButtons({
+            title: "Delete Selected {{modelName}}?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Delete",
+            cancelButtonText: "Cancel",
+            reverseButtons: true
+        }).then(result => {
+            if (result.value) {
+              $.ajax({
+                  url: "{{modelNameSingularLowerCase}}/"+id,
+                  type:"post",
+                  data: {_method: 'delete', _token: "{{ csrf_token() }}"},
+                  success: function(result){
+                    location.reload();
+                    toast({
+                        type: "success",
+                        title: "{{modelName}} Deleted Successfully"
+                    });
+                  }
+              });
+            }
+        });
+      });
+
+
+    });
+  </script>
 
 @endsection

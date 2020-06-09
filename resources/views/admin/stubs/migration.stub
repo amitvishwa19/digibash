@@ -16,7 +16,7 @@ class Create{{modelName}}Table extends Migration
         Schema::create('{{modelName}}', function (Blueprint $table) {
             
             $table->increments('id');
-
+            $table->string('name');
             $table->softDeletes();
             $table->timestamps();
 

@@ -12,11 +12,11 @@ class SettingSeed extends Seeder
      */
     public function run()
     {
-        Setting::create(['key' => 'app_name','value'=>'DigiZigs']);
-        Setting::create(['key' => 'app_admin_url','value'=>'appadmin']);
-        Setting::create(['key' => 'app_email','value'=>'admin@admin.com']);
-        Setting::create(['key' => 'app_description','value'=>'admin']);
-        Setting::create(['key' => 'home_page','value'=>1]);
-        Setting::create(['key' => 'post_per_page','value'=>10]);
+        Setting::create(['key' => 'app.name','value'=> 'Name for your application']);
+        Setting::create(['key' => 'app.description','value'=> 'Sort description of application']);
+        Setting::create(['key' => 'app.icon','value'=> 'Application Icon path']);
+        Setting::create(['key' => 'app.fevicon','value'=> 'Application Fevicon path']);
+        Setting::create(['key' => 'app.page','value'=>'blog']);
+        Setting::create(['key' => 'app.theme','value'=>'default']);
     }
 }

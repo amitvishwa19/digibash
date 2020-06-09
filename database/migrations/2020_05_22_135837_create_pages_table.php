@@ -16,8 +16,13 @@ class CreatePagesTable extends Migration
         Schema::create('Pages', function (Blueprint $table) {
             
             $table->increments('id');
-
-            $table->softDeletes();
+            $table->integer('user_id');
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->text('body')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->text('meta_keywords')->nullable();
+            $table->enum('status', ['published', 'draft' ,'trashed'])->default('Draft');
             $table->timestamps();
 
         });

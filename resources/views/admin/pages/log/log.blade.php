@@ -31,7 +31,7 @@
         @if(!$logs)
           <div class="mg-l-20"><h4>No Logs found</h4></div>
         @endif
-         <div class="col-md-2 log-side-bar">
+         <div class="col-md-2 mg-0 m-0 log-side-bar">
             @foreach($files as $file)
                 <ul class="">
                   <li class="@if ($current_file == $file) active @endif">

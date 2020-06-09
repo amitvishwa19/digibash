@@ -45,7 +45,7 @@
     
           <!--Title-->     
           <div class="form-group wpinput">
-            <label for="formGroupExampleInput" class="d-block title-label">Post Title</label>
+            <label for="formGroupExampleInput" class="d-block">Post Title</label>
             <input type="text" class="form-control" name="title" value="{{$post->title}}{{ old('title') }}">
               @if ($errors->has('title'))
                 <small class="error-highlighter">{{ $errors->first('title') }}</small>
@@ -54,13 +54,13 @@
 
           <!--Description-->
           <div class="form-group wpinput">
-            <label for="formGroupExampleInput2" class="d-block title-label">Post Description</label>
+            <label for="formGroupExampleInput2" class="d-block">Post Description</label>
             <input type="text" class="form-control" name="description" value="{{$post->description}}{{ old('description') }}">
           </div>
 
           <!--Body-->     
           <div class="form-group wpinput">
-            <label for="formGroupExampleInput2" class="d-block title-label">Post Body</label>
+            <label for="formGroupExampleInput2" class="d-block">Post Body</label>
             <div id="post-body" class="ht-200 mg-b-25 form-group" style="background-color: #fff;margin-bottom: 20px;height: 400px;">
             </div>
             <input type="text" name="body" style="display: none" id="bodyinput" value="{{$post->body}}{{ old('body') }}">
@@ -68,7 +68,7 @@
 
           <!--Post status-->
           <div class="form-group wpinput">
-            <label for="formGroupExampleInput2" class="d-block title-label">Post Status</label>
+            <label for="formGroupExampleInput2" class="d-block">Post Status</label>
             <div class="custom-control custom-switch">
               <input type="checkbox" class="custom-control-input" id="customSwitch1" name="status" @if($post->status == 'published') checked  @endif>
               <label class="custom-control-label" for="customSwitch1" id="pstatuslbl"> @if($post->status == 'published') Publish @else Draft  @endif </label>
@@ -77,7 +77,7 @@
 
           <!--Post category-->
           <div class="form-group">
-            <label for="formGroupExampleInput2" class="d-block title-label">Category</label>
+            <label for="formGroupExampleInput2" class="d-block">Category</label>
             <div data-label="Example" class="">
                 <select class="form-control select2" multiple="multiple" name="categories[]" multiple="">
                   <option label="Choose one"></option>
@@ -97,7 +97,7 @@
 
           <!--Post Tag-->
           <div class="form-group">
-            <label for="formGroupExampleInput2" class="d-block title-label">Tags</label>
+            <label for="formGroupExampleInput2" class="d-block">Tags</label>
             <div data-label="Example" class="df-example demo-forms">
               <select type="text" class="form-control" value="" data-role="tagsinput" multiple="" name="tags[]" value="{{ old('tags[]') }}">
                 @foreach($post->tags as $tag)
@@ -111,7 +111,7 @@
 
           <!--Feature Image-->
           <div class="form-group">
-            <label for="formGroupExampleInput2" class="d-block title-label">Feature Image</label>
+            <label for="formGroupExampleInput2" class="d-block">Feature Image</label>
             <div class="wpinput">
               <input type="file" class="" id="imageUpload" name="feature_image" value="{{$post->image_url}}">
             </div>
@@ -124,7 +124,7 @@
   
           <!--Notification-->
           <div class="form-group">
-            <label for="formGroupExampleInput2" class="d-block title-label">Notifications</label>
+            <label for="formGroupExampleInput2" class="d-block">Notifications</label>
             <div class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" id="customCheck" name="notify">
               <label class="custom-control-label" for="customCheck">Send notifications to subscribers</label>
@@ -133,7 +133,7 @@
 
           <!--Social posts-->
           <div class="form-group">
-            <label for="formGroupExampleInput2" class="d-block title-label">Social Publish</label>
+            <label for="formGroupExampleInput2" class="d-block">Social Publish</label>
             <div class="custom-control custom-checkbox d-flex">
               <input type="checkbox" class="custom-control-input" id="customCheck1" name="fb_publish">
               <label class="custom-control-label" for="customCheck1">Facebook</label>
@@ -153,7 +153,7 @@
           </div>
 
           <button class="btn btn-primary btn-xs mg-t-20" type="submit" id="btnpublish">Save Draft</button>
-          <a href="{{route('post.index')}}"  class="btn btn-secondary btn-xs mg-t-20">Cancel</a>
+          <a href="{{route('post.index')}}"  class="btn btn-dark btn-xs mg-t-20">Cancel</a>
           
         </form>
         

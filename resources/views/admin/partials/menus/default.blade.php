@@ -36,7 +36,7 @@
             <span>{{ $item->title }}</span>
         </a>
         @if(!$originalItem->children->isEmpty())
-            @include('admin.pages.menu.default', ['items' => $originalItem->children, 'options' => $options])
+            @include('admin.partials.menus.default', ['items' => $originalItem->children, 'options' => $options])
         @endif
     </li>
         

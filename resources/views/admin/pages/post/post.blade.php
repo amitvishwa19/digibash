@@ -118,7 +118,33 @@
         });
 
 
-        
+        $(document).on('click','.delete',function(){
+            var id =  $(this).attr('id');
+            swalWithBootstrapButtons({
+               title: "Delete Selected Post?",
+               text: "You won't be able to revert this!",
+               type: "warning",
+               showCancelButton: true,
+               confirmButtonText: "Delete",
+               cancelButtonText: "Cancel",
+               reverseButtons: true
+            }).then(result => {
+               if (result.value) {
+                  $.ajax({
+                     url: "post/"+id,
+                     type:"post",
+                     data: {_method: 'delete', _token: "{{ csrf_token() }}"},
+                     success: function(result){
+                        location.reload();
+                        toast({
+                           type: "success",
+                           title: "Post Deleted Successfully"
+                        });
+                     }
+                  });
+               }
+            });
+         });
         
 
     });

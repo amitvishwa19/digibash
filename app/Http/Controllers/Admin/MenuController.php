@@ -25,7 +25,7 @@ class MenuController extends Controller
                         $link = '<div class="d-flex">'.
                                     '<a href="'.route('menu.builder',$data->id).'" class="btn btn-default btn-xs mg-r-10 dt-action-btn">Builder</a>'.
                                     '<a href="'.route('menu.edit',$data->id).'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn">Edit</a>'.
-                                    '<a href="#" id="'.$data->id.'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn btn-del delete">Delete</a>'.
+                                    '<a href="javascript:void(0);" id="'.$data->id.'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn btn-del delete">Delete</a>'.
                                 '</div>';   
                         return $link;
                     })
@@ -126,7 +126,8 @@ class MenuController extends Controller
         }else{
             $menuItem->url = $request->url;
         }
-        
+        $menuItem->class = $request->class;
+        $menuItem->icon_class = $request->icon_class;
         $menuItem->target = $request->target;
         $menuItem->order = $menuItem->highestOrderMenuItem();
         $menuItem->save();
@@ -162,7 +163,8 @@ class MenuController extends Controller
             $menuItem->url = $request->url;
             $menuItem->route = null;
         }
-
+        $menuItem->class = $request->class;
+        $menuItem->icon_class = $request->icon_class;
         $menuItem->target = $request->target;
         $menuItem->save();
         return redirect()->route('menu.builder',['menu'=>$request->menu_id])

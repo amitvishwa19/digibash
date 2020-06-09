@@ -17,7 +17,7 @@ class SettingController extends Controller
 	public function __construct()
 	{
 		$this->setting = Valuestore::make(storage_path('app\setting.json'));
-        $dirs = File::directories(resource_path('views\content\themes'));
+        $dirs = File::directories(resource_path('views\themes'));
 
         foreach($dirs as $dir){
             $this->themes[] = array(
@@ -32,6 +32,47 @@ class SettingController extends Controller
     	$settings = $this->setting->all();
     	$themes = $this->themes;
         return view('admin.pages.setting.settings',compact('settings','themes'));   
+    }
+
+    public function store(Request $request)
+    {   
+        $themes = $this->themes;
+        if($request->query('type') == 'global'){
+
+            $validate = $request->validate([
+                'app_name' => 'required|max:191'
+            ]);
+
+            setting('app.name',$request->app_name);
+            setting('app.description',$request->app_description);
+            setting('app.theme',$request->app_theme);
+            setting('app.page',$request->app_page);
+            
+
+            if($request->app_logo){
+                $image_name = time().$request->app_logo->getClientOriginalName();
+                $destinationPath = public_path().'/admin/assets/';
+                $img = Image::make($request->app_logo);
+                $img->save($destinationPath.$image_name);
+                setting('app.logo',url('public/admin/assets/'. $image_name));
+                //$this->setting->put('app_icon',url('public/assets/'. $image_name));
+            }
+            if($request->app_fevicon){
+                $image_name = time().$request->app_fevicon->getClientOriginalName();
+                $destinationPath = public_path().'/admin/assets/';
+                $img = Image::make($request->app_fevicon);
+                $img->save($destinationPath.$image_name);
+                setting('app.fevicon',url('public/admin/assets/'. $image_name));
+            }
+
+
+            return redirect()->route('setting.index',['type'=>$request->query('type')])
+            ->with([
+                    'message'    =>'Global Setting Updated Successfully',
+                    'alert-type' => 'success',
+                ]);   
+        }
+    
     }
 
     public function update(Request $request, $id)
@@ -63,6 +104,20 @@ class SettingController extends Controller
 
 
         return redirect() ->route('setting.index')->with('success','Settings updated successfully');   
+    }
+
+    public function settings(Request $request)
+    {
+        $settings = $this->setting->all();
+    	$themes = $this->themes;
+        return view('admin.pages.setting.settings',compact('settings','themes'));    
+    }
+
+    public function localisation()
+    {
+        $settings = $this->setting->all();
+    	$themes = $this->themes;
+        return view('admin.pages.setting.settings',compact('settings','themes'));
     }
 
 }
