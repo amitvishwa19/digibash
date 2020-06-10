@@ -17,7 +17,7 @@ class SettingController extends Controller
 	public function __construct()
 	{
 		$this->setting = Valuestore::make(storage_path('app\setting.json'));
-        $dirs = File::directories(resource_path('views\themes'));
+        $dirs = File::directories(base_path('public/themes'));
 
         foreach($dirs as $dir){
             $this->themes[] = array(

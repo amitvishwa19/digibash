@@ -1,1 +1,1 @@
-<h1>Digizigs Theme from Public</h1>
+<h1>Digizigs Theme</h1>

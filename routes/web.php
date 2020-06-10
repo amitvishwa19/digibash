@@ -69,6 +69,12 @@ Route::group(['prefix' => 'appadmin','middleware'=>['auth']],function(){
 	//Themes
 	Route::resource('/theme','Admin\ThemeController');
 
+	//Profile
+	Route::resource('/profile','Admin\ProfileController');
+
+	//Account
+	Route::resource('/account','Admin\AccountController');
+
 
 	//Calender
 	Route::get('/calendar', 'Admin\CalendarController@index')->name('app.admin.calendar');

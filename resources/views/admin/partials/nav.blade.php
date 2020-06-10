@@ -121,11 +121,11 @@
             <h6 class="tx-semibold mg-b-5">{{Auth::user()->name}}</h6>
              <p class="mg-b-25 tx-12 tx-color-03">Administrator</p>
 
-            <a href="" class="dropdown-item">
+            <a href="{{route('profile.index')}}" class="dropdown-item">
                <i class="fa fa-user" aria-hidden="true"></i> My Profile
             </a>
      
-            <a href="" class="dropdown-item">
+            <a href="{{route('account.index')}}" class="dropdown-item">
                <i class="fa fa-cog" aria-hidden="true"></i> Account Settings
             </a>
 
