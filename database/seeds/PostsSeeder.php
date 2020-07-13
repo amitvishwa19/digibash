@@ -26,9 +26,9 @@ class PostsSeeder extends Seeder
         		'views' => $faker->randomDigitNotNull, 
         		'status' => 'published',
         		'views' => 0,
-
-
         	]);
+
+            
         }
 
     }

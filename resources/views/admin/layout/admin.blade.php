@@ -5,7 +5,6 @@
   @include('admin.partials.header')
 
   <body>
-    @include('sweetalert::alert')
     
     @include('admin.partials.sidebar')
 

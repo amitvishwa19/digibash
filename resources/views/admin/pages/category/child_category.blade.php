@@ -2,7 +2,7 @@
     
     
     {{ $category->parent_id ? ' -- ' . $category->name : $category->name }}
-    @if($category->slug != 'uncategorised')
+    @if($category->slug != 'uncategorized')
         <a href="{{ route('category.edit' , $category->id)}}" class="fa fa-pencil mg-l-5" data-toggle="tooltip" data-placement="top" title="edit"></a>
         <a href="" onClick="
                         var res = confirm('Are you sure you want to delete this category {{$category->name}} ? ')

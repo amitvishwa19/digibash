@@ -25,7 +25,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb breadcrumb-style1 mg-b-10">
             <li class="breadcrumb-item"><a href="{{route('app.admin.home')}}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{{route('post.index')}}">Post</a></li>
+            <li class="breadcrumb-item"><a href="{{route('post.index')}}">Posts</a></li>
             <li class="breadcrumb-item active" aria-current="page">New</li>
           </ol>
         </nav>
@@ -42,7 +42,7 @@
         <!--Title-->     
         <div class="form-group wpinput">
           <label for="formGroupExampleInput" class="d-block">Post Title</label>
-          <input type="text" class="form-control" name="title" value="{{ old('title') }}" required>
+          <input type="text" class="form-control" name="title" value="{{ old('title') }}" required autofocus>
             @if ($errors->has('title'))
               <small class="error-highlighter">{{ $errors->first('title') }}</small>
             @endif
@@ -73,7 +73,7 @@
 
         <!--Post category-->
         <div class="form-group">
-          <label for="formGroupExampleInput2" class="d-block">Category</label>
+          <label for="formGroupExampleInput2" class="d-block" style="font-weight:600">Category</label>
           <div data-label="Example" class="">
               <select class="form-control select2" multiple="multiple" name="categories[]" multiple="">
                 <option label="Choose one"></option>
@@ -86,7 +86,7 @@
 
         <!--Post Tag-->
         <div class="form-group">
-          <label for="formGroupExampleInput2" class="d-block">Tags</label>
+          <label for="formGroupExampleInput2" class="d-block" style="font-weight:600">Tags</label>
           <div data-label="Example" class="df-example demo-forms">
             <select type="text" class="form-control" value="" data-role="tagsinput" multiple="" name="tags[]"></select>
           </div><!-- df-example -->

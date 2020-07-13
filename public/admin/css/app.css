@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900);@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700,900);@import url(https://fonts.googleapis.com/css?family=Rubik:300,400);@import url(https://fonts.googleapis.com/css?family=Nunito:400,400i,600,700&display=swap);@import url(https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900);@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700,900);@import url(https://fonts.googleapis.com/css?family=Rubik:300,400);@import url(https://fonts.googleapis.com/css?family=Nunito:400,400i,600,700&display=swap);@import url(https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap);@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
@@ -22847,13 +22847,13 @@ strong {
 .breadcrumb-style2 .breadcrumb-item a:focus,
 .breadcrumb-style3 .breadcrumb-item a:hover,
 .breadcrumb-style3 .breadcrumb-item a:focus {
-  color: #00AEEF;
+  color: #0073aa;
 }
 
 .breadcrumb-style1 .breadcrumb-item.active,
 .breadcrumb-style2 .breadcrumb-item.active,
 .breadcrumb-style3 .breadcrumb-item.active {
-  color: #00AEEF;
+  color: #0073aa;
 }
 
 .breadcrumb-style1 .breadcrumb-item + .breadcrumb-item::before,
@@ -29358,7 +29358,7 @@ textarea.parsley-success:focus {
   padding: 3px 10px 3px 20px;
   border-color: transparent;
   border-radius: 5px;
-  background-color: #00AEEF;
+  background-color: #7987a1;
   color: #fff;
   font-size: 13px;
   line-height: 1.45;
@@ -79778,7 +79778,7 @@ button.bg-twitter:focus,
 
 body {
   margin: 0;
-  font-family: "IBM Plex Sans", Helvetica, Arial, serif;
+  font-family: "Nunito", sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
@@ -79790,6 +79790,17 @@ body {
 
 body ul li {
   list-style: none;
+}
+
+.wp {
+  color: #0073aa !important;
+  font-style: italic;
+  -webkit-transition-property: border, background, color;
+  transition-property: border, background, color;
+  -webkit-transition-duration: 0.05s;
+          transition-duration: 0.05s;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
 }
 
 .tag {
@@ -79805,6 +79816,19 @@ body ul li {
 .nav-aside .fa {
   font-size: 16px;
   margin-right: 15px;
+}
+
+.mp-0 {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.btn-default,
+.btn-default:hover,
+.btn-default:active,
+.btn-default:focus {
+  background-color: none !important;
+  background-color: transparent !important;
 }
 
 .nav-aside .with-sub.show ul {
@@ -79855,7 +79879,7 @@ body ul li {
 
 .title-label {
   font-weight: 600 !important;
-  color: #00AEEF !important;
+  color: #0073aa !important;
 }
 
 .action-link {
@@ -79955,7 +79979,7 @@ body ul li {
 .dt-action-btn {
   margin: 0 !important;
   padding: 2px !important;
-  color: #00AEEF !important;
+  color: #0073aa !important;
   font-weight: 600;
 }
 
@@ -80013,11 +80037,6 @@ body ul li {
   margin-top: 40px;
 }
 
-.fw6 {
-  font-weight: 600 !important;
-  color: #22282F !important;
-}
-
 .cat-list-display li {
   list-style: none;
 }
@@ -80042,19 +80061,69 @@ body ul li {
   box-sizing: border-box;
 }
 
-.setting-list li {
+.list-group li {
   cursor: pointer;
+  border: 1px solid #F3F4F7 !important;
 }
 
-.setting-list li a {
+.list-group li a {
+  display: block;
   text-decoration: none !important;
   color: #000000 !important;
 }
 
-.setting-list li.active {
+.list-group li:hover a {
+  color: #0073aa !important;
+}
+
+.list-group li.active {
   background-color: #F0F3F9;
   border: none;
   font-weight: bold;
+}
+
+.list-group li.active a {
+  color: #0073aa !important;
+}
+
+.content-header .left-menu .fa {
+  font-size: 16px;
+}
+
+.paginate_button {
+  cursor: pointer;
+}
+
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=color]:focus,
+input[type=date]:focus,
+input[type=datetime]:focus,
+input[type=datetime-local]:focus,
+input[type=email]:focus,
+input[type=month]:focus,
+input[type=number]:focus,
+input[type=search]:focus,
+input[type=tel]:focus,
+input[type=text]:focus,
+input[type=time]:focus,
+input[type=url]:focus,
+input[type=week]:focus,
+input[type=checkbox]:focus,
+input[type=radio]:focus,
+select:focus,
+textarea:focus {
+  /* Only visible in Windows High Contrast mode */
+  border-color: #0073aa !important;
+  box-shadow: none !important;
+  outline: 1px solid transparent;
+}
+
+.btn-default,
+.btn-default:hover,
+.btn-default:active,
+.btn-default:focus {
+  background-color: transparent !important;
 }
 
 .wpinput {
@@ -80070,7 +80139,7 @@ body ul li {
 }
 
 .wpinput label {
-  color: #23282d;
+  color: #0073aa;
   font-weight: 600;
   text-shadow: none;
   vertical-align: baseline;
@@ -80079,6 +80148,7 @@ body ul li {
 .wpinput input,
 .wpinput textarea {
   box-sizing: border-box;
+  border-radius: 3px !important;
 }
 
 .wpinput input[type=text],
@@ -80098,6 +80168,7 @@ body ul li {
 .wpinput input[type=time],
 .wpinput input[type=url],
 .wpinput input[type=week],
+.wpinput input[type=select],
 .wpinput select,
 .wpinput textarea {
   border: 1px solid #ddd;
@@ -80108,7 +80179,7 @@ body ul li {
   -webkit-transition: 0.05s border-color ease-in-out;
   transition: 0.05s border-color ease-in-out;
   font-size: 12px;
-  border-radius: 1px;
+  border-radius: 3px !important;
 }
 
 .wpinput input[type=text]:focus,
@@ -80318,7 +80389,7 @@ body ul li {
 .wpinput .form-invalid select,
 .wpinput .form-invalid select:focus {
   border-color: #dc3232 !important;
-  box-shadow: 0 0 2px rgba(204, 0, 0, 0.8);
+  box-shadow: 0 0 2px rgba(204, 0, 0, 0.8) !important;
 }
 
 .wpinput .form-table .form-required.form-invalid td:after {

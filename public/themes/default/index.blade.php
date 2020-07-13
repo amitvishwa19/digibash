@@ -1,1 +1,3 @@
-<h1>Default Theme</h1>
+
+
+{{category()}}

@@ -8,15 +8,23 @@ class Category extends Model
 {
     protected $guarded = ['id'];
 
-    // public function parent()
-    // {
-    //     return $this->belongsTo($this,'parent_id');
-    // }
+    public static function boot()
+    {
+        parent::boot();
 
-    // public function child()
-    // {
-    //     return $this->hasMany($this, 'parent_id','id');
-    // }
+        static::created(function ($model) {
+            \Cache::forget('categories');
+        });
+
+        static::saved(function ($model) {
+            \Cache::forget('categories');
+        });
+
+        static::deleted(function ($model) {
+            \Cache::forget('categories');
+        });
+
+    }
 
     public function parent()
     {
@@ -25,13 +33,13 @@ class Category extends Model
 
     public function child()
     {
-        return $this->hasMany($this, 'parent_id');
+        return $this->hasMany($this, 'parent_id')->orderBy('order');
     }
 
     // recursive, loads all descendants
-    public function childrenRecursive()
+    public function childs()
     {
-        return $this->child()->with('childrenRecursive');
+        return $this->child()->with('childs')->orderBy('order');
     }
 
     //Delete
@@ -39,8 +47,23 @@ class Category extends Model
     {
         return $this->belongsToMany('App\Models\Post','post_category');
     }
-    public function post()
+
+    public function products()
     {
-        return $this->belongsToMany('App\Models\Post');
+        return $this->belongsToMany('App\Models\Product','product_categories');
     }
+
+    public function allProducts()
+    {
+        $allProducts = collect([]);
+        $mainCategoryProducts = $this->products;
+        $allProducts = $allProducts->concat($mainCategoryProducts);
+        if($this->child->isNotEmpty()){
+            foreach($this->child as $chld){
+                $allProducts = $allProducts->concat($chld->products);
+            }
+        }
+        return $allProducts;
+    }
+
 }

@@ -38,15 +38,18 @@
 
     
 
-    <div class="rows row-lgs">
+    <div class="">
 
-        <a href="{{route('post.create')}}"  class="btn btn-primary btn-xs mg-t-20">Add Post</a>
+      <div class="d-flex mg-b-20">
+        <h4>Posts</h4>
+        <a href="{{route('post.create')}}" class="btn btn-primary btn-xs mg-l-10 pd-t-8"> Add New Post</a>
+      </div>
         
+      <div class="mg-t-20">  
         <div data-label="Example" class="mg-t-15">
           <table id="example2" class="table table-color-primary">
             <thead>
               <tr>
-                <th class=""><b>Id</b></th>
                 <th class=""><b>Title</b></th>
                 <th class=""><b>Author</b></th>
                 <th class=""><b>Category</b></th>
@@ -61,6 +64,7 @@
             
           </table>
         </div><!-- df-example -->
+      </div>
     </div><!-- row -->
   
   </div>
@@ -101,7 +105,6 @@
           ajax: '{!! route('post.index') !!}',
           order: [[0,"desc"]],
           columns:[
-            { data: 'id', name: 'id' },
             { data: 'title', name: 'title' },
             { data: 'author', name: 'author' },
             { data: 'category', name: 'category',orderable: false },

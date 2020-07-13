@@ -1,1 +1,2 @@
-<h1>Digizigs Theme</h1>
+<h1>Index.Blade</h1>
+

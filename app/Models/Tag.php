@@ -14,4 +14,10 @@ class Tag extends Model
     {
         return $this->belongsToMany('App\Models\Post','post_tag');
     }
+
+    public function products()
+    {
+        return $this->belongsToMany('App\Models\Product','product_tags');
+    }
+
 }

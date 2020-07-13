@@ -26,6 +26,12 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\Post\PostPublishTwitter',
             'App\Listeners\Post\PostPublishInstagram',
         ],
+        'App\Events\Shop\ShopPublishEvent' => [
+            'App\Listeners\Shop\ShopPublishListner',
+        ],
+        'App\Events\Product\ProductPublishEvent' => [
+            'App\Listeners\Product\ProductPublishListner',
+        ]
     ];
 
     /**

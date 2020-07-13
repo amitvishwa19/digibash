@@ -14,16 +14,36 @@ class UserSeed extends Seeder
      */
     public function run()
     {
-        $token = Str::random(80);
-        $user = User::create(
+        $superAdmin = User::create(
             [
-                'name' => 'Admin',
+                'firstname' => 'Super',
+                'lastname' => 'Admin',
+                'username' => 'superadmin',
                 'email' => 'admin@admin.com',
                 'password' => bcrypt('password'),
                 'api_token' => hash('sha256', Str::random(60)),
                 'verify_token' => Str::random(60),
             ]
         );
+        $superAdmin->assignRole('Super Admin');
+
+        $user = User::create(
+            [
+                'firstname' => 'Simple',
+                'lastname' => 'user',
+                'username' => 'simpleuser',
+                'email' => 'user@user.com',
+                'password' => bcrypt('password'),
+                'api_token' => hash('sha256', Str::random(60)),
+                'verify_token' => Str::random(60),
+            ]
+        );
+
+
+
+
+
+
         /*$profile = Profile::create(
             [
                 'user_id' => $user->id,

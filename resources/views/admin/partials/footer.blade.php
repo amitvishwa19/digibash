@@ -1,6 +1,6 @@
-	
-   
-	  <script src="{{asset('public/admin/lib/jquery/jquery.min.js')}}"></script>
+
+
+	<script src="{{asset('public/admin/lib/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('public/admin/lib/jqueryui/jquery-ui.min.js')}}"></script>
     <script src="{{asset('public/admin/lib/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('public/admin/lib/feather-icons/feather.min.js')}}"></script>
@@ -18,6 +18,6 @@
     <!--script src="{{asset('public/admin/lib/js-cookie/js.cookie.js')}}"></script-->
     <!--script src="{{asset('public/admin/js/dashforge.settings.js')}}"></script-->
     <script src="{{asset('public/admin/js/app.js')}}"></script>
-    
-	
+
+
 @yield('javascript')

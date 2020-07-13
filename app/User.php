@@ -2,16 +2,24 @@
 
 namespace App;
 
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\Traits\CausesActivity;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasRoles;
+
+    use LogsActivity;
+    use CausesActivity;
+    protected static $logUnguarded = true;
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstname','lastname', 'username', 'email', 'password',
     ];
 
     protected $hidden = [
@@ -27,6 +35,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Post');
     }
 
+    public function shops()
+    {
+        return $this->hasMany('App\Models\Shop');
+    }
 
     public function routeNotificationForSlack($notification)
     {

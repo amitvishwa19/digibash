@@ -44,7 +44,7 @@
       <div class="row row-md">
 
         <div class="col-md-3">
-          <ul class="list-group setting-list">
+          <ul class="list-group">
             <li class="list-group-item {{(request()->type =='global') ? 'active' : 'null'}}">
               <a href="{{route('setting.index',['type'=>'global'])}}">Global Setting</a>
             </li>

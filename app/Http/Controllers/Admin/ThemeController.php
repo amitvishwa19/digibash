@@ -12,14 +12,14 @@ class ThemeController extends Controller
     public function index()
     {   
         try {
-
+            
             $themes = [];
-            $dirs = File::directories(resource_path('views\content\themes'));
+            $dirs = File::directories(base_path('public/themes'));
             foreach($dirs as $dir){
                 $themes[] = array(
-                    'folder' => basename($dir),
-                    'theme_name' => $this->getThemeDetails($dir),
-                    'theme_image' => $this->checkForThemeImage(basename($dir))
+                    'theme_dir' => basename($dir),
+                    'theme_details' => $this->getThemeDetails($dir),
+                    'theme_image' => $this->checkForThemeImage($dir)
                 );
             }
 
@@ -33,15 +33,15 @@ class ThemeController extends Controller
 
     public function getThemeDetails($folder)
     {
-        $lines=array();
+        $lines=[];
         try
         {
             $content = @fopen($folder . '\style.css','r');
-            while (!feof($content)) {
-               $lines[] = fgets($content);
-            }
-            //fclose($folder);
-            //dd($lines);
+            // while (!feof($content)) {
+            //    $lines[] = fgets($content);
+            // }
+            // fclose($content);
+            return $lines;
         }
         catch (Exception $ex)
         {
@@ -50,20 +50,18 @@ class ThemeController extends Controller
         
     }
     
+
+    
     public function checkForThemeImage($dir)
     {
-        //return asset('resource/views/content/themes/digizigs/screenshot.png');
+        if(file_exists($dir . '/screenshot.jpg')){
+            return url('public/themes/' . basename($dir) . '/screenshot.jpg' );
+        }else{
+            return null;
+        }
+        
 
-
-        return resource_path('views/content/themes/'. $dir .'/screenshot.png');
-
-        if (file_exists( $dir . '/screenshot.png')) {
-            return '/images/photos/account/default.png';
-        } else {
-            return '/images/photos/account/default.png';
-        }  
-
-        return asset('public\admin\img\screenshot.jpg');
+       
     }
 
     public function create()
@@ -74,7 +72,7 @@ class ThemeController extends Controller
     
     public function store(Request $request)
     {
-        //
+        setting('app.theme',$request->theme);
     }
 
     /**
@@ -103,6 +101,6 @@ class ThemeController extends Controller
     
     public function destroy($id)
     {
-        //
+        return response()->json(null, 204);
     }
 }

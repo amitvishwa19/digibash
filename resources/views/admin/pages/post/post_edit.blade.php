@@ -11,15 +11,15 @@
   <link href="{{asset('public/admin/lib/quill/quill.bubble.css')}}" rel="stylesheet">
   <link href="{{asset('public/admin/lib/select2/css/select2.min.css')}}" rel="stylesheet">
   <link href="{{asset('public/admin/lib/bootstrap-tagsinput/bootstrap-tagsinput.css')}}" rel="stylesheet">
-	
+
 
 @endsection
 
 
 @section('content')
-	
+
 <div class="content-body " id="contentbody">
-    
+
   <div class="card">
 
     <div class="d-sm-flex align-items-right justify-content-between mg-b-5 mg-lg-b-5 mg-xl-b-5">
@@ -27,26 +27,26 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb breadcrumb-style1 mg-b-10">
             <li class="breadcrumb-item"><a href="{{route('app.admin.home')}}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{{route('post.index')}}">Post</a></li>
+            <li class="breadcrumb-item"><a href="{{route('post.index')}}">Posts</a></li>
             <li class="breadcrumb-item active" aria-current="page">Edit</li>
           </ol>
         </nav>
-      </div> 
+      </div>
     </div>
 
     @include('admin.partials.alerts')
 
     <div class="rows row-lgs">
-      
+
 
        <form method="post" action="{{route('post.update', $post->id)}}" enctype="multipart/form-data">
           @csrf
           {{method_field('PUT')}}
-    
-          <!--Title-->     
+
+          <!--Title-->
           <div class="form-group wpinput">
             <label for="formGroupExampleInput" class="d-block">Post Title</label>
-            <input type="text" class="form-control" name="title" value="{{$post->title}}{{ old('title') }}">
+            <input type="text" class="form-control" name="title" value="{{$post->title}}{{ old('title') }}" autofocus>
               @if ($errors->has('title'))
                 <small class="error-highlighter">{{ $errors->first('title') }}</small>
               @endif
@@ -58,7 +58,7 @@
             <input type="text" class="form-control" name="description" value="{{$post->description}}{{ old('description') }}">
           </div>
 
-          <!--Body-->     
+          <!--Body-->
           <div class="form-group wpinput">
             <label for="formGroupExampleInput2" class="d-block">Post Body</label>
             <div id="post-body" class="ht-200 mg-b-25 form-group" style="background-color: #fff;margin-bottom: 20px;height: 400px;">
@@ -77,7 +77,7 @@
 
           <!--Post category-->
           <div class="form-group">
-            <label for="formGroupExampleInput2" class="d-block">Category</label>
+            <label for="formGroupExampleInput2" class="d-block" style="font-weight:600">Category</label>
             <div data-label="Example" class="">
                 <select class="form-control select2" multiple="multiple" name="categories[]" multiple="">
                   <option label="Choose one"></option>
@@ -91,19 +91,19 @@
                         >{{$category->name}}
                       </option>
                     @endforeach
-                </select> 
+                </select>
             </div><!-- df-example -->
           </div>
 
           <!--Post Tag-->
           <div class="form-group">
-            <label for="formGroupExampleInput2" class="d-block">Tags</label>
+            <label for="formGroupExampleInput2" class="d-block" style="font-weight:600">Tags</label>
             <div data-label="Example" class="df-example demo-forms">
               <select type="text" class="form-control" value="" data-role="tagsinput" multiple="" name="tags[]" value="{{ old('tags[]') }}">
                 @foreach($post->tags as $tag)
                   <option value="{{$tag->name}}"
-                    
-                  >{{$tag->name}}</option>  
+
+                  >{{$tag->name}}</option>
                 @endforeach
               </select>
             </div><!-- df-example -->
@@ -117,11 +117,11 @@
             </div>
             <div id="" class="mg-t-20 avatar-preview img-thumbnail" @if($post->image_url) style="
               display:block;
-              background-image:url({{{asset('public') . $post->image_url}}});
+              background-image:url({{ $post->image_url}});
               " @else style="display:none"  @endif></div>
             <div class="remove-image" @if($post->image_url) style="display:block;cursor:pointer;" @endif><b>Remove image</b></div>
           </div>
-  
+
           <!--Notification-->
           <div class="form-group">
             <label for="formGroupExampleInput2" class="d-block">Notifications</label>
@@ -154,21 +154,21 @@
 
           <button class="btn btn-primary btn-xs mg-t-20" type="submit" id="btnpublish">Save Draft</button>
           <a href="{{route('post.index')}}"  class="btn btn-dark btn-xs mg-t-20">Cancel</a>
-          
+
         </form>
-        
+
     </div><!-- row -->
 
   </div>
 
 </div>
-	    
+
 @endsection
 
 
 @section('modal')
 
-	
+
 
 @endsection
 
@@ -183,12 +183,12 @@
     $(function(){
         'use strict'
 
-        
+
 
         var editor = new Quill('#post-body', {
           modules: {
             toolbar: [
-              [{ 'header': [1, 2, 3, 4, 5, 6, false] }], 
+              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
               ['bold', 'italic','underline', 'strike'],
               [{ 'font': [] }],
               [{ 'align': [] }],
@@ -203,7 +203,7 @@
           placeholder: '',
           theme: 'snow'
         });
-        editor.on('text-change', function() {       
+        editor.on('text-change', function() {
           $('#bodyinput').val(editor.root.innerHTML);
         });
         editor.root.innerHTML = $('#bodyinput').val();
@@ -211,7 +211,7 @@
         $('#btnpublish').on('click',function(){
           $('#bodyinput').val(editor.root.innerHTML);
         })
-        
+
         //Check the post status and render resign publish button
         if($('#customSwitch1').prop('checked')) {
               $('#pstatuslbl').html('Publish')
@@ -222,7 +222,7 @@
         }
 
         // Change submit button text
-        $('#customSwitch1').on('click',function(){  
+        $('#customSwitch1').on('click',function(){
           if($('#customSwitch1').prop('checked')) {
               $('#pstatuslbl').html('Publish')
               $('#btnpublish').html('Publish')
@@ -254,7 +254,7 @@
                 }
                 reader.readAsDataURL(this.files[0]);
                 $('.remove-image').css('display', 'block');
-                $('.remove-image').css('cursor', 'pointer');  
+                $('.remove-image').css('cursor', 'pointer');
            }
         });
 

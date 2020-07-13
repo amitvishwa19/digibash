@@ -13,11 +13,9 @@ class CategorySeed extends Seeder
      */
     public function run()
     {        
-        
-        Category::create(['name' => 'Default','slug' => 'default']);
-        Category::create(['parent_id'=>1,'name' => 'Uncategorized','slug' => 'uncategorized.']);
-        Category::create(['name' => 'Posts','slug' => 'posts']);
-        Category::create(['name' => 'Blog','slug' => 'blog']);
-
+        Category::create(['name' => 'Uncategorized','slug' => 'uncategorized']);
+        $post = Category::create(['name' => 'Post','slug' => 'post']);
+        Category::create(['parent_id' => $post->id,'name' => 'Uncategorized','slug' => 'uncategorized']);
+        Category::create(['name' => 'E-Commerce','slug' => 'e-commerce']);
     }
 }

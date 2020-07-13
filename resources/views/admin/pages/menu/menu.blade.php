@@ -13,9 +13,9 @@
 
 
 @section('content')
-	
+
 <div class="content-body " id="contentbody">
-    
+
    <div class="card">
 
       <div class="d-sm-flex align-items-right justify-content-between mg-b-5 mg-lg-b-5 mg-xl-b-5">
@@ -26,13 +26,11 @@
                   <li class="breadcrumb-item active" aria-current="page">Menu</li>
                </ol>
                </nav>
-         </div> 
+         </div>
       </div>
 
-      @include('admin.partials.alerts') 
-
       <div class="">
-         
+
          <div class="d-flex mg-b-20">
             <h4>Menus</h4>
             <a href="{{route('menu.create')}}" class="btn btn-success btn-xs mg-l-10">Add New Menu</a>
@@ -44,6 +42,10 @@
             <p>
                You can output a menu anywhere on your site by calling
                <b>menu('name')</b>
+            </p>
+            <p>
+               <li>menu('name','view') <small>Create a view for menu and include <a href="">Example</a></small></li>
+               <li>menu('name','_json') <small>Raw json response of build Menu</small></li>
             </p>
          </div>
          <!-- Menu info -->
@@ -58,29 +60,29 @@
                      <th style="width:15%" class=""><b>Actions</b></th>
                   </tr>
                   </thead>
-                  
+
                   <tbody>
                   </tbody>
-                  
+
                </table>
             </div><!-- df-example -->
          </div>
 
       </div><!-- row -->
- 
-    
-    
+
+
+
 
    </div>
 
 </div>
-	    
+
 @endsection
 
 
 @section('modal')
 
-	
+
 
 @endsection
 
@@ -90,9 +92,9 @@
    <!-- <script src="{{asset('public/admin/lib/datatables.net-dt/js/dataTables.dataTables.min.js')}}"></script> -->
    <!-- <script src="{{asset('public/admin/lib/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script> -->
    <!-- <script src="{{asset('public/admin/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js')}}"></script> -->
-	
+
   	<script>
-      
+
       function deletemenu(e){
          swalWithBootstrapButtons({
             title: "Delete Selected Menu?",

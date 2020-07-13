@@ -32,8 +32,7 @@ class Menu extends Model
 
     public function parent_items()
     {
-        return $this->hasMany('App\Models\MenuItem')
-            ->whereNull('parent_id');
+        return $this->hasMany('App\Models\MenuItem')->whereNull('parent_id');
     }
 
     /**

@@ -47,7 +47,14 @@ class SettingController extends Controller
             setting('app.description',$request->app_description);
             setting('app.theme',$request->app_theme);
             setting('app.page',$request->app_page);
+            setting('app.admin',$request->app_admin);
             
+
+            if($request->user_registration){
+                setting('app.registration','yes');
+            }else{
+                setting('app.registration','no');
+            }
 
             if($request->app_logo){
                 $image_name = time().$request->app_logo->getClientOriginalName();

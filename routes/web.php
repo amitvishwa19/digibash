@@ -1,10 +1,24 @@
 
 <?php
 
-Route::get('/','Client\ClientController@home');
+Route::get('/','App\AppController@index')->name('home');
+Route::get('/product/{product}','App\AppController@product')->name('product');
+Route::get('/products/category/{category}','App\AppController@category_products')->name('category.products');
+Route::get('/cart','App\AppController@cart')->name('cart');
+Route::post('/product/addtocart','App\AppController@add_to_cart')->name('cart.add');
+
+//Route::get('/{product}','App\DigishopController@home')->name('home');
+// Route::get('/{page}','App\AppController@page')->name('page');
+// Route::get('/','Client\ClientController@home')->name('home');
+// Route::get('/cart','Client\ClientController@cart')->name('cart');
+// Route::get('/account','Client\ClientController@account')->name('account');
+// Route::get('/checkout','Client\ClientController@checkout')->name('checkout');
+// Route::get('/posts','Client\ClientController@posts')->name('posts');
+// Route::get('/post/{post}','Client\ClientController@post')->name('posts.single');
+// Route::get('/product/{product}','Client\ClientController@product')->name('product.single');
 
 
-//Route::get('/', function () { 
+//Route::get('/', function () {
 	//app('log')->debug(app_setting('app_name'));
 	//return setting('app.name');
 	//return $this->digizigs();
@@ -34,62 +48,70 @@ Route::post('/subscribe','Admin\SubscriptionController@store')->name('app.web.su
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
+Route::prefix('appadmin')->middleware('auth')->group(base_path('routes/admin.php'));
 
 //Admin Routes
-Route::group(['prefix' => 'appadmin','middleware'=>['auth']],function(){
+// Route::group(['prefix' => 'appadmin','middleware'=>['auth']],function(){
 
-    //Admin
-	Route::get('/', 'Admin\DashboardController@index')->name('app.admin.home');
+//    //Admin
+// 	Route::get('/', 'Admin\DashboardController@index')->name('app.admin.home');
 
-	//Posts
-	Route::resource('/post','Admin\PostController');
+// 	//Posts
+// 	Route::resource('/post','Admin\PostController');
 
-	//Pages
-	Route::resource('/page','Admin\PageController');
+// 	//Access Controls
+// 	Route::resource('/user','Admin\UserController');
+// 	Route::resource('/permission','Admin\PermissionController');
+// 	Route::resource('/role','Admin\RoleController');
 
-	//Categoty
-	Route::resource('/category','Admin\CategoryController');
+// 	//Pages
+// 	Route::resource('/page','Admin\PageController');
 
-	//Menu
-	Route::resource('/menu','Admin\MenuController');
-	Route::get('/menu/{menu}/builder','Admin\MenuController@builder')->name('menu.builder');
-	Route::post('/menu/{menu}/builder/order','Admin\MenuController@order_item')->name('menu.builder.order.item');
-	Route::get('/menu/{menu}/builder/create','Admin\MenuController@addMenuItem_create')->name('menu.item.create');
-	Route::post('/menu/{menu}/builder/create','Admin\MenuController@addMenuItem')->name('menu.item.add');
-	Route::get('/menu/{menu}/builder/{item}/edit','Admin\MenuController@editMenuItem')->name('menu.item.edit');
-	Route::put('/menu/{menu}/builder/{item}/edit','Admin\MenuController@updateMenuItem')->name('menu.item.update');
-	Route::delete('/menu/{menu}/builder/{item}/delete','Admin\MenuController@deleteMenuItem')->name('menu.item.delete');
+// 	//Categoty
+// 	Route::resource('/category','Admin\CategoryController');
 
-
-	//Media
-	Route::get('/media','Admin\MediaController@index')->name('media.index');
-
-	//Themes
-	Route::resource('/theme','Admin\ThemeController');
-
-	//Profile
-	Route::resource('/profile','Admin\ProfileController');
-
-	//Account
-	Route::resource('/account','Admin\AccountController');
+// 	//Menu
+// 	Route::resource('/menu','Admin\MenuController');
+// 	Route::get('/menu/{menu}/builder','Admin\MenuController@builder')->name('menu.builder');
+// 	Route::post('/menu/{menu}/builder/order','Admin\MenuController@order_item')->name('menu.builder.order.item');
+// 	Route::get('/menu/{menu}/builder/create','Admin\MenuController@addMenuItem_create')->name('menu.item.create');
+// 	Route::post('/menu/{menu}/builder/create','Admin\MenuController@addMenuItem')->name('menu.item.add');
+// 	Route::get('/menu/{menu}/builder/{item}/edit','Admin\MenuController@editMenuItem')->name('menu.item.edit');
+// 	Route::put('/menu/{menu}/builder/{item}/edit','Admin\MenuController@updateMenuItem')->name('menu.item.update');
+// 	Route::delete('/menu/{menu}/builder/{item}/delete','Admin\MenuController@deleteMenuItem')->name('menu.item.delete');
 
 
-	//Calender
-	Route::get('/calendar', 'Admin\CalendarController@index')->name('app.admin.calendar');
+// 	//Media
+// 	Route::get('/media','Admin\MediaController@index')->name('media.index');
+
+// 	//Themes
+// 	Route::resource('/theme','Admin\ThemeController');
+
+// 	//Profile
+// 	Route::resource('/profile','Admin\ProfileController');
+
+// 	//Account
+// 	Route::resource('/account','Admin\AccountController');
 
 
-    //Mail
-    Route::resource('/mail','Admin\MailController');
+// 	//Calender
+// 	Route::get('/calendar', 'Admin\CalendarController@index')->name('app.admin.calendar');
 
-	 //Settings
-	 Route::resource('/setting','Admin\SettingController');
-	 
-	 Route::resource('/test','Admin\TestController');
 
-    //Logs
-    Route::get('/log','Admin\LogController@index')->name('app.admin.log');    
+// 	//Mail
+// 	Route::resource('/mail','Admin\MailController');
 
-    
-});
+// 	//Settings
+// 	Route::resource('/setting','Admin\SettingController');
+
+// 	Route::resource('/test','Admin\TestController');
+
+// 	//Logs
+// 	Route::get('/activitylog','Admin\ActivityLogController@index')->name('app.admin.activity.log');
+// 	Route::get('/log','Admin\LogController@index')->name('app.admin.log');
+
+// 	//Ecommerce
+// 	Route::resource('/product','Admin\ProductController');
+
+// });

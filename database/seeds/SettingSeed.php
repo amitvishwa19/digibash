@@ -18,5 +18,7 @@ class SettingSeed extends Seeder
         Setting::create(['key' => 'app.fevicon','value'=> 'Application Fevicon path']);
         Setting::create(['key' => 'app.page','value'=>'blog']);
         Setting::create(['key' => 'app.theme','value'=>'default']);
+        Setting::create(['key' => 'app.admin','value'=>'appadmin']);
+        Setting::create(['key' => 'app.registration','value'=>'no']);
     }
 }

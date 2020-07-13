@@ -6,15 +6,15 @@
 
 @section('style')
 
-	
+
 
 @endsection
 
 
 @section('content')
-	
+
 <div class="content-body " id="contentbody">
-    
+
   <div class="card">
 
     <div class="d-sm-flex align-items-right justify-content-between mg-b-5 mg-lg-b-5 mg-xl-b-5">
@@ -26,7 +26,7 @@
             <li class="breadcrumb-item active" aria-current="page">{{modelName}}</li>
           </ol>
         </nav>
-      </div> 
+      </div>
     </div>
 
     <div class="">
@@ -39,37 +39,42 @@
           <div class="wpinput form-group">
               <label class="d-block"><b>Example Title</b></label>
               <input type="text" class="form-control"  name="name" value="{{old('name')}}">
+              @error('name')
+                  <span class="" role="alert">
+                     <strong><i>{{ $message }}</i></strong>
+                  </span>
+               @enderror
           </div>
 
-      
+
           <button class="btn btn-primary btn-xs" id="btnpublish">Save</button>
           <a href="{{route('{{modelNameSingularLowerCase}}.index')}}" class="btn btn-dark btn-xs">Cancel</a>
 
 
-        </form>  
+        </form>
       </div>
 
     </div>
 
   </div>
-  
+
 </div>
-	    
+
 @endsection
 
 
 @section('modal')
 
-	
+
 
 @endsection
 
 
 @section('javascript')
 
-	
+
   	<script>
-  		
+
   	</script>
 
 @endsection

@@ -168,7 +168,7 @@ return [
          * Package Service Providers...
          */
         //Dwij\Laraadmin\LAProvider::class,
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -235,7 +235,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'TestFcd' => App\Facades\TestFacade::class,
         'AppConfig' => App\Facades\AppConfigFacade::class,
-        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Settings' => App\Facades\SettingFacade::class,
         'Digizigs' => App\Facades\Digizigs::class,
 

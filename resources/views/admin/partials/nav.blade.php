@@ -1,5 +1,7 @@
 <div class="content-header navbar navbar-header">
-        
+   
+   
+
    <div class="navbar-right pull-right">
 
       <div class="dropdown dropdown-notification">
@@ -118,8 +120,15 @@
 
          <div class="dropdown-menu dropdown-menu-right tx-13">
             <div class="avatar avatar-lg mg-b-15"><img src="https://via.placeholder.com/500" class="rounded-circle" alt=""></div>
-            <h6 class="tx-semibold mg-b-5">{{Auth::user()->name}}</h6>
-             <p class="mg-b-25 tx-12 tx-color-03">Administrator</p>
+            <h6 class="tx-semibold">{{Auth::user()->firstname}},{{Auth::user()->lastname}}</h6>
+            {{Auth::user()->email}}
+            <div class="mg-b-15">
+               <span class="mg-b-10 tx-12 tx-color-03">
+                  @foreach(Auth::user()->roles as $rl)
+                     <div class="badge badge-info mr-1" >{{$rl->name}}</div>
+                  @endforeach
+               </span>
+            </div>
 
             <a href="{{route('profile.index')}}" class="dropdown-item">
                <i class="fa fa-user" aria-hidden="true"></i> My Profile
