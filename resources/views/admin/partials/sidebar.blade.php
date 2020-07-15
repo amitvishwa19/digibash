@@ -67,7 +67,7 @@
 
 
 
-        <li class="nav-label mg-t-15">CRM</li>
+        {{-- <li class="nav-label mg-t-15">CRM</li>
         <li class="nav-item with-sub">
             <a href="" class="nav-link"><i class="fa fa-line-chart" aria-hidden="true"></i> <span>Marketing</span></a>
             <ul>
@@ -116,7 +116,7 @@
             <li><a href="page-connections.html">Instagram</a></li>
             <li><a href="page-groups.html">Twitter</a></li>
             </ul>
-        </li><!--Social-->
+        </li><!--Social--> --}}
 
 
         {{menu('admin','admin.partials.menus.admin_sidebar')}}

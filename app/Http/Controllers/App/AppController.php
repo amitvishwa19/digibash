@@ -21,10 +21,8 @@ class AppController extends Controller
 
     public function index()
     {
-        return view()->first([
-            $this->theme .'.home',
-            $this->theme .'.index'
-        ]);
+        $cartItems = \Cart::session(auth()->id())->getContent();
+        return view($this->theme .'.home',compact('cartItems'));
     }
 
     public function page($page)
@@ -45,11 +43,6 @@ class AppController extends Controller
         }
     }
 
-    public function cart()
-    {
-        return view($this->theme .'.cart');
-    }
-
     public function posts()
     {
         return view($this->theme .'.posts');
@@ -63,7 +56,8 @@ class AppController extends Controller
     public function product($slug)
     {
 
-        $product = Product::where('slug', $slug)->first();
+        $product = Product::where('slug', $slug)->with('images')->first();
+        //dd($product->images);
         return view($this->theme .'.single-product',compact('product'));
     }
 
@@ -79,10 +73,39 @@ class AppController extends Controller
         return view($this->theme .'.category_products',compact('products','category'));
     }
 
-
-    public function add_to_cart($id)
+    public function cart()
     {
-        dd($id);
+        $items = \Cart::session(auth()->id())->getContent();
+        //dd($items);
+        return view($this->theme .'.cart',compact('items'));
+    }
+
+    public function add_to_cart(Product $product)
+    {
+
+        \Cart::session(auth()->id())->add(array(
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => 1,
+            'attributes' => array(),
+            'associatedModel' => $product
+        ));
+
+        return redirect()->back();
+    }
+
+    public function delete_item_from_cart($productid)
+    {
+        // delete an item on cart
+        \Cart::session(auth()->id())->remove($productid);
+        return redirect()->back();
+    }
+
+    public function delete_cart()
+    {
+        \Cart::session(auth()->id())->clear();
+        return redirect()->back();
     }
 
     public function account()

@@ -73,7 +73,7 @@
                             <div class="product-default">
                                 <figure>
                                     <a href="{{route('product',$product->slug)}}">
-                                        <img src="{{$product->feature_image ? $product_feature_image : asset('public/admin/images/default-product-image.jpg')}}">
+                                        <img src="{{$product->feature_image ? $product->feature_image : asset('public/admin/images/default-product-image.jpg')}}">
                                     </a>
                                 </figure>
                                 <div class="product-details">

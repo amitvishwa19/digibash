@@ -5,7 +5,10 @@ Route::get('/','App\AppController@index')->name('home');
 Route::get('/product/{product}','App\AppController@product')->name('product');
 Route::get('/products/category/{category}','App\AppController@category_products')->name('category.products');
 Route::get('/cart','App\AppController@cart')->name('cart');
-Route::post('/product/addtocart','App\AppController@add_to_cart')->name('cart.add');
+Route::get('/cart/add/{product}','App\AppController@add_to_cart')->name('cart.item.add');
+Route::get('/cart/delete/{productid}','App\AppController@delete_item_from_cart')->name('cart.item.delete');
+Route::get('/cart/delete','App\AppController@delete_cart')->name('cart.delete');
+Route::get('/cart/checkout','App\AppController@checkout')->name('cart.checkout');
 
 //Route::get('/{product}','App\DigishopController@home')->name('home');
 // Route::get('/{page}','App\AppController@page')->name('page');

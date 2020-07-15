@@ -10,6 +10,11 @@ class Product extends Model
 
     protected $guarded = ['id'];
 
+    public function images()
+    {
+        return $this->hasMany('App\Models\ProductImage');
+    }
+
     public function shop()
     {
         return $this->belongsTo('App\Models\Shop','shop_id');

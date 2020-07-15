@@ -1,26 +1,29 @@
 @extends('digishop.layout')
 
-@section('title',$page->title)
+@section('title','Checkout')
 
 @section('style')
-   
+
 @endsection
 
 
 @section('content')
 
-   <h2>page.php</h2>
+<main class="main">
+
+
+
+</main>
 
 @endsection
 
 
 @section('javascript')
-   <script>
+    <script src="{{asset('public/themes/digishop/js/nouislider.min.js')}}"></script>
+    <script>
       $(function(){
          'use strict'
 
-         console.log('index Loaded')
-
       });
-   </script>
+    </script>
 @endsection
