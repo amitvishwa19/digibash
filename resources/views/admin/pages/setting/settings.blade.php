@@ -69,9 +69,12 @@
             <li class="list-group-item {{(request()->type =='currency') ? 'active' : 'null'}}">
               <a href="{{route('setting.index',['type'=>'currency'])}}">Currencies</a>
             </li>
+            <li class="list-group-item {{(request()->type =='oauth') ? 'active' : 'null'}}">
+                <a href="{{route('setting.index',['type'=>'oauth'])}}">OAuth</a>
+            </li>
           </ul>
         </div>
-        
+
         <div class="col-md-9">
           <div class="card ">
 
@@ -79,15 +82,17 @@
               @include('admin.pages.setting.global')
             @elseif(request()->type == 'localization')
               @include('admin.pages.setting.localization')
+            @elseif(request()->type == 'oauth')
+              @include('admin.pages.setting.oauth')
             @endif
-           
+
           </div>
         </div>
 
       </div>
 
     </div><!-- row -->
-    
+
   </div>
 </div>
 
