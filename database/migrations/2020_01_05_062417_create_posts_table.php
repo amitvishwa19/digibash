@@ -13,12 +13,12 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Posts', function (Blueprint $table) {
-            
+        Schema::create('posts', function (Blueprint $table) {
+
             $table->increments('id');
-            $table->integer('user_id');        
+            $table->integer('user_id');
             $table->string('title')->nullable();
-            $table->string('slug')->unique()->nullable();        
+            $table->string('slug')->unique()->nullable();
             $table->text('description')->nullable();
             $table->longText('body')->nullable();
             $table->string('image_url')->nullable();
@@ -41,6 +41,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Posts');
+        Schema::dropIfExists('posts');
     }
 }
