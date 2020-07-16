@@ -70,7 +70,7 @@
               <a href="{{route('setting.index',['type'=>'currency'])}}">Currencies</a>
             </li>
             <li class="list-group-item {{(request()->type =='oauth') ? 'active' : 'null'}}">
-                <a href="{{route('setting.index',['type'=>'oauth'])}}">OAuth</a>
+                <a href="{{route('setting.index',['type'=>'oauth'])}}">API Access Token</a>
             </li>
           </ul>
         </div>

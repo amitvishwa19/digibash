@@ -10,10 +10,10 @@
          <div class="col-6 col-xs-12">
 
             <!-- app_name Field -->
-            <div class="form-group row wpinput">
+            <div class="form-group row">
                <label for="app_name" class="col-4 control-label text-right">Application Name</label>
                <div class="col-8">
-                  <input class="form-control  input-lg" name="app_name" type="text" value="{{setting('app.name')}}{{old('app_name')}}">
+                  <input class="form-control  input-xs" name="app_name" type="text" value="{{setting('app.name')}}{{old('app_name')}}">
                   <div class="form-text text-muted">
                         The application name appear in title
                   </div>

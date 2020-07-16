@@ -47,6 +47,7 @@ Route::get('/cart/checkout','App\AppController@checkout')->name('cart.checkout')
 
 
 
+
 Route::post('/subscribe','Admin\SubscriptionController@store')->name('app.web.subscribe');
 
 Auth::routes();

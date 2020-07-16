@@ -40,6 +40,8 @@ class CrudGenerator extends Command
         $name = $this->argument('name');
         $this->model($name);
         $this->controller($name);
+        $this->apicontroller($name);
+        $this->apiresource($name);
         $this->request($name);
         $this->view($name);
         $this->view_add($name);
@@ -50,7 +52,6 @@ class CrudGenerator extends Command
     }
 
     protected function getStub($type){
-
         return file_get_contents(resource_path("views/admin/stubs/$type.stub"));
     }
 
@@ -60,13 +61,12 @@ class CrudGenerator extends Command
         $modelTemplate = str_replace(
             ['{{modelName}}'],
             [$name],
-            $this->getStub('Model')
+            $this->getStub('model')
         );
 
         file_put_contents(app_path("/Models/{$name}.php"), $modelTemplate);
         $this->info('Model created successfully');
     }
-
 
     //Controller Stub
     protected function controller($name){
@@ -82,11 +82,51 @@ class CrudGenerator extends Command
                 strtolower(str_plural($name)),
                 strtolower($name)
             ],
-            $this->getStub('Controller')
+            $this->getStub('controller')
         );
 
         file_put_contents(app_path("/Http/Controllers/Admin/{$name}Controller.php"), $controllerTemplate);
         $this->info('Controller created successfully');
+    }
+
+    //API Controller Stub
+    protected function apicontroller($name){
+        $template = str_replace(
+            [
+                '{{modelName}}',
+                '{{modelNamePluralLowerCase}}',
+                '{{modelNameSingularLowerCase}}'
+            ],
+            [
+                $name,
+                strtolower(str_plural($name)),
+                strtolower($name)
+            ],
+            $this->getStub('api-controller')
+        );
+
+        file_put_contents(app_path("/Http/Controllers/Api/v1/{$name}Controller.php"), $template);
+        $this->info('Api-Controller created successfully');
+    }
+
+    //Api Resource Stub
+    protected function apiresource($name){
+        $template = str_replace(
+            [
+                '{{modelName}}',
+                '{{modelNamePluralLowerCase}}',
+                '{{modelNameSingularLowerCase}}'
+            ],
+            [
+                $name,
+                strtolower(str_plural($name)),
+                strtolower($name)
+            ],
+            $this->getStub('resource')
+        );
+
+        file_put_contents(app_path("/Http/Resources/Api/{$name}Resource.php"), $template);
+        $this->info('Api-Resource created successfully');
     }
 
     //Request Stub

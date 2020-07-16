@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddAsserLinkToCategoriesTable extends Migration
+class AddAssetLinkToCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,8 @@ class AddAsserLinkToCategoriesTable extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->string('asset')->nullable()->after('order');
+            $table->string('class')->nullable()->after('order');
             $table->string('icon_class')->nullable()->after('class');
-            $table->boolean('status')->default(false)->after('icon_class');;
         });
     }
 
@@ -30,7 +29,6 @@ class AddAsserLinkToCategoriesTable extends Migration
         Schema::table('categories', function (Blueprint $table) {
             $table->dropColumn('class');
             $table->dropColumn('icon_class');
-            $table->dropColumn('status');
         });
     }
 }
