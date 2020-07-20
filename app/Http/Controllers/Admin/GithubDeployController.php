@@ -18,11 +18,15 @@ class GithubDeployController extends Controller
 
         if (hash_equals($githubHash, $localHash)) {
             Artisan::call("diploy:github");
+
+            app('log')->debug('githubHash: '. $githubHash);
+            app('log')->debug('localHash: '. $localHash);
+            return response()->json(['success' => true], 200);
         }
+
 
         app('log')->debug('githubHash: '. $githubHash);
         app('log')->debug('localHash: '. $localHash);
-
 
     }
 }
