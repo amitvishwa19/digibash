@@ -46,7 +46,7 @@ Route::get('/cart/checkout','App\AppController@checkout')->name('cart.checkout')
 //})->name('app.home');
 
 //Auto Deploy from github push
-Route::post('/github/deploy', 'Admin\GithubDeployController@deploy');
+Route::post('/deploy/github', 'Admin\GithubDeployController@deploy');
 
 //Auth Route
 Auth::routes();
