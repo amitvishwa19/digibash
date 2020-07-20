@@ -38,6 +38,7 @@
                    <thead>
                    <tr style="padding-left:20px">
                       <th style="" class=""><b>Log Name</b></th>
+                      <th style="" class=""><b>Description</b></th>
                       <th style="" class=""><b>Created</b></th>
                       <th style="" class=""><b>Actions</b></th>
                    </tr>
@@ -81,6 +82,7 @@
                 ajax: '{!! route('activity.index') !!}',
                 columns:[
                     { data: 'log_name', name: 'log_name'},
+                    { data: 'description', name: 'description'},
                     { data: 'created_at', name: 'created_at' },
                     { data: 'action', name: 'action' },
                 ]
