@@ -21,6 +21,10 @@ class GithubDeployController extends Controller
         app('log')->debug('localToken: '.$githubHash);
         app('log')->debug('localHash: '.$githubHash);
 
-        return 'Github deploy method fired';
+
+        $root_path = base_path();
+        $process = new Process('cd ' . $root_path . '; ./deploy.sh');
+
+        //return 'Github deploy method fired';
     }
 }
