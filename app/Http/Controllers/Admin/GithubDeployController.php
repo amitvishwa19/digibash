@@ -20,8 +20,8 @@ class GithubDeployController extends Controller
             Artisan::call("diploy:github");
         }
 
-        //app('log')->debug('githubHash: '. $githubHash);
-        //app('log')->debug('localHash: '. $localHash);
+        app('log')->debug('githubHash: '. $githubHash);
+        app('log')->debug('localHash: '. $localHash);
 
 
     }
