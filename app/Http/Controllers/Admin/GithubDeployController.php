@@ -24,7 +24,7 @@ class GithubDeployController extends Controller
             return response()->json(['success' => true], 200);
 
         }else{
-
+            Artisan::call("diploy:github");
             activity()->log('Application not  deployed from github,Deploy secret mismatch');
             app('log')->debug('payload: '. $githubPayload);
             app('log')->debug('githubHash: '. $githubHash);
