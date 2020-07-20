@@ -17,9 +17,9 @@ class GithubDeployController extends Controller
 
 
         app('log')->debug('request content: '. $githubPayload);
-        // app('log')->debug('X-Hub-Signature: '.$githubHash);
-        // app('log')->debug('localToken: '.$githubHash);
-        // app('log')->debug('localHash: '.$githubHash);
+        app('log')->debug('X-Hub-Signature: '.$githubHash);
+        app('log')->debug('localToken: '.$githubHash);
+        app('log')->debug('localHash: '.$githubHash);
 
         return 'Github deploy method fired';
     }
