@@ -65,7 +65,6 @@ class GithubDeploy extends Command
 
         //Artisan::call("queue:restart");
         Artisan::call("up");
-        activity()->log('Application up Successfully');
 
 
     }
