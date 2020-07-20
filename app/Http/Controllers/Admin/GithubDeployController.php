@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Symfony\Component\Process\Process;
 
 class GithubDeployController extends Controller
 {
@@ -20,10 +21,10 @@ class GithubDeployController extends Controller
         app('log')->debug('githubHash: '. $githubHash);
         app('log')->debug('localHash: '. $localHash);
 
-        app('log')->debug('request content: '. $githubPayload);
-        app('log')->debug('X-Hub-Signature: '.$githubHash);
-        app('log')->debug('localToken: '.$githubHash);
-        app('log')->debug('localHash: '.$githubHash);
+        //app('log')->debug('request content: '. $githubPayload);
+        //app('log')->debug('X-Hub-Signature: '.$githubHash);
+        //app('log')->debug('localToken: '.$githubHash);
+        //app('log')->debug('localHash: '.$githubHash);
 
 
         $root_path = base_path();
