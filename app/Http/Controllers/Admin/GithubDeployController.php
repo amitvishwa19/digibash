@@ -16,10 +16,10 @@ class GithubDeployController extends Controller
 
 
         $localToken = config('app.deploy_secret');
-        app('log')->debug($localToken);
+        app('log')->debug('deploy_secret=>' . $localToken);
 
         $localHash = 'sha1=' . hash_hmac('sha1', $localToken, false);
-        app('log')->debug($localHash);
+        app('log')->debug('deploy_secret Hash=>' . $localHash);
 
         // if (hash_equals($githubHash, $localHash)) {
 

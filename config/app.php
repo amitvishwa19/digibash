@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'deploy_secret' => env('APP_DEPLOY_SECRET'),
+    'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,9 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'deploy_secret' => env('APP_DEPLOY_SECRET'),
+
+
 
 
     /*
