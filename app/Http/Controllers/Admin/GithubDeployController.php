@@ -16,6 +16,10 @@ class GithubDeployController extends Controller
         $localHash = 'sha1=' . hash_hmac('sha1', $githubPayload, $localToken, false);
 
 
+
+        app('log')->debug('githubHash: '. $githubHash);
+        app('log')->debug('localHash: '. $localHash);
+
         app('log')->debug('request content: '. $githubPayload);
         app('log')->debug('X-Hub-Signature: '.$githubHash);
         app('log')->debug('localToken: '.$githubHash);
