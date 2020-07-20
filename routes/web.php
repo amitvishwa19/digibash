@@ -10,15 +10,6 @@ Route::get('/cart/delete/{productid}','App\AppController@delete_item_from_cart')
 Route::get('/cart/delete','App\AppController@delete_cart')->name('cart.delete');
 Route::get('/cart/checkout','App\AppController@checkout')->name('cart.checkout');
 
-//Route::get('/{product}','App\DigishopController@home')->name('home');
-// Route::get('/{page}','App\AppController@page')->name('page');
-// Route::get('/','Client\ClientController@home')->name('home');
-// Route::get('/cart','Client\ClientController@cart')->name('cart');
-// Route::get('/account','Client\ClientController@account')->name('account');
-// Route::get('/checkout','Client\ClientController@checkout')->name('checkout');
-// Route::get('/posts','Client\ClientController@posts')->name('posts');
-// Route::get('/post/{post}','Client\ClientController@post')->name('posts.single');
-// Route::get('/product/{product}','Client\ClientController@product')->name('product.single');
 
 
 //Route::get('/', function () {
