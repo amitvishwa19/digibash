@@ -10,16 +10,20 @@ class GithubDeployController extends Controller
 {
     public function deploy(Request $request)
     {
+        $githubPayload = $request->getContent();
+        app('log')->debug($githubPayload->sender);
+
+
         $githubHash = $request->header('X-Hub-Signature');
         app('log')->debug('X-Hub-Signature=>' . $githubHash);
 
 
 
         $localToken = config('app.deploy_secret');
-        app('log')->debug('deploy_secret=>' . $localToken);
+        app('log')->debug($localToken);
 
         $localHash = 'sha1=' . hash_hmac('sha1', $localToken, false);
-        app('log')->debug('deploy_secret Hash=>' . $localHash);
+        app('log')->debug($localHash);
 
         // if (hash_equals($githubHash, $localHash)) {
 
@@ -41,6 +45,8 @@ class GithubDeployController extends Controller
 
         // }
         Artisan::call("deploy:github");
+        //To check if git pull work or not
+        //So i hope git pull is working properly
         activity()->log($githubHash);
 
     }
