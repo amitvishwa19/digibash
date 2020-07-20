@@ -7,87 +7,78 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Models\Activity;
+use Yajra\Datatables\Datatables;
 
 class ActivityLogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(Request $request)
     {
-        if(Auth::user()->hasRole('Super Admin')){
+
+        // if(Auth::user()->hasRole('Super Admin')){
+        //     $activities = Activity::all()->reverse();
+        // }else{
+        //     $activities = auth()->user()->actions->load('causer')->reverse();
+        // }
+        //dd(Activity::all()->reverse());
+        if ($request->ajax()) {
             $activities = Activity::all()->reverse();
-        }else{
-            $activities = auth()->user()->actions->load('causer')->reverse();
+
+            return Datatables::of($activities)
+
+            ->editColumn('created_at',function(Activity $activity){
+                return $activity->created_at->diffForHumans();
+            })
+
+            ->addColumn('action',function($data){
+                        $link = '<div class="d-flex">'.
+                                    '<a href="javascript:void(0);" id="'.$data->id.'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn btn-del delete">Delete</a>'.
+                                '</div>';
+                        return $link;
+                    })
+            ->rawColumns(['action'])
+            ->make(true);
+
         }
-        return view('admin.pages.log.activity_log',compact('activities'));
+
+        return view('admin.pages.activity-log.activity_log');
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+        Activity::destroy($id);
+        return response()->json(null, 204);
     }
 }

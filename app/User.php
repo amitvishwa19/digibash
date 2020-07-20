@@ -7,12 +7,12 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Laravel\Passport\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, Notifiable;
+    use Notifiable;
     use HasRoles;
 
     use LogsActivity;
@@ -44,5 +44,20 @@ class User extends Authenticatable
     public function routeNotificationForSlack($notification)
     {
         return config('app.slack_webhook');
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

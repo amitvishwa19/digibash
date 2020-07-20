@@ -13,7 +13,7 @@ class CreateMenusTable extends Migration
      */
     public function up()
     {
-        Schema::create('Menus', function (Blueprint $table) {  
+        Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->timestamps();

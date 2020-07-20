@@ -13,8 +13,8 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Products', function (Blueprint $table) {
-            
+        Schema::create('products', function (Blueprint $table) {
+
             $table->increments('id');
             $table->integer('shop_id')->unsigned()->nullable();
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
@@ -44,6 +44,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Products');
+        Schema::dropIfExists('products');
     }
 }

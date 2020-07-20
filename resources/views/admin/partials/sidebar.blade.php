@@ -142,7 +142,7 @@
 
 
         <li class="nav-item">
-            <a href="{{route('app.admin.activity.log')}}" class="nav-link">
+            <a href="{{route('activity.index')}}" class="nav-link">
             <i class="fa fa-flag" aria-hidden="true"></i>
             <span>Activity Logs</span>
             </a>

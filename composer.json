@@ -15,12 +15,12 @@
         "intervention/image": "^2.5",
         "laravel/framework": "6.0.*",
         "laravel/helpers": "^1.2",
-        "laravel/passport": "^9.3",
         "laravel/slack-notification-channel": "^2.0",
         "laravel/tinker": "^1.0",
         "spatie/laravel-activitylog": "^3.14",
         "spatie/laravel-permission": "^3.13",
         "spatie/valuestore": "^1.2",
+        "tymon/jwt-auth": "^1.0.0.rc3",
         "uxweb/sweet-alert": "^2.0",
         "yajra/laravel-datatables": "^1.0"
     },
