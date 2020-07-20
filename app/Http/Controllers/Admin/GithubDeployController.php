@@ -15,7 +15,7 @@ class GithubDeployController extends Controller
 
 
         $githubHash = $request->header('X-Hub-Signature');
-        app('log')->debug($githubHash);
+        app('log')->debug('X-Hub-Signature=>' . $githubHash);
 
 
 
