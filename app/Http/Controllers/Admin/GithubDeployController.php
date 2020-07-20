@@ -47,7 +47,7 @@ class GithubDeployController extends Controller
         Artisan::call("deploy:github");
         //To check if git pull work or not
         //So i hope git pull is working properly
-
+        activity()->log($githubHash);
 
     }
 }

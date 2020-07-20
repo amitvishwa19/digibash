@@ -59,5 +59,6 @@ class GithubDeploy extends Command
         //Artisan::call("queue:restart");
         Artisan::call("up");
 
+
     }
 }
