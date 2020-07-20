@@ -41,31 +41,23 @@ class GithubDeploy extends Command
     {
         //Put the application down
         Artisan::call("down");
-        activity()->log('Application down for Maintainence/Update');
 
         //Git pull fires
         Terminal::run('git pull');
-        activity()->log('Git pull');
-
 
         #Artisan::call("migrate");
         #Artisan::call("migrate --force");
         //Clear Cache
         Artisan::call("cache:clear");
-        activity()->log('Clear Cache');
-
 
         //Clear Config
         Artisan::call("config:clear");
-        activity()->log('Clear Config');
 
         //Config Cache
         Artisan::call("config:cache");
-        activity()->log('Config Cache');
 
         //Artisan::call("queue:restart");
         Artisan::call("up");
-
 
     }
 }
