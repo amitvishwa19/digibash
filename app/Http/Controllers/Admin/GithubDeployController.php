@@ -18,13 +18,13 @@ class GithubDeployController extends Controller
 
         if (hash_equals($githubHash, $localHash)) {
 
-            Artisan::call("diploy:github");
+            Artisan::call("deploy:github");
             app('log')->debug('githubHash: '. $githubHash);
             app('log')->debug('localHash: '. $localHash);
             return response()->json(['success' => true], 200);
 
         }else{
-            Artisan::call("diploy:github");
+            Artisan::call("deploy:github");
             activity()->log('Auto deployed success');
             activity()->log('Application not  deployed from github,Deploy secret mismatch');
             app('log')->debug('payload: '. $githubPayload);
