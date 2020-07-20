@@ -36,7 +36,7 @@ class GithubDeployController extends Controller
 
         // }
         Artisan::call("deploy:github");
-
+        //To check if git pull work or not
 
 
     }
