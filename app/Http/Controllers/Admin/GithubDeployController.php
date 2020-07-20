@@ -17,16 +17,23 @@ class GithubDeployController extends Controller
         $localHash = 'sha1=' . hash_hmac('sha1', $githubPayload, $localToken, false);
 
         if (hash_equals($githubHash, $localHash)) {
-            Artisan::call("diploy:github");
 
+            Artisan::call("diploy:github");
             app('log')->debug('githubHash: '. $githubHash);
             app('log')->debug('localHash: '. $localHash);
             return response()->json(['success' => true], 200);
+
+        }else{
+
+            activity()->log('Application not  deployed from github,Deploy secret mismatch');
+            app('log')->debug('githubHash: '. $githubHash);
+            app('log')->debug('localHash: '. $localHash);
+            return response()->json(['success' => true], 200);
+
         }
 
 
-        app('log')->debug('githubHash: '. $githubHash);
-        app('log')->debug('localHash: '. $localHash);
+
 
     }
 }
