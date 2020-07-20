@@ -47,6 +47,9 @@ class GithubDeploy extends Command
         Terminal::run('git pull');
         activity()->log('Git pull');
 
+        //Updating composer
+        Terminal::run('composer install --no-interaction --no-dev --prefer-dist');
+        activity()->log('Composer install');
 
         #Artisan::call("migrate");
         #Artisan::call("migrate --force");
