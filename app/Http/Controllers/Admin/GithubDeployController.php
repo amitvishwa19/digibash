@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Symfony\Component\Process\Process;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Artisan;
 
 class GithubDeployController extends Controller
 {
@@ -16,20 +16,13 @@ class GithubDeployController extends Controller
         $localToken = config('app.deploy_secret');
         $localHash = 'sha1=' . hash_hmac('sha1', $githubPayload, $localToken, false);
 
+        if (hash_equals($githubHash, $localHash)) {
+            Artisan::call("diploy:github");
+        }
+
+        //app('log')->debug('githubHash: '. $githubHash);
+        //app('log')->debug('localHash: '. $localHash);
 
 
-        app('log')->debug('githubHash: '. $githubHash);
-        app('log')->debug('localHash: '. $localHash);
-
-        //app('log')->debug('request content: '. $githubPayload);
-        //app('log')->debug('X-Hub-Signature: '.$githubHash);
-        //app('log')->debug('localToken: '.$githubHash);
-        //app('log')->debug('localHash: '.$githubHash);
-
-
-        $root_path = base_path();
-        $process = new Process('cd ' . $root_path . '; ./deploy.sh');
-
-        //return 'Github deploy method fired';
     }
 }
