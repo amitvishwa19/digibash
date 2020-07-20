@@ -22,7 +22,7 @@ class ActivityLogController extends Controller
         // }
         //dd(Activity::all()->reverse());
         if ($request->ajax()) {
-            $activities = Activity::all()->reverse();
+            $activities = Activity::latest('id');
 
             return Datatables::of($activities)
 

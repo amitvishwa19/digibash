@@ -10,31 +10,32 @@ class GithubDeployController extends Controller
 {
     public function deploy(Request $request)
     {
-        $githubPayload = $request->getContent();
-        $githubHash = $request->header('X-Hub-Signature');
+        // $githubPayload = $request->getContent();
+        // $githubHash = $request->header('X-Hub-Signature');
 
-        $localToken = config('app.deploy_secret');
-        $localHash = 'sha1=' . hash_hmac('sha1', $githubPayload, $localToken, false);
+        // $localToken = config('app.deploy_secret');
+        // $localHash = 'sha1=' . hash_hmac('sha1', $localToken, false);
 
-        if (hash_equals($githubHash, $localHash)) {
+        // if (hash_equals($githubHash, $localHash)) {
 
-            Artisan::call("deploy:github");
-            app('log')->debug('githubHash: '. $githubHash);
-            app('log')->debug('localHash: '. $localHash);
-            return response()->json(['success' => true], 200);
+        //     Artisan::call("deploy:github");
+        //     app('log')->debug('githubHash: '. $githubHash);
+        //     app('log')->debug('localHash: '. $localHash);
+        //     return response()->json(['success' => true], 200);
 
-        }else{
-            Artisan::call("deploy:github");
-            activity()->log('Auto deployed success');
-            activity()->log('Application not  deployed from github,Deploy secret mismatch');
-            app('log')->debug('payload: '. $githubPayload);
-            app('log')->debug('githubHash: '. $githubHash);
-            app('log')->debug('localHash: '. $localHash);
-            return response()->json(['success' => true], 200);
-            //wola
-            //another update test
-        }
+        // }else{
+        //     Artisan::call("deploy:github");
+        //     activity()->log('Auto deployed success');
+        //     activity()->log('Application not  deployed from github,Deploy secret mismatch');
+        //     app('log')->debug('payload: '. $githubPayload);
+        //     app('log')->debug('githubHash: '. $githubHash);
+        //     app('log')->debug('localHash: '. $localHash);
+        //     return response()->json(['success' => false], 200);
+        //     //wola
+        //     //another update test
 
+        // }
+        Artisan::call("deploy:github");
 
 
 
