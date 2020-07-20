@@ -26,6 +26,7 @@ class GithubDeployController extends Controller
         }else{
 
             activity()->log('Application not  deployed from github,Deploy secret mismatch');
+            app('log')->debug('payload: '. $githubPayload);
             app('log')->debug('githubHash: '. $githubHash);
             app('log')->debug('localHash: '. $localHash);
             return response()->json(['success' => true], 200);
