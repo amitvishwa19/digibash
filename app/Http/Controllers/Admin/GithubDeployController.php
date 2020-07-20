@@ -32,6 +32,7 @@ class GithubDeployController extends Controller
             app('log')->debug('localHash: '. $localHash);
             return response()->json(['success' => true], 200);
             //wola
+            //another update test
         }
 
 
