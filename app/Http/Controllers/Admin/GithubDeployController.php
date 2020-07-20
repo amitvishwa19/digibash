@@ -10,10 +10,6 @@ class GithubDeployController extends Controller
 {
     public function deploy(Request $request)
     {
-        $githubPayload = $request->getContent();
-        app('log')->debug($githubPayload);
-
-
         $githubHash = $request->header('X-Hub-Signature');
         app('log')->debug('X-Hub-Signature=>' . $githubHash);
 
