@@ -16,9 +16,9 @@
 
 
 @section('content')
-  
+
 <div class="content-body " id="contentbody">
-  <div class="card">    
+  <div class="card">
 
     <div class="d-sm-flex align-items-right justify-content-between mg-b-5 mg-lg-b-5 mg-xl-b-5">
       <div>
@@ -29,17 +29,17 @@
             <li class="breadcrumb-item active" aria-current="page">New</li>
           </ol>
         </nav>
-      </div> 
+      </div>
     </div>
-  
+
     @include('admin.partials.alerts')
 
     <div class="rows row-lgs">
 
       <form method="post" action="{{route('post.store')}}" enctype="multipart/form-data">
         @csrf
-  
-        <!--Title-->     
+
+        <!--Title-->
         <div class="form-group wpinput">
           <label for="formGroupExampleInput" class="d-block">Post Title</label>
           <input type="text" class="form-control" name="title" value="{{ old('title') }}" required autofocus>
@@ -49,13 +49,13 @@
         </div>
 
         <!--Description-->
-        <div class="form-group wpinput">
+        <div class="form-group">
           <label for="formGroupExampleInput2" class="d-block">Post Description</label>
           <input type="text" class="form-control input-sm" name="description">
         </div>
-  
-        <!--Body-->     
-        <div class="form-group wpinput">
+
+        <!--Body-->
+        <div class="form-group">
           <label for="formGroupExampleInput2" class="d-block">Post Body</label>
           <div id="post-body" class="ht-200 mg-b-25 form-group" style="background-color: #fff;margin-bottom: 20px;height: 400px;">
           </div>
@@ -63,7 +63,7 @@
         </div>
 
         <!--Post status-->
-        <div class="form-group wpinput">
+        <div class="form-group">
           <label for="formGroupExampleInput2" class="d-block">Post Status</label>
           <div class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input" id="customSwitch1" name="status">
@@ -80,7 +80,7 @@
                 @foreach($categories as $category)
                   <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
-              </select> 
+              </select>
           </div><!-- df-example -->
         </div>
 
@@ -134,19 +134,19 @@
 
         <button class="btn btn-primary btn-xs mg-t-20" type="submit" id="btnpublish">Save Draft</button>
         <a href="{{route('post.index')}}"  class="btn btn-dark btn-xs mg-t-20">Cancel</a>
-        
+
       </form>
 
     </div><!-- row -->
-  </div>  
+  </div>
 </div>
-      
+
 @endsection
 
 
 @section('modal')
 
-  
+
 
 @endsection
 
@@ -164,7 +164,7 @@
         var editor = new Quill('#post-body', {
           modules: {
             toolbar: [
-              [{ 'header': [1, 2, 3, 4, 5, 6, false] }], 
+              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
               ['bold', 'italic','underline', 'strike'],
               [{ 'font': [] }],
               [{ 'align': [] }],
@@ -174,13 +174,13 @@
               [{ 'direction': 'rtl' }],
               ['clean'],
               [{ 'color': [] }, { 'background': [] }],
-              
+
             ]
           },
           placeholder: '',
           theme: 'snow'
         });
-        editor.on('text-change', function() {       
+        editor.on('text-change', function() {
           $('#bodyinput').val(editor.root.innerHTML);
           //var text = editor.getText();
         });
@@ -226,7 +226,7 @@
                 }
               reader.readAsDataURL(this.files[0]);
               $('.remove-image').css('display', 'block');
-              $('.remove-image').css('cursor', 'pointer');    
+              $('.remove-image').css('cursor', 'pointer');
 
            }
         });

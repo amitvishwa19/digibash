@@ -10,9 +10,9 @@
 
 
 @section('content')
-	
+
 <div class="content-body " id="contentbody">
-    
+
 <div class="card">
 
   <div class="d-sm-flex align-items-right justify-content-between mg-b-5 mg-lg-b-5 mg-xl-b-5">
@@ -23,7 +23,7 @@
           <li class="breadcrumb-item active" aria-current="page">Role</li>
         </ol>
       </nav>
-    </div> 
+    </div>
   </div>
 
   <div class="">
@@ -34,17 +34,18 @@
         @csrf
         {{method_field('PUT')}}
 
-        <div class="wpinput form-group">
+        <div class="form-group">
             <label class="d-block"><b>Example Title</b></label>
             <input type="text" class="form-control"  name="name" value="{{$role->name}}{{old('name')}}">
         </div>
 
-        <div class="wpinput form-group">
+        <div class="form-group">
             <label class="d-block"><b>Role Description</b></label>
             <textarea class="form-control" name="description" id="" cols="30" rows="5">{{$role->description}}{{old('description')}}</textarea>
         </div>
 
-        <!--Permissions-->
+
+        {{-- <!--Permissions select2-->
         <div class="form-group">
           <label for="formGroupExampleInput2" class="d-block" style="font-weight:600">Permissions</label>
           <div data-label="Example" class="">
@@ -60,16 +61,34 @@
                     >{{$permission->name}}
                   </option>
                 @endforeach
-              </select> 
+              </select>
           </div><!-- df-example -->
+        </div> --}}
+
+        <div class="form-group">
+            <label class="d-block"><b>Permissions</b></label>
+            <div class="row">
+                @foreach($permissions as $permission)
+                    <div class="col-4">
+                        <input type="checkbox" name="permissions[]" value="{{$permission->id}}"
+                        @foreach($role->permissions as $perm)
+                          @if($perm->id == $permission->id)
+                            checked
+                          @endif
+                        @endforeach
+                        >
+                        <label for="checkbox" class="mg-l-5">{{$permission->name}}</label>
+                    </div>
+                @endforeach
+            </div>
         </div>
 
-    
+
         <button class="btn btn-primary btn-xs" id="btnpublish">Update</button>
         <a href="{{route('role.index')}}" class="btn btn-dark btn-xs">Cancel</a>
 
 
-      </form>  
+      </form>
     </div>
 
 
@@ -78,20 +97,20 @@
 </div>
 
 </div>
-	    
+
 @endsection
 
 
 @section('modal')
 
-	
+
 
 @endsection
 
 
 @section('javascript')
   <script src="{{asset('public/admin/lib/select2/js/select2.min.js')}}"></script>
-	
+
   	<script>
   		$('.select2').select2({
         placeholder: 'Choose one',

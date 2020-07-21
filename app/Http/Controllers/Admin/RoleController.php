@@ -30,14 +30,14 @@ class RoleController extends Controller
                         $perm = $perm. '<div class="badge badge-info mr-1" >'. $permission->name .'</div>';
                     };
                 }
-              
+
                 return $perm;//$permission;
             })
             ->addColumn('action',function($data){
                         $link = '<div class="d-flex">'.
                                     '<a href="'.route('role.edit',$data->id).'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn">Edit</a>'.
                                     '<a href="javascript:void(0);" id="'.$data->id.'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn btn-del delete">Delete</a>'.
-                                '</div>';   
+                                '</div>';
                         return $link;
                     })
             ->rawColumns(['permission','action'])
@@ -45,7 +45,7 @@ class RoleController extends Controller
 
 
         }
-        
+
 
         return view('admin.pages.role.role');
 
@@ -59,6 +59,7 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request->all());
         $validate = $request->validate([
             'name' => 'required'
         ]);
@@ -68,6 +69,9 @@ class RoleController extends Controller
         $role->description = $request->description;
         $role->save();
 
+        // foreach($request->permissions as $permission){
+        //     $role->syncPermissions($request->permission);
+        // }
         $role->syncPermissions($request->permissions);
 
         return redirect()->route('role.index')
@@ -102,7 +106,7 @@ class RoleController extends Controller
         $role->name = $request->name;
         $role->description = $request->description;
         $role->save();
-        
+
         $role->syncPermissions($request->permissions);
 
         return redirect()->route('role.index')
@@ -111,7 +115,7 @@ class RoleController extends Controller
             'alert-type' => 'success',
         ]);
 
-        
+
     }
 
     public function destroy($id)

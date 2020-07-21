@@ -19,10 +19,10 @@ class PostController extends Controller
 {
 
     public function index(Request $request)
-    {
-
+    {  
         if ($request->ajax()) {
-            $posts = Post::orderby('created_at','asc')->with('author','categories')->latest('id');
+           //$posts = Post::orderby('created_at','asc')->with('author','categories')->latest('id');
+            $posts = auth()->user()->posts()->with('author','categories')->latest()->get();
 
             return Datatables::of($posts)
                 ->editColumn('created_at',function(Post $post){

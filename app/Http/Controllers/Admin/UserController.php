@@ -66,12 +66,14 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $validate = $request->validate([
-            'name' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'email' => 'required'
         ]);
 
         $user = New User;
-        $user->name = $request->name;
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
         $user->email = $request->email;
         $user->save();
 
@@ -104,12 +106,14 @@ class UserController extends Controller
     {
 
         $validate = $request->validate([
-            'name' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'email' => 'required'
         ]);
 
         $user = User::findOrFail($id);
-        $user->name = $request->name;
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
         $user->email = $request->email;
         $user->save();
 

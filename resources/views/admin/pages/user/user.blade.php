@@ -8,9 +8,9 @@
 
 
 @section('content')
-	
+
 <div class="content-body " id="contentbody">
-    
+
   <div class="card">
 
     <div class="d-sm-flex align-items-right justify-content-between mg-b-5 mg-lg-b-5 mg-xl-b-5">
@@ -21,14 +21,14 @@
             <li class="breadcrumb-item active" aria-current="page">User</li>
           </ol>
         </nav>
-      </div> 
+      </div>
     </div>
 
     <div class="">
 
       <div class="d-flex mg-b-20">
         <h4>Users</h4>
-        <a href="{{route('user.create')}}" class="btn btn-success btn-xs mg-l-10 pd-t-8"> Add New User</a>
+        <a href="{{route('user.create')}}" class="btn btn-primary btn-xs mg-l-10 pd-t-8"> Add New User</a>
       </div>
 
 
@@ -43,10 +43,10 @@
                   <th style="width:15%" class=""><b>Actions</b></th>
               </tr>
               </thead>
-              
+
               <tbody>
               </tbody>
-              
+
             </table>
         </div><!-- df-example -->
       </div>
@@ -56,20 +56,20 @@
   </div>
 
 </div>
-	    
+
 @endsection
 
 
 @section('modal')
 
-	
+
 
 @endsection
 
 
 @section('javascript')
   <script src="{{asset('public/admin/lib/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-	
+
   <script>
     $(function(){
       'use strict'

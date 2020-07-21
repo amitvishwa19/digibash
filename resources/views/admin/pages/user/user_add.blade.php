@@ -10,9 +10,9 @@
 
 
 @section('content')
-	
+
 <div class="content-body " id="contentbody">
-    
+
   <div class="card">
 
     <div class="d-sm-flex align-items-right justify-content-between mg-b-5 mg-lg-b-5 mg-xl-b-5">
@@ -24,7 +24,7 @@
             <li class="breadcrumb-item active" aria-current="page">User</li>
           </ol>
         </nav>
-      </div> 
+      </div>
     </div>
 
     <div class="">
@@ -34,20 +34,26 @@
         <form method="post" action="{{route('user.store')}}">
           @csrf
 
-          <!-- Name -->
-          <div class="wpinput form-group">
+          <!--First Name -->
+          <div class="form-group">
               <label class="d-block"><b>User Name</b></label>
-              <input type="text" class="form-control"  name="name" value="{{old('name')}}">
+              <input type="text" class="form-control"  name="firstname" value="{{old('firstname')}}">
           </div>
 
+          <!-- Last Name -->
+          <div class="form-group">
+            <label class="d-block"><b>User Name</b></label>
+            <input type="text" class="form-control"  name="lastname" value="{{old('lastname')}}">
+        </div>
+
           <!-- Email -->
-          <div class="wpinput form-group">
+          <div class="form-group">
               <label class="d-block"><b>User Email</b></label>
               <input type="email" class="form-control"  name="email" value="{{old('email')}}">
           </div>
 
           <!--Permissions-->
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label for="formGroupExampleInput2" class="d-block" style="font-weight:600">Roles</label>
             <div data-label="Example" class="">
                 <select class="form-control select2" multiple="multiple" name="roles[]" multiple="">
@@ -55,37 +61,49 @@
                   @foreach($roles as $role)
                     <option value="{{$role->id}}">{{$role->name}}</option>
                   @endforeach
-                </select> 
+                </select>
             </div><!-- df-example -->
+          </div> --}}
+
+          <div class="form-group">
+            <label class="d-block"><b>Roles</b></label>
+            <div class="row">
+                @foreach($roles as $role)
+                    <div class="col-3">
+                        <input type="checkbox" value="{{$role->id}}" name="roles[]">
+                        <label for="roles" class="mg-l-5">{{$role->name}}</label>
+                    </div>
+                @endforeach
+            </div>
           </div>
 
-      
+
           <button class="btn btn-primary btn-xs" id="btnpublish">Save</button>
           <a href="{{route('user.index')}}" class="btn btn-dark btn-xs">Cancel</a>
 
 
-        </form>  
+        </form>
       </div>
 
     </div>
 
   </div>
-  
+
 </div>
-	    
+
 @endsection
 
 
 @section('modal')
 
-	
+
 
 @endsection
 
 
 @section('javascript')
   <script src="{{asset('public/admin/lib/select2/js/select2.min.js')}}"></script>
-	
+
   	<script>
   		$('.select2').select2({
         placeholder: 'Choose one',
