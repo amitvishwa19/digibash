@@ -40,7 +40,7 @@
         @csrf
 
         <!--Title-->
-        <div class="form-group wpinput">
+        <div class="form-group">
           <label for="formGroupExampleInput" class="d-block">Post Title</label>
           <input type="text" class="form-control" name="title" value="{{ old('title') }}" required autofocus>
             @if ($errors->has('title'))
