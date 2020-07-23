@@ -1,40 +1,15 @@
 
 <?php
 
-Route::get('/','App\AppController@index')->name('home');
-Route::get('/product/{product}','App\AppController@product')->name('product');
-Route::get('/products/category/{category}','App\AppController@category_products')->name('category.products');
-Route::get('/cart','App\AppController@cart')->name('cart');
-Route::get('/cart/add/{product}','App\AppController@add_to_cart')->name('cart.item.add');
-Route::get('/cart/delete/{productid}','App\AppController@delete_item_from_cart')->name('cart.item.delete');
-Route::get('/cart/delete','App\AppController@delete_cart')->name('cart.delete');
-Route::get('/cart/checkout','App\AppController@checkout')->name('cart.checkout');
+Route::get('/','App\DigiShopController@index')->name('home');
+Route::get('/product/{product}','App\DigiShopController@product')->name('product');
+Route::get('/products/category/{category}','App\DigiShopController@category_products')->name('category.products');
+Route::get('/cart','App\DigiShopController@cart')->name('cart');
+Route::get('/cart/add/{product}','App\DigiShopController@add_to_cart')->name('cart.item.add');
+Route::get('/cart/delete/{productid}','App\DigiShopController@delete_item_from_cart')->name('cart.item.delete');
+Route::get('/cart/delete','App\DigiShopController@delete_cart')->name('cart.delete');
+Route::get('/cart/checkout','App\DigiShopController@checkout')->name('cart.checkout');
 
-
-
-//Route::get('/', function () {
-	//app('log')->debug(app_setting('app_name'));
-	//return setting('app.name');
-	//return $this->digizigs();
-	//return menu('Main Menu');
-	//return url()->current();
-	//return route('mail.index');
-
-	// //Digizigs::test();
-	// //digizigs()->test();
-	// //$value = Cache::forever('item', 'wola');
-	// return Cache::get('item');;
-	// // dd(config('settings.app_name'));
-	// // return '<h1>Home Page</h1>';
-	// // //$name = AppConfig::get_value('app_description');//get_value('app_name');//get_value('app_name');
-	// // //return $name;
-	// // //AppConfig::set_setting('app_name','digizigs');
-
-	// // $setting = Settings::get('app_description');
-	// // dd($setting);
-	// // config(['TEST' => 'NEW_VALUE']);
-	// // return config('TEST');
-//})->name('app.home');
 
 //Auto Deploy from github push
 Route::post('/deploy/github', 'Admin\GithubDeployController@deploy');
@@ -43,10 +18,10 @@ Route::post('/deploy/github', 'Admin\GithubDeployController@deploy');
 Auth::routes();
 
 
-Route::prefix('appadmin')->middleware('auth')->group(base_path('routes/admin.php'));
+//Route::prefix('appadmin')->middleware('auth')->group(base_path('routes/admin.php'));
 
 //Admin Routes
-    Route::group(['prefix' => 'appadmin','middleware'=>['auth']],function(){
+Route::group(['prefix' => 'appadmin','middleware'=>['auth']],function(){
 
     //Admin
     Route::get('/', 'Admin\DashboardController@index')->name('app.admin.home');

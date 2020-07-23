@@ -44,7 +44,7 @@
           {{method_field('PUT')}}
 
           <!--Title-->
-          <div class="form-group wpinput">
+          <div class="form-group">
             <label for="formGroupExampleInput" class="d-block">Post Title</label>
             <input type="text" class="form-control" name="title" value="{{$post->title}}{{ old('title') }}" autofocus>
               @if ($errors->has('title'))
@@ -53,13 +53,13 @@
           </div>
 
           <!--Description-->
-          <div class="form-group wpinput">
+          <div class="form-group">
             <label for="formGroupExampleInput2" class="d-block">Post Description</label>
             <input type="text" class="form-control" name="description" value="{{$post->description}}{{ old('description') }}">
           </div>
 
           <!--Body-->
-          <div class="form-group wpinput">
+          <div class="form-group">
             <label for="formGroupExampleInput2" class="d-block">Post Body</label>
             <div id="post-body" class="ht-200 mg-b-25 form-group" style="background-color: #fff;margin-bottom: 20px;height: 400px;">
             </div>
@@ -67,7 +67,7 @@
           </div>
 
           <!--Post status-->
-          <div class="form-group wpinput">
+          <div class="form-group">
             <label for="formGroupExampleInput2" class="d-block">Post Status</label>
             <div class="custom-control custom-switch">
               <input type="checkbox" class="custom-control-input" id="customSwitch1" name="status" @if($post->status == 'published') checked  @endif>

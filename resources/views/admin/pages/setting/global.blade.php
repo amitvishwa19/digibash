@@ -21,7 +21,7 @@
             </div>
 
             <!-- app_short_description Field -->
-            <div class="form-group row wpinput">
+            <div class="form-group row">
                <label for="app_short_description" class="col-4 control-label text-right">Short description</label>
                <div class="col-8">
                   <input class="form-control" placeholder="Enter a short description" name="app_description" type="text" value="{{setting('app.description')}}{{old('app_description')}}">
@@ -32,7 +32,7 @@
             </div>
 
             <!-- App Theme -->
-            <div class="form-group row wpinput">
+            <div class="form-group row">
                <label for="theme_contrast" class="col-4 control-label text-right">Theme contract</label>
                <div class="col-8">
                   <select class="form-control" id="theme_contrast" name="app_theme" >
@@ -45,7 +45,7 @@
             </div>
 
             <!-- Home Page -->
-            <div class="form-group row wpinput">
+            <div class="form-group row">
                <label for="theme_contrast" class="col-4 control-label text-right">Home Page</label>
                <div class="col-8">
                   <select class="form-control" id="theme_contrast" name="app_page" >
@@ -57,7 +57,7 @@
             </div>
 
             <!-- Admin Route -->
-            <div class="form-group row wpinput">
+            <div class="form-group row">
                <label for="app_name" class="col-4 control-label text-right">Admin Route</label>
                <div class="col-8">
                   <input class="form-control" name="app_admin" type="text" value="{{setting('app.admin')}}{{old('app_admin')}}">
@@ -68,7 +68,7 @@
             </div>
 
             <!-- Allow user to register -->
-            <div class="form-group row wpinput">
+            <div class="form-group row">
                <label for="app_name" class="col-4 control-label text-right">Allow User Registration</label>
                <div class="col-8">
                   <div class="custom-control custom-checkbox">
@@ -83,7 +83,7 @@
          <div class="col-6 col-xs-12">
 
             <!-- App icon -->
-            <div class="form-group row wpinput">
+            <div class="form-group row">
                <label for="" class="col-4 control-label">Application Logo</label>
                <div class="d-flex col-8">
 
@@ -98,7 +98,7 @@
             </div>
 
             <!-- App fevicon -->
-            <div class="form-group row wpinput">
+            <div class="form-group row">
                <label for="" class="col-4 control-label">Application Fevicon</label>
                <div class="d-flex col-8">
 
