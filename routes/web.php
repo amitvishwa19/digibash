@@ -14,8 +14,8 @@ Route::get('/cart/checkout','App\DigiShopController@checkout')->name('cart.check
 
 
 //Auto Deploy from github push
-Route::post('/deploy/github/notify', 'Admin\GithubDeployController@notify');
-Route::post('/deploy/github', 'Admin\GithubDeployController@deploy');
+Route::post('/deploy/github-notify', 'Admin\GithubDeployController@notify');
+Route::post('/deploy/github-pull', 'Admin\GithubDeployController@deploy');
 
 Route::get('/notify',function(){
     return 'Notify';

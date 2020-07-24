@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
@@ -11,7 +12,11 @@ class GithubDeployController extends Controller
 {
     public function notify()
     {
-        notify(new GitHubNotification());
+        $githubPayload = $request->getContent();
+        app('log')->debug($githubPayload);
+
+        User::first()->notify(new GitHubNotification());
+        return response()->json(['message'=>'Successfully delivered notification'],200);
     }
 
     public function deploy(Request $request)
