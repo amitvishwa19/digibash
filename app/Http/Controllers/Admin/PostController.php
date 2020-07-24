@@ -181,7 +181,7 @@ class PostController extends Controller
         if($file = $request->file('feature_image')){
             $post->image_url = uploadImage($request->file('feature_image'));
         }
-
+        
 
         $post->save();
 

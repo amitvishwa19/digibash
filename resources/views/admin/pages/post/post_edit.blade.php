@@ -117,7 +117,7 @@
             </div>
             <div id="" class="mg-t-20 avatar-preview img-thumbnail" @if($post->image_url) style="
               display:block;
-              background-image:url({{ $post->image_url}});
+              background-image:url({{ asset('public/storage/uploads/images/'. $post->image_url) }});
               " @else style="display:none"  @endif></div>
             <div class="remove-image" @if($post->image_url) style="display:block;cursor:pointer;" @endif><b>Remove image</b></div>
           </div>

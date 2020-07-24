@@ -55,6 +55,8 @@
             <a href="{{route('media.index')}}" class="nav-link"><i class="fa fa-picture-o" aria-hidden="true"></i>Media</a>
         </li>
         {{-- Shops --}}
+
+        <li class="nav-label mg-t-15">E-Commerce</li>
         <li class="nav-item">
             <a href="{{route('shop.index')}}" class="nav-link"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>Shops</a>
         </li>

@@ -1,6 +1,8 @@
 
 <?php
 
+use Illuminate\Support\Facades\Storage;
+
 Route::get('/','App\DigiShopController@index')->name('home');
 Route::get('/product/{product}','App\DigiShopController@product')->name('product');
 Route::get('/products/category/{category}','App\DigiShopController@category_products')->name('category.products');

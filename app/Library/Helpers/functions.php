@@ -61,20 +61,23 @@ if(! function_exists('category')){
 }
 
 if(! function_exists('uploadImage')){
-    function uploadImage($image = nulls){
-
-        //Create Uploads Folder
-        if(!File::exists(public_path('admin\uploads'))){
-            File::makeDirectory(public_path('admin\uploads'));
-        }
-
+    function uploadImage($image = null){
         if(!$image){ return 'Please provide image';}
-
-
         $image_name = time().'_'.$image->getClientOriginalName();
-        $img = Image::make($image);
-        $img->save(public_path('admin\uploads').'/'.$image_name);
-        return url('public/admin/uploads/'. $image_name) ;
+        $path = 'uploads/images';
+        // $img = Image::make($image);
+        // $img->save(public_path('uploads').'/'.$image_name);
+        // return url('public/uploads/'. $image_name) ;
+        $image->storeAs($path, $image_name, 'public');
+        $url = $path .'/'. $image_name;
+        return $url;
+    }
+}
+
+if(! function_exists('url_link')){
+    function url_link($path = null){
+        if(!$path){ return 'Please provide a valid path';}
+        return url($path);
     }
 }
 
