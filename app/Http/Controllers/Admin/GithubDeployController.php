@@ -5,9 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
+use App\Notifications\GitHubNotification;
 
 class GithubDeployController extends Controller
 {
+    public function notify()
+    {
+        notify(new GitHubNotification());
+    }
+
     public function deploy(Request $request)
     {
         $githubPayload = $request->getContent();

@@ -19,26 +19,24 @@ class SlackNotification extends Notification
         $this->body = $body;
     }
 
-    
+
     public function via($notifiable)
     {
         return ['slack'];
     }
 
-    
+
     public function toSlack($notifiable)
-    {   
+    {
 
         return (new SlackMessage)
                 ->content('One of your invoices has been paid!');
 
         return (new SlackMessage)
-
-
                 ->success()
                 ->content($this->body . $notifiable->name . ' ' . $notifiable->email  );
-                
-                
+
+
 
     }
 

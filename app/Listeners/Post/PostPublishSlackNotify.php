@@ -2,21 +2,21 @@
 
 namespace App\Listeners\Post;
 
-use App\Events\Post\PostPublishEvent;
-use App\Models\Post;
-use App\Notifications\Post\PostPublishSlackNotification;
 use App\User;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Models\Post;
+use App\Events\Post\PostPublishEvent;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Notifications\PostPublishSlackNotification;
 
 class PostPublishSlackNotify
 {
-    
 
-    
+
+
     public function __construct()
     {
-        
+
     }
 
     /**
