@@ -30,7 +30,7 @@ class GitHubNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail','slack'];
+        return ['mail','slack','database'];
     }
 
     /**
@@ -58,12 +58,16 @@ class GitHubNotification extends Notification
             });
     }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
+    public function toDatabase($notifiable)
+    {
+        return [
+            'owner' =>'Vishwa',
+            'notify' => 'New app update avaliable'
+
+        ];
+    }
+
+
     public function toArray($notifiable)
     {
         return [

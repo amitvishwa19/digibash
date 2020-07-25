@@ -12,8 +12,8 @@ class GithubDeployController extends Controller
 {
     public function notify()
     {
-        $githubPayload = $request->getContent();
-        app('log')->debug($githubPayload);
+        //$githubPayload = $request->getContent();
+        //app('log')->debug($githubPayload);
 
         User::first()->notify(new GitHubNotification());
         return response()->json(['message'=>'Successfully delivered notification'],200);
