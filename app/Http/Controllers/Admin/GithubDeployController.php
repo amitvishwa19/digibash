@@ -25,9 +25,12 @@ class GithubDeployController extends Controller
         $localToken = config('gitdeploy.secret_key');
         $localHash = 'sha1=' . hash_hmac('sha1', $githubPayload, $localToken, false);
 
+        $ip_address = $this->formatIPAddress($_SERVER['REMOTE_ADDR']);
+        app('log')->debug('IP Address: ' . $ip_address);
+
+        //Working
         if (hash_equals($githubHash, $localHash)) {
             app('log')->debug('Hoorey ! Github and local hash maches');
-
         }
 
         User::first()->notify(new GitHubNotification());
