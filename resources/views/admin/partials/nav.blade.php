@@ -79,7 +79,7 @@
                         <div class="media">
                         <div class="avatar avatar-sm"><img src="https://via.placeholder.com/500" class="rounded-circle" alt=""></div>
                         <div class="media-body mg-l-15">
-                            <p><strong>Joyce {{$notification->data['owner']}} </strong> {{$notification->data['notify']}}</p>
+                            <p><strong>Joyce Chua</strong>{{$notification->data['title']}}</p>
                             <span>{{Carbon\Carbon::parse($notification->created_at)->diffForHumans()}}</span>
                         </div><!-- media-body -->
                         </div><!-- media -->

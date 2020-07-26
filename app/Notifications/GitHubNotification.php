@@ -61,8 +61,8 @@ class GitHubNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'owner' =>'Vishwa',
-            'notify' => 'New app update avaliable'
+            'title' =>'Application uploaded to GitHub,Deploy updated Application',
+            'content' => 'New app update avaliable'
 
         ];
     }
