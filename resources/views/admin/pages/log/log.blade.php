@@ -35,7 +35,7 @@
 
         <div class="mg-t-20">
             @if(!$logs)
-                <div class="alert alert-warning" role="alert"><b>No Logs found</b></div>
+                <div class="alert alert-info" role="alert"><b>No Logs found</b></div>
             @else
                 <div class="row">
                     <div class="col-2">
@@ -95,7 +95,7 @@
                                     <tr data-display="stack{{{$key}}}" class="even pointer" >
 
                                         <td class="nowrap text-{{{$log['level_class']}}}" >
-                                        <span class="" aria-hidden="true"></span>&nbsp;&nbsp;{{$log['level']}}
+                                            <span class="" aria-hidden="true"></span>&nbsp;&nbsp;{{$log['level']}}
                                         </td>
                                         <td class="text"><small>{{$log['context']}}</small></td>
                                         <td class="date"><small>{{{$log['date']}}}</small></td>
@@ -103,14 +103,24 @@
 
                                         <td class="text hidden-xs" width="50%">
 
-                                        <small>{{{$log['text']}}}</small>
+                                            <small>{{$log['text']}}</small>
+                                            @if ($log['stack'])
+                                                <small>
+                                                    <a class="" data-toggle="collapse" href="#collapseExample"  aria-controls="collapseExample">
+                                                        Log Trace
+                                                    </a>
+                                                </small>
+                                                <div class="collapse mg-t-5" id="collapseExample">
+                                                    <small> {{$log['stack']}}</small>
+                                                </div>
+                                            @endif
 
-                                        @if (isset($log['in_file']))
-                                            <br/>{{{$log['in_file']}}}
-                                        @endif
+                                            @if (isset($log['in_file']))
+                                                <br/>{{{$log['in_file']}}}
+                                            @endif
 
 
-                                    </td>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
