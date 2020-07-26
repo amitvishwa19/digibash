@@ -25,8 +25,10 @@ class GithubDeployController extends Controller
         $localToken = config('gitdeploy.secret_key');
         $localHash = 'sha1=' . hash_hmac('sha1', $githubPayload, $localToken, false);
 
-        app('log')->debug( 'Github Hash: ' . $githubHash);
-        app('log')->debug( 'Local Hash: ' . $localHash);
+        if (hash_equals($githubHash, $localHash)) {
+            app('log')->debug('Hoorey ! Github and local hash maches');
+
+        }
 
         User::first()->notify(new GitHubNotification());
         return response()->json(['message'=>'Successfully delivered notification'],200);
