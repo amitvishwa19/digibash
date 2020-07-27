@@ -48,8 +48,8 @@ class GithubDeployController extends Controller
             activity()->log('Git pull');
 
             //Updating composer
-            ////Terminal::run('composer install --no-interaction --no-dev --prefer-dist');
-            //activity()->log('Composer install');
+            Terminal::run('composer install --no-interaction --no-dev --prefer-dist');
+            activity()->log('Composer install');
 
 
             //Artisan::call("migrate");
