@@ -22,7 +22,7 @@ class GithubDeployController extends Controller
         $githubPayload = $request->getContent();
         $postdata = json_decode($request->getContent(), TRUE);
         $githubHash = $request->header('X-Hub-Signature');
-        app('log')->debug($postdata['pusher']['email']);
+        //app('log')->debug($postdata['pusher']['email']);
 
         $localToken = config('gitdeploy.secret_key');
         $localHash = 'sha1=' . hash_hmac('sha1', $githubPayload, $localToken, false);
@@ -61,7 +61,7 @@ class GithubDeployController extends Controller
             Artisan::call("up");
             activity()->log('Application Up after Maintainence/Update');
 
-            User::first()->notify(new GitHubNotification());
+            User::first()->notify(new GitHubNotification($postdata));
             return response()->json(['message'=>'Successfully delivered notification'],200);
         }
 
