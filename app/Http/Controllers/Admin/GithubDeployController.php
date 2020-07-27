@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-//use Illuminate\Support\Facades\Artisan;
 use App\Notifications\GitHubNotification;
 
 use Monolog\Logger;
@@ -14,6 +13,10 @@ use Monolog\Handler\StreamHandler;
 use Artisan;
 use Log;
 use Event;
+
+use Illuminate\Console\Command;
+use TitasGailius\Terminal\Terminal;
+
 
 class GithubDeployController extends Controller
 {
@@ -28,10 +31,48 @@ class GithubDeployController extends Controller
         $ip_address = $this->formatIPAddress($_SERVER['REMOTE_ADDR']);
         app('log')->debug('IP Address: ' . $ip_address);
 
+        $git_path = config('gitdeploy.repo_paths');
+
+        $cmd = 'git pull';
+
+        shell_exec($cmd);
+
+        //app('log')->debug('S    erver response: ' . $server_response);
+
         //Working
-        if (hash_equals($githubHash, $localHash)) {
-            app('log')->debug('Hoorey ! Github and local hash maches');
-        }
+        // if (hash_equals($githubHash, $localHash)) {
+            Artisan::call("down");
+            activity()->log('Application Down for Maintainence/Update');
+
+            //Git pull fires
+            Terminal::run('git pull');
+            activity()->log('Git pull');
+
+            //Updating composer
+            Terminal::run('composer install --no-interaction --no-dev --prefer-dist');
+            activity()->log('Composer install');
+
+
+            Artisan::call("migrate");
+            activity()->log('Performing Migration');
+
+            Artisan::call("cache:clear");
+            activity()->log('Clear Cache');
+
+
+            //Clear Config
+            Artisan::call("config:clear");
+            activity()->log('Clear Config');
+
+            //Config Cache
+            Artisan::call("config:cache");
+            activity()->log('Config Cache');
+
+            Artisan::call("up");
+            activity()->log('Application Up after Maintainence/Update');
+
+        //     app('log')->debug('Hoorey ! Github and local hash maches');
+        // }
 
         User::first()->notify(new GitHubNotification());
         return response()->json(['message'=>'Successfully delivered notification'],200);
