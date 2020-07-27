@@ -12,10 +12,14 @@ class GitHubNotification extends Notification
 {
     use Queueable;
 
-    public $postdata = null;
+    /**
+     * Create a new notification instance.
+     *
+     * @return void
+     */
     public function __construct($postdata)
     {
-        $this->$postdata  = $postdata;
+        //
     }
 
     /**
@@ -47,7 +51,7 @@ class GitHubNotification extends Notification
     {
         return (new SlackMessage)
             ->success()
-            ->content('New update of application is avaliable,Pushed by :' . $this->$postdata['pusher']['email'])
+            ->content('New update of application is avaliable ')
             ->attachment(function ($attachment){
                 $attachment->title('Version :: ' . '2.0.1')
                             ->content('Description :: ' . 'Slack notification for github update');

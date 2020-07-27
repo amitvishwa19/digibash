@@ -61,7 +61,7 @@ class GithubDeployController extends Controller
             Artisan::call("up");
             activity()->log('Application Up after Maintainence/Update');
 
-            User::first()->notify(new GitHubNotification($postdata));
+            User::first()->notify(new GitHubNotification());
             return response()->json(['message'=>'Successfully delivered notification'],200);
         }
 
