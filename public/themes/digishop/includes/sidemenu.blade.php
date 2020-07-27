@@ -109,7 +109,7 @@
                 </div><!-- End .megamenu -->
             </li>
 
-            @foreach(category('products') as $category)
+            @foreach(category('e-commerce') as $category)
                 @foreach($category->child as $parent)
                 <li>
                     <a href="{{route('category.products',$parent->slug)}}" class=""><i class="{{$parent->icon_class}}"></i>{{$parent->name}}</a>

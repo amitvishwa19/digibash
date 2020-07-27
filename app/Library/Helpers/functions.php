@@ -24,7 +24,7 @@ if (! function_exists('posts')) {
         }else{
             $post = Post::where('status','published')->get();
         }
-        
+
         if($count){
             return $posts = $posts->take($count);
         }else{
