@@ -31,30 +31,29 @@ class GithubDeployController extends Controller
         $ip_address = $this->formatIPAddress($_SERVER['REMOTE_ADDR']);
         app('log')->debug('IP Address: ' . $ip_address);
 
-        $git_path = config('gitdeploy.repo_paths');
+        //$git_path = config('gitdeploy.repo_paths');
 
-        $cmd = 'git pull';
-
-        shell_exec($cmd);
 
         //app('log')->debug('S    erver response: ' . $server_response);
 
         //Working
         // if (hash_equals($githubHash, $localHash)) {
-            Artisan::call("down");
+
             activity()->log('Application Down for Maintainence/Update');
+            Artisan::call("down");
+
 
             //Git pull fires
             Terminal::run('git pull');
             activity()->log('Git pull');
 
             //Updating composer
-            Terminal::run('composer install --no-interaction --no-dev --prefer-dist');
+            ////Terminal::run('composer install --no-interaction --no-dev --prefer-dist');
             activity()->log('Composer install');
 
 
-            Artisan::call("migrate");
-            activity()->log('Performing Migration');
+            //Artisan::call("migrate");
+            //activity()->log('Performing Migration');
 
             Artisan::call("cache:clear");
             activity()->log('Clear Cache');
