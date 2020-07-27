@@ -52,8 +52,8 @@ class GithubDeployController extends Controller
             activity()->log('Composer install');
 
 
-            //Artisan::call("migrate");
-            //activity()->log('Performing Migration');
+            Artisan::call("migrate --force");
+            activity()->log('Performing Migration');
 
             Artisan::call("cache:clear");
             activity()->log('Clear Cache');
