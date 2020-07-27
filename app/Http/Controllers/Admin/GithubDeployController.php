@@ -31,13 +31,8 @@ class GithubDeployController extends Controller
         $ip_address = $this->formatIPAddress($_SERVER['REMOTE_ADDR']);
         app('log')->debug('IP Address: ' . $ip_address);
 
-        //$git_path = config('gitdeploy.repo_paths');
 
-
-        //app('log')->debug('S    erver response: ' . $server_response);
-
-        //Working
-        // if (hash_equals($githubHash, $localHash)) {
+        if (hash_equals($githubHash, $localHash)) {
 
             activity()->log('Application Down for Maintainence/Update');
             Artisan::call("down");
@@ -70,13 +65,13 @@ class GithubDeployController extends Controller
             Artisan::call("up");
             activity()->log('Application Up after Maintainence/Update');
 
-        //     app('log')->debug('Hoorey ! Github and local hash maches');
-        // }
+            User::first()->notify(new GitHubNotification());
+            return response()->json(['message'=>'Successfully delivered notification'],200);
+        }
 
         //Testing auto git pull,updated
 
-        User::first()->notify(new GitHubNotification());
-        return response()->json(['message'=>'Successfully delivered notification'],200);
+
     }
 
     public function deploy(Request $request)
