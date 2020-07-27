@@ -17,7 +17,7 @@ class GitHubNotification extends Notification
      *
      * @return void
      */
-    public function __construct($postdata)
+    public function __construct()
     {
         //
     }
