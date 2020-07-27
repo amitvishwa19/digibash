@@ -49,7 +49,7 @@ class GithubDeployController extends Controller
 
             //Updating composer
             ////Terminal::run('composer install --no-interaction --no-dev --prefer-dist');
-            activity()->log('Composer install');
+            //activity()->log('Composer install');
 
 
             //Artisan::call("migrate");
@@ -73,7 +73,7 @@ class GithubDeployController extends Controller
         //     app('log')->debug('Hoorey ! Github and local hash maches');
         // }
 
-        //Testing auto git pull
+        //Testing auto git pull,updated
 
         User::first()->notify(new GitHubNotification());
         return response()->json(['message'=>'Successfully delivered notification'],200);
