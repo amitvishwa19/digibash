@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Notifications\GitHubNotification;
 
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
-
 use Artisan;
 use Log;
 use Event;
@@ -23,13 +20,12 @@ class GithubDeployController extends Controller
     public function notify(Request $request)
     {
         $githubPayload = $request->getContent();
+        $postdata = json_decode($request->getContent(), TRUE);
         $githubHash = $request->header('X-Hub-Signature');
+        app('log')->debug($postdata['pusher']['email']);
 
         $localToken = config('gitdeploy.secret_key');
         $localHash = 'sha1=' . hash_hmac('sha1', $githubPayload, $localToken, false);
-
-        $ip_address = $this->formatIPAddress($_SERVER['REMOTE_ADDR']);
-        app('log')->debug('IP Address: ' . $ip_address);
 
 
         if (hash_equals($githubHash, $localHash)) {
