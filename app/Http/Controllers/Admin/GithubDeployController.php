@@ -74,6 +74,8 @@ class GithubDeployController extends Controller
         //     app('log')->debug('Hoorey ! Github and local hash maches');
         // }
 
+        //Testing auto git pull
+
         User::first()->notify(new GitHubNotification());
         return response()->json(['message'=>'Successfully delivered notification'],200);
     }
