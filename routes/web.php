@@ -93,8 +93,12 @@ Route::group(['prefix' => 'appadmin','middleware'=>['auth']],function(){
 
     Route::resource('/test','Admin\TestController');
 
-    //Logs
+    //Activity Logs
+    Route::delete('/activity/deleteall/{id}','Admin\ActivityLogController@deleteAll');
     Route::resource('/activity','Admin\ActivityLogController');
+
+
+    //Error Logs
     Route::get('/log','Admin\LogController@index')->name('app.admin.log');
 
     //Ecommerce

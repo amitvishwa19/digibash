@@ -28,8 +28,11 @@
 
       <div class="">
 
-         <div class="d-flex mg-b-20">
+         <div class=" mg-b-20">
             <h4>Activity Logs</h4>
+            <a href="javascript:void(0)" class="wp-title mg-r-5" id="select_all">Select All</a>
+            <a href="javascript:void(0)" class="wp-title mg-r-5" id="deselect_all">Deselect All</a>
+            <a href="javascript:void(0)" class="wp-title mg-r-5" id="delete_all">Delete All</a>
          </div>
 
          <div class="mg-t-20">
@@ -37,10 +40,11 @@
                 <table id="example2" class="table table-color-primary">
                    <thead>
                    <tr style="padding-left:20px">
-                      <th style="" class=""><b>Log Name</b></th>
-                      <th style="" class=""><b>Description</b></th>
-                      <th style="" class=""><b>Created</b></th>
-                      <th style="" class=""><b>Actions</b></th>
+                        <th><input type="checkbox" id="bulk_delete"></th>
+                        <th style="" class=""><b>Log Name</b></th>
+                        <th style="" class=""><b>Description</b></th>
+                        <th style="" class=""><b>Created</b></th>
+                        <th style="" class=""><b>Actions</b></th>
                    </tr>
                    </thead>
 
@@ -81,10 +85,11 @@
                 serverSide: true,
                 ajax: '{!! route('activity.index') !!}',
                 columns:[
+                    { data: 'checkbox', name: 'checkbox',orderable:false, searchable: false},
                     { data: 'log_name', name: 'log_name'},
                     { data: 'description', name: 'description'},
                     { data: 'created_at', name: 'created_at' },
-                    { data: 'action', name: 'action' },
+                    { data: 'action', name: 'action', orderable:false, searchable: false },
                 ]
             });
 
@@ -100,25 +105,99 @@
                 cancelButtonText: "Cancel",
                 reverseButtons: true
                 }).then(result => {
-                if (result.value) {
-                    $.ajax({
-                        url: "activity/"+id,
-                        type:"post",
-                        data: {_method: 'delete', _token: "{{ csrf_token() }}"},
-                        success: function(result){
-                            location.reload();
-                            toast({
-                            type: "success",
-                            title: "Activity Log Deleted Successfully"
-                            });
-                        }
-                    });
-                }
+                    if (result.value) {
+                        $.ajax({
+                            url: "activity/"+id,
+                            type:"post",
+                            data: {_method: 'delete', _token: "{{ csrf_token() }}"},
+                            success: function(result){
+                                location.reload();
+                                toast({
+                                type: "success",
+                                title: "Activity Log Deleted Successfully"
+                                });
+                            }
+                        });
+                    }
                 });
             });
 
 
+
+            $("#bulk_delete").change(function(){
+                var checked = $(this).is(':checked'); // Checkbox state
+                var checkboxes = document.getElementsByName('id');
+
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if(checked){
+                        checkboxes[i].checked = true;
+                    }else{
+                        checkboxes[i].checked = false;
+                    }
+
+                }
+            });
+
+            $(document).on('click', '#select_all', function(){
+                var checkboxes = document.getElementsByName('id');
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].type == 'checkbox') {
+                        checkboxes[i].checked = true
+                    }
+                }
+            });
+
+            $(document).on('click', '#deselect_all', function(){
+                var checkboxes = document.getElementsByName('id');
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].type == 'checkbox') {
+                        checkboxes[i].checked = false
+                    }
+                }
+            });
+
+            $(document).on('click', '#delete_all', function(){
+                var id = [];
+                $('.checkbox:checked').each(function(){
+                    id.push($(this).val());
+                });
+                if(id.length > 0){
+                    swalWithBootstrapButtons({
+                    title: "Delete Selected Activity Log?",
+                    text: "You won't be able to revert this!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Delete",
+                    cancelButtonText: "Cancel",
+                    reverseButtons: true
+                    }).then(result => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "activity/deleteall/"+id,
+                                type:"post",
+                                data: {_method: 'delete', _token: "{{ csrf_token() }}"},
+                                success: function(result){
+                                    location.reload();
+                                    toast({
+                                        type: "success",
+                                        title: "Activity Log Deleted Successfully"
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }else{
+                    toast({
+                        type: "warning",
+                        title: "Please select atleast one item to delete !"
+                    });
+                }
+
+            });
+
+
         });
+
   	</script>
 
 @endsection

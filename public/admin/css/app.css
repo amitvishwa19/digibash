@@ -79782,7 +79782,7 @@ body {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #22282F;
+  color: #22282f;
   text-align: left;
   background-color: #fff;
   overflow: hidden;
@@ -79810,7 +79810,7 @@ body ul li {
 }
 
 .bootstrap-tagsinput .tag {
-  background-color: #00AEEF !important;
+  background-color: #00aeef !important;
 }
 
 .nav-aside .fa {
@@ -79842,7 +79842,7 @@ body ul li {
 .content-header .dropdown-profile .fa {
   font-size: 16px;
   margin-right: 10px;
-  color: #2D353E;
+  color: #2d353e;
 }
 
 .card {
@@ -79862,7 +79862,7 @@ body ul li {
 
 .list-group li {
   padding: 7px;
-  color: #2D353E;
+  color: #2d353e;
 }
 
 .list-group li a {
@@ -79870,7 +79870,7 @@ body ul li {
 }
 
 .list-group li:hover {
-  background-color: #F0F3F9;
+  background-color: #f0f3f9;
 }
 
 .list-group li:hover a {
@@ -79884,7 +79884,7 @@ body ul li {
 
 .action-link {
   margin-right: 10px;
-  color: #009CE6;
+  color: #009ce6;
   font-size: 12px;
   font-weight: 600;
 }
@@ -79937,35 +79937,35 @@ body ul li {
 }
 
 #toasty.success {
-  border-left: 5px solid #2BDE3F;
+  border-left: 5px solid #2bde3f;
 }
 
 #toasty.success #desc i {
-  color: #2BDE3F;
+  color: #2bde3f;
 }
 
 #toasty.info {
-  border-left: 5px solid #1D72F3;
+  border-left: 5px solid #1d72f3;
 }
 
 #toasty.info #desc i {
-  color: #1D72F3;
+  color: #1d72f3;
 }
 
 #toasty.warning {
-  border-left: 5px solid #FFC007;
+  border-left: 5px solid #ffc007;
 }
 
 #toasty.warning #desc i {
-  color: #FFC007;
+  color: #ffc007;
 }
 
 #toasty.danger {
-  border-left: 5px solid #2BDE3F;
+  border-left: 5px solid #2bde3f;
 }
 
 #toasty.danger #desc i {
-  color: #2BDE3F;
+  color: #2bde3f;
 }
 
 .btn-default {
@@ -80016,17 +80016,17 @@ body ul li {
 }
 
 .log-side-bar li a:hover {
-  color: #0B3861;
+  color: #0b3861;
   font-weight: 600;
 }
 
 .log-side-bar li.active a {
-  color: #0B3861;
+  color: #0b3861;
   font-weight: 600;
 }
 
 .lbl-heading a {
-  color: #0B3861;
+  color: #0b3861;
   margin-right: 10px;
 }
 
@@ -80063,7 +80063,7 @@ body ul li {
 
 .list-group li {
   cursor: pointer;
-  border: 1px solid #F3F4F7 !important;
+  border: 1px solid #f3f4f7 !important;
 }
 
 .list-group li a {
@@ -80077,7 +80077,7 @@ body ul li {
 }
 
 .list-group li.active {
-  background-color: #F0F3F9;
+  background-color: #f0f3f9;
   border: none;
   font-weight: bold;
 }
@@ -80124,6 +80124,12 @@ textarea:focus {
 .btn-default:active,
 .btn-default:focus {
   background-color: transparent !important;
+}
+
+.wp-title {
+  color: #0073aa;
+  font-weight: 600;
+  font-size: 12px;
 }
 
 .wpinput {

@@ -4,7 +4,7 @@ body {
     font-size: 0.875rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #22282F;
+    color: #22282f;
     text-align: left;
     background-color: #fff;
     overflow: hidden;
@@ -14,14 +14,13 @@ body {
             list-style: none;
         }
     }
-
 }
 
 .wp {
     color: $wp_color !important;
     font-style: italic;
     transition-property: border, background, color;
-    transition-duration: .05s;
+    transition-duration: 0.05s;
     transition-timing-function: ease-in-out;
 }
 
@@ -33,17 +32,15 @@ body {
 }
 
 .bootstrap-tagsinput .tag {
-    background-color: #00AEEF !important;
+    background-color: #00aeef !important;
 }
 
 //Side nav fa icons
 .nav-aside {
-
     .fa {
         font-size: 16px;
         margin-right: 15px;
     }
-
 }
 
 //Need to delete
@@ -74,7 +71,7 @@ body {
         .fa {
             font-size: 16px;
             margin-right: 10px;
-            color: #2D353E;
+            color: #2d353e;
         }
     }
 }
@@ -94,18 +91,16 @@ body {
     }
 
     li {
-
         padding: 7px;
-        color: #2D353E;
+        color: #2d353e;
 
         a {
-
             border: none !important;
         }
     }
 
     li:hover {
-        background-color: #F0F3F9;
+        background-color: #f0f3f9;
 
         a {
             font-weight: bold;
@@ -122,7 +117,7 @@ body {
 //table action links
 .action-link {
     margin-right: 10px;
-    color: #009CE6;
+    color: #009ce6;
     font-size: 12px;
     font-weight: 600;
 }
@@ -180,44 +175,42 @@ body {
 }
 
 #toasty.success {
-    border-left: 5px solid #2BDE3F;
+    border-left: 5px solid #2bde3f;
 
     #desc {
         i {
-            color: #2BDE3F;
+            color: #2bde3f;
         }
     }
 }
 
 #toasty.info {
-    border-left: 5px solid #1D72F3;
+    border-left: 5px solid #1d72f3;
 
     #desc {
         i {
-            color: #1D72F3;
+            color: #1d72f3;
         }
     }
 }
 
 #toasty.warning {
-    border-left: 5px solid #FFC007;
+    border-left: 5px solid #ffc007;
 
     #desc {
         i {
-            color: #FFC007;
+            color: #ffc007;
         }
     }
 }
 
 #toasty.danger {
-    border-left: 5px solid #2BDE3F;
+    border-left: 5px solid #2bde3f;
 
     #desc {
         i {
-            color: #2BDE3F;
+            color: #2bde3f;
         }
-
-        ;
     }
 }
 
@@ -237,7 +230,6 @@ body {
     //-border: 1px solid grey;
     color: $wp_color !important;
     font-weight: 600;
-
 }
 
 //badge col
@@ -278,14 +270,14 @@ body {
         }
 
         a:hover {
-            color: #0B3861;
+            color: #0b3861;
             font-weight: 600;
         }
     }
 
     li.active {
         a {
-            color: #0B3861;
+            color: #0b3861;
             font-weight: 600;
         }
     }
@@ -293,7 +285,7 @@ body {
 
 .lbl-heading {
     a {
-        color: #0B3861;
+        color: #0b3861;
         margin-right: 10px;
     }
 }
@@ -305,7 +297,6 @@ body {
     margin-left: -250px;
     margin-top: 40px;
 }
-
 
 //Category page category recrussive display list
 .cat-list-display {
@@ -326,7 +317,6 @@ body {
 
 //Admin menu builder menu items draggable
 .dd-list {
-
     .dd-handle {
         display: block;
         //height: 50px;
@@ -346,7 +336,7 @@ body {
 .list-group {
     li {
         cursor: pointer;
-        border: 1px solid #F3F4F7 !important;
+        border: 1px solid #f3f4f7 !important;
 
         a {
             display: block;
@@ -362,7 +352,7 @@ body {
     }
 
     li.active {
-        background-color: #F0F3F9;
+        background-color: #f0f3f9;
         border: none;
         font-weight: bold;
 
@@ -370,7 +360,6 @@ body {
             color: $wp_color !important;
         }
     }
-
 }
 
 .content-header .left-menu {
@@ -379,12 +368,10 @@ body {
     }
 }
 
-
 //Datatable pagination buttonm
 .paginate_button {
     cursor: pointer;
 }
-
 
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -419,4 +406,10 @@ textarea:focus {
 .btn-default:active,
 .btn-default:focus {
     background-color: transparent !important;
+}
+
+.wp-title {
+    color: $wp_color;
+    font-weight: 600;
+    font-size: 12px;
 }

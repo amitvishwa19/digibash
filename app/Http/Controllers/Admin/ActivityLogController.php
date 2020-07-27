@@ -29,14 +29,14 @@ class ActivityLogController extends Controller
             ->editColumn('created_at',function(Activity $activity){
                 return $activity->created_at->diffForHumans();
             })
-
+            ->addColumn('checkbox', '<input type="checkbox" name="id" class="checkbox" value="{{$id}}"/>')
             ->addColumn('action',function($data){
                         $link = '<div class="d-flex">'.
                                     '<a href="javascript:void(0);" id="'.$data->id.'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn btn-del delete">Delete</a>'.
                                 '</div>';
                         return $link;
                     })
-            ->rawColumns(['action'])
+            ->rawColumns(['action','checkbox'])
             ->make(true);
 
         }
@@ -78,7 +78,23 @@ class ActivityLogController extends Controller
 
     public function destroy($id)
     {
-        Activity::destroy($id);
+        if(is_array($id)){
+            return 'is array';
+        }else{
+            return 'Not array';
+            //Activity::destroy($id);
+            //return response()->json(null, 204);
+        }
+
+    }
+
+    public function deleteAll($id)
+    {
+        $id = explode(',', $id);
+        foreach($id as $i){
+            Activity::destroy($id);
+        }
         return response()->json(null, 204);
     }
+
 }
