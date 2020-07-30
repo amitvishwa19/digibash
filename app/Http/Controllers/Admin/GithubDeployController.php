@@ -19,51 +19,54 @@ class GithubDeployController extends Controller
 {
     public function notify(Request $request)
     {
-        $githubPayload = $request->getContent();
-        $postdata = json_decode($request->getContent(), TRUE);
-        $githubHash = $request->header('X-Hub-Signature');
-        //app('log')->debug($postdata['pusher']['email']);
+        User::first()->notify(new GitHubNotification());
+        return response()->json(['message'=>'Successfully delivered notification'],200);
 
-        $localToken = config('gitdeploy.secret_key');
-        $localHash = 'sha1=' . hash_hmac('sha1', $githubPayload, $localToken, false);
+        // $githubPayload = $request->getContent();
+        // $postdata = json_decode($request->getContent(), TRUE);
+        // $githubHash = $request->header('X-Hub-Signature');
+        // //app('log')->debug($postdata['pusher']['email']);
 
-
-        if (hash_equals($githubHash, $localHash)) {
-
-            activity()->log('Application Down for Maintainence/Update');
-            Artisan::call("down");
+        // $localToken = config('gitdeploy.secret_key');
+        // $localHash = 'sha1=' . hash_hmac('sha1', $githubPayload, $localToken, false);
 
 
-            //Git pull fires
-            Terminal::run('git pull');
-            activity()->log('Git pull');
+        // if (hash_equals($githubHash, $localHash)) {
 
-            //Updating composer
-            Terminal::run('composer install --no-interaction --no-dev --prefer-dist');
-            activity()->log('Composer install');
+        //     activity()->log('Application Down for Maintainence/Update');
+        //     Artisan::call("down");
 
 
-            Artisan::call("migrate --force");
-            activity()->log('Performing Migration');
+        //     //Git pull fires
+        //     Terminal::run('git pull');
+        //     activity()->log('Git pull');
 
-            Artisan::call("cache:clear");
-            activity()->log('Clear Cache');
+        //     //Updating composer
+        //     Terminal::run('composer install --no-interaction --no-dev --prefer-dist');
+        //     activity()->log('Composer install');
 
 
-            //Clear Config
-            Artisan::call("config:clear");
-            activity()->log('Clear Config');
+        //     Artisan::call("migrate --force");
+        //     activity()->log('Performing Migration');
 
-            //Config Cache
-            Artisan::call("config:cache");
-            activity()->log('Config Cache');
+        //     Artisan::call("cache:clear");
+        //     activity()->log('Clear Cache');
 
-            Artisan::call("up");
-            activity()->log('Application Up after Maintainence/Update');
 
-            User::first()->notify(new GitHubNotification());
-            return response()->json(['message'=>'Successfully delivered notification'],200);
-        }
+        //     //Clear Config
+        //     Artisan::call("config:clear");
+        //     activity()->log('Clear Config');
+
+        //     //Config Cache
+        //     Artisan::call("config:cache");
+        //     activity()->log('Config Cache');
+
+        //     Artisan::call("up");
+        //     activity()->log('Application Up after Maintainence/Update');
+
+        //     User::first()->notify(new GitHubNotification());
+        //     return response()->json(['message'=>'Successfully delivered notification'],200);
+        // }
 
         //Testing auto git pull,updated
 
@@ -72,44 +75,41 @@ class GithubDeployController extends Controller
 
     public function deploy(Request $request)
     {
-        $githubPayload = $request->getContent();
-        app('log')->debug($githubPayload);
+        activity()->log('Application Down for Maintainence/Update');
+        Artisan::call("down");
+
+        //Git pull fires
+        Terminal::run('git pull');
+        activity()->log('Git pull');
+
+        //Updating composer
+        Terminal::run('composer install --no-interaction --no-dev --prefer-dist');
+        activity()->log('Composer install');
 
 
-        $githubHash = $request->header('X-Hub-Signature');
-        app('log')->debug('X-Hub-Signature=>' . $githubHash);
+        Artisan::call("migrate --force");
+        activity()->log('Performing Migration');
+
+        Artisan::call("cache:clear");
+        activity()->log('Clear Cache');
 
 
+        // //Clear Config
+        // Artisan::call("config:clear");
+        // activity()->log('Clear Config');
 
-        $localToken = config('app.deploy_secret');
-        app('log')->debug($localToken);
+        // //Config Cache
+        // Artisan::call("config:cache");
+        // activity()->log('Config Cache');
 
-        $localHash = 'sha1=' . hash_hmac('sha1', $localToken, false);
-        app('log')->debug($localHash);
+        Artisan::call("up");
+        activity()->log('Application Up after Maintainence/Update');
 
-        // if (hash_equals($githubHash, $localHash)) {
-
-        //     Artisan::call("deploy:github");
-        //     app('log')->debug('githubHash: '. $githubHash);
-        //     app('log')->debug('localHash: '. $localHash);
-        //     return response()->json(['success' => true], 200);
-
-        // }else{
-        //     Artisan::call("deploy:github");
-        //     activity()->log('Auto deployed success');
-        //     activity()->log('Application not  deployed from github,Deploy secret mismatch');
-        //     app('log')->debug('payload: '. $githubPayload);
-        //     app('log')->debug('githubHash: '. $githubHash);
-        //     app('log')->debug('localHash: '. $localHash);
-        //     return response()->json(['success' => false], 200);
-        //     //wola
-        //     //another update test
-
-        // }
-        Artisan::call("deploy:github");
-        //To check if git pull work or not
-        //So i hope git pull is working properly
-        activity()->log($githubHash);
+        return redirect()->route('setting.index',['type'=>$request->query('type')])
+        ->with([
+                'message'    =>'Application repository deployed from github',
+                'alert-type' => 'success',
+            ]);
 
     }
 

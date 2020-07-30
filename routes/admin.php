@@ -6,6 +6,14 @@ Route::get('/', 'Admin\DashboardController@index')->name('app.admin.home');
 //Posts
 Route::resource('/post','Admin\PostController');
 
+// //Posts
+// Route::get('/post',[
+//     'as' => 'posts',
+//     'uses' => 'PostController@index'
+// ]);
+
+
+
 //Access Controls
 Route::resource('/user','Admin\UserController');
 Route::resource('/permission','Admin\PermissionController');
@@ -55,8 +63,12 @@ Route::resource('/setting','Admin\SettingController');
 
 Route::resource('/test','Admin\TestController');
 
-//Logs
-Route::get('/activitylog','Admin\ActivityLogController@index')->name('app.admin.activity.log');
+//Activity Logs
+Route::delete('/activity/deleteall/{id}','Admin\ActivityLogController@deleteAll');
+Route::resource('/activity','Admin\ActivityLogController');
+
+
+//Error Logs
 Route::get('/log','Admin\LogController@index')->name('app.admin.log');
 
 //Ecommerce

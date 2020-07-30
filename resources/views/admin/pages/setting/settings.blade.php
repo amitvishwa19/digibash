@@ -72,6 +72,9 @@
             <li class="list-group-item {{(request()->type =='oauth') ? 'active' : 'null'}}">
                 <a href="{{route('setting.index',['type'=>'oauth'])}}">API Access Token</a>
             </li>
+            <li class="list-group-item {{(request()->type =='github') ? 'active' : 'null'}}">
+                <a href="{{route('setting.index',['type'=>'github'])}}">Github Deploy</a>
+            </li>
           </ul>
         </div>
 
@@ -84,6 +87,8 @@
               @include('admin.pages.setting.localization')
             @elseif(request()->type == 'oauth')
               @include('admin.pages.setting.oauth')
+            @elseif(request()->type == 'github')
+              @include('admin.pages.setting.gitdeploy')
             @endif
 
           </div>

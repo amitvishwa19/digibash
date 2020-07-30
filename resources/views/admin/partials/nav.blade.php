@@ -73,15 +73,19 @@
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-header">Notifications</div>
 
-                @foreach(auth()->user()->unreadNotifications()->paginate(5) as $notification)
+                @foreach(auth()->user()->unreadNotifications()->paginate(6) as $notification)
 
                     <a href="" class="dropdown-item">
                         <div class="media">
-                        <div class="avatar avatar-sm"><img src="https://via.placeholder.com/500" class="rounded-circle" alt=""></div>
-                        <div class="media-body mg-l-15">
-                            <p><strong>Joyce Chua</strong>{{$notification->data['title']}}</p>
-                            <span>{{Carbon\Carbon::parse($notification->created_at)->diffForHumans()}}</span>
-                        </div><!-- media-body -->
+                            <div class="avatar avatar-sm">
+                                @if($notification->data['type'] == 'update')
+                                    <i class="fa fa-cogs"></i>
+                                @endif
+                            </div>
+                            <div class="media-body mg-l-15">
+                                <p>{{$notification->data['title']}}</p>
+                                <span>{{Carbon\Carbon::parse($notification->created_at)->diffForHumans()}}</span>
+                            </div><!-- media-body -->
                         </div><!-- media -->
                     </a>
 

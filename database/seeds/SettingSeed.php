@@ -20,5 +20,6 @@ class SettingSeed extends Seeder
         Setting::create(['key' => 'app.theme','value'=>'default']);
         Setting::create(['key' => 'app.admin','value'=>'appadmin']);
         Setting::create(['key' => 'app.registration','value'=>'no']);
+        Setting::create(['key' => 'app.autogitdeploy','value'=>'false']);
     }
 }

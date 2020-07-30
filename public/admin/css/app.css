@@ -11404,8 +11404,12 @@ a.text-dark:focus {
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
 }
 
 *,
@@ -11440,7 +11444,7 @@ body {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #727E8C;
+  color: #727e8c;
   text-align: left;
   background-color: #fff;
   overflow: hidden;
@@ -24264,7 +24268,7 @@ textarea.form-control {
   border-bottom-width: 0;
 }
 
-.table-striped tbody tr:nth-of-type(2n+1) {
+.table-striped tbody tr:nth-of-type(2n + 1) {
   background-color: #f3f4f7;
 }
 
@@ -24415,7 +24419,7 @@ textarea.form-control {
   background-color: #f1f7ff;
 }
 
-.table-primary.table-striped tbody tr:nth-of-type(2n+1) {
+.table-primary.table-striped tbody tr:nth-of-type(2n + 1) {
   background-color: #e2eeff;
 }
 
@@ -24427,7 +24431,7 @@ textarea.form-control {
   background-color: #e3e7ed;
 }
 
-.table-secondary.table-striped tbody tr:nth-of-type(2n+1) {
+.table-secondary.table-striped tbody tr:nth-of-type(2n + 1) {
   background-color: #dadfe7;
 }
 
@@ -24443,7 +24447,7 @@ textarea.form-control {
   background-color: #e8fdf1;
 }
 
-.table-success.table-striped tbody tr:nth-of-type(2n+1) {
+.table-success.table-striped tbody tr:nth-of-type(2n + 1) {
   background-color: #dafce9;
 }
 
@@ -24459,7 +24463,7 @@ textarea.form-control {
   background-color: #fef9f9;
 }
 
-.table-danger.table-striped tbody tr:nth-of-type(2n+1) {
+.table-danger.table-striped tbody tr:nth-of-type(2n + 1) {
   background-color: #fceced;
 }
 
@@ -24475,7 +24479,7 @@ textarea.form-control {
   background-color: #fffbf8;
 }
 
-.table-warning.table-striped tbody tr:nth-of-type(2n+1) {
+.table-warning.table-striped tbody tr:nth-of-type(2n + 1) {
   background-color: #fff3e8;
 }
 
@@ -24491,7 +24495,7 @@ textarea.form-control {
   background-color: #eefdff;
 }
 
-.table-info.table-striped tbody tr:nth-of-type(2n+1) {
+.table-info.table-striped tbody tr:nth-of-type(2n + 1) {
   background-color: #defbff;
 }
 
@@ -24507,7 +24511,7 @@ textarea.form-control {
   background-color: #f9fafb;
 }
 
-.table-light.table-striped tbody tr:nth-of-type(2n+1) {
+.table-light.table-striped tbody tr:nth-of-type(2n + 1) {
   background-color: #eff2f5;
 }
 
@@ -24523,7 +24527,7 @@ textarea.form-control {
   background-color: #e3e7ed;
 }
 
-.table-dark.table-striped tbody tr:nth-of-type(2n+1) {
+.table-dark.table-striped tbody tr:nth-of-type(2n + 1) {
   background-color: #dadfe7;
 }
 
@@ -29668,7 +29672,7 @@ textarea.parsley-success:focus {
   font-family: "Ionicons";
   font-size: 18px;
   position: absolute;
-  top: calc(50% + .5px);
+  top: calc(50% + 0.5px);
   line-height: 0;
 }
 

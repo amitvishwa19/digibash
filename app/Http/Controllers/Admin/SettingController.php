@@ -24,18 +24,18 @@ class SettingController extends Controller
                 'folder' => basename($dir),
             );
         }
-     
+
 	}
-    
+
     public function index()
-    {	
+    {
     	$settings = $this->setting->all();
     	$themes = $this->themes;
-        return view('admin.pages.setting.settings',compact('settings','themes'));   
+        return view('admin.pages.setting.settings',compact('settings','themes'));
     }
 
     public function store(Request $request)
-    {   
+    {
         $themes = $this->themes;
         if($request->query('type') == 'global'){
 
@@ -48,7 +48,7 @@ class SettingController extends Controller
             setting('app.theme',$request->app_theme);
             setting('app.page',$request->app_page);
             setting('app.admin',$request->app_admin);
-            
+
 
             if($request->user_registration){
                 setting('app.registration','yes');
@@ -73,13 +73,24 @@ class SettingController extends Controller
             }
 
 
-            return redirect()->route('setting.index',['type'=>$request->query('type')])
+
+        }
+
+        if($request->query('type') == 'github'){
+            if($request->autodeploy){
+                setting('app.autogitdeploy','true');
+            }else{
+                setting('app.autogitdeploy','false');
+            }
+
+        }
+
+        return redirect()->route('setting.index',['type'=>$request->query('type')])
             ->with([
                     'message'    =>'Global Setting Updated Successfully',
                     'alert-type' => 'success',
-                ]);   
-        }
-    
+                ]);
+
     }
 
     public function update(Request $request, $id)
@@ -90,7 +101,7 @@ class SettingController extends Controller
     	if($request->post_per_page){ $this->setting->put('post_per_page',$request->post_per_page);}
     	if($request->app_page){	$this->setting->put('app_page',$request->app_page);}
     	if($request->app_theme){ $this->setting->put('app_theme',$request->app_theme);}
-    	
+
     	if($request->app_icon){
     		$image_name = time().$request->app_icon->getClientOriginalName();
             $destinationPath = public_path().'/assets/';
@@ -110,14 +121,14 @@ class SettingController extends Controller
 
 
 
-        return redirect() ->route('setting.index')->with('success','Settings updated successfully');   
+        return redirect() ->route('setting.index')->with('success','Settings updated successfully');
     }
 
     public function settings(Request $request)
     {
         $settings = $this->setting->all();
     	$themes = $this->themes;
-        return view('admin.pages.setting.settings',compact('settings','themes'));    
+        return view('admin.pages.setting.settings',compact('settings','themes'));
     }
 
     public function localisation()
