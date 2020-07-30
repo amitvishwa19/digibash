@@ -32,5 +32,6 @@ class MailSendJob implements ShouldQueue
     public function handle()
     {
         Mail::to('jaysvishwa@gmail.com')->send(new TestMail);
+        activity()->log('Mail sent successfully to jaysvishwa@gmail.com');
     }
 }
