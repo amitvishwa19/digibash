@@ -8,11 +8,18 @@
                      <a href="#">Links</a>
                      <div class="header-menu">
                         <ul>
-                           <li><a href="my-account.html">MY ACCOUNT </a></li>
-                           <li><a href="#">MY WISHLIST </a></li>
-                           <li><a href="blog.html">BLOG</a></li>
-                           <li><a href="contact.html">Contact</a></li>
-                           <li><a href="#" class="login-link">LOG IN</a></li>
+                            <li><a href="my-account.html">MY ACCOUNT </a></li>
+                            <li><a href="#">MY WISHLIST </a></li>
+                            <li><a href="blog.html">BLOG</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            @if(auth()->user())
+                                <li><a href="{{route('logout')}}" class="login-link" onclick="event.preventDefault(); document.getElementById('logout').submit();">LOG OUT</a></li>
+                                <form id="logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                                </form>
+                            @else
+                                <li><a href="{{route('login')}}" class="login-link">LOG IN</a></li>
+                            @endif
                         </ul>
                      </div><!-- End .header-menu -->
                </div><!-- End .header-dropown -->
@@ -72,7 +79,13 @@
 
                <div class="dropdown cart-dropdown">
                      <a href="{{route('cart')}}" class="dropdown-toggle" role="button">
-                        <span class="cart-count">{{Cart::session(auth()->id())->getContent()->count()}}</span>
+                        <span class="cart-count">
+                            @if(auth()->user())
+                                {{Cart::session(auth()->id())->getContent()->count()}}
+                            @else
+                                {{Cart::getContent()->count()}}
+                            @endif
+                        </span>
                      </a>
 
 

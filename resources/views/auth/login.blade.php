@@ -1,76 +1,79 @@
 @extends('auth.layout')
 
 @section('content')
-  <div class="content content-fixed content-auth">
-    <div class="container">
-      <div class="media align-items-stretch justify-content-center ht-100p pos-relative">
-        
-        <div class="media-body align-items-center d-none d-lg-flex">
-          <div class="mx-wd-600">
-            <img src="https://via.placeholder.com/1260x950" class="img-fluid" alt="">
-          </div>
-        </div><!-- media-body -->
+    <div class="login-page">
+        <div class="row">
+            <div class="col-9 left-area">
+                <img src="https://miro.medium.com/max/2625/1*qAX1633WKgkCBjW-7BICCA.jpeg" alt="">
 
-        <div class="sign-wrapper mg-lg-l-50 mg-xl-l-60">
-          <div class="wd-100p">
-            
-            <div class="app-logo" style="text-align: center;margin-bottom: 30px;">
-              <img src="{{asset('public\assets\DZ-Logo -black.png')}}" alt="" style="height: 40px">
             </div>
 
-            <h4 class="tx-color-01 mg-b-5">{{ __('Sign In') }}</h4>
+            <div class="col-3 right-area">
 
-            <form method="POST" action="{{ route('login') }}">
-              @csrf
+                <div class="login-content">
+                    <div class="brand-logo">
+                        <a href="{{route('home')}}">
+                            <img src="{{asset('public/admin/assets/digizigs logo (2).png')}}" alt="" style="width: 150px;">
+                         </a>
+                    </div>
 
-              <div class="form-group wpinput">
-                <label>{{ __('E-Mail Address') }}</label>
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <div class="login-form">
+                        <form method="POST" action="{{ route('login') }}" class="mg-b-20">
+                            @csrf
+                            <h5 class="info-title">Sign in to your account</h5>
 
-                @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-              </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                               <input type="text" class="form-control" name="email" placeholder="yourname@yourdomain.com" required="" autofocus value="{{ old('email') }}"/>
+                               @if ($errors->has('email'))
+                               <span class="help-block">
+                                  <strong>{{ $errors->first('email') }}</strong>
+                               </span>
+                               @endif
+                            </div>
 
-              <div class="form-group wpinput">
-                <div class="d-flex justify-content-between">
-                  <label class="mg-b-0-f">{{ __('Password') }}</label>
-                  @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}" class="tx-13">Forgot password?</a>
-                  @endif
-                </div>
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror 
-              </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                               <input type="password" class="form-control" name="password" placeholder="Enter your password" required="" />
+                               @if ($errors->has('password'))
+                               <span class="help-block">
+                                  <strong>{{ $errors->first('password') }}</strong>
+                               </span>
+                               @endif
+                            </div>
 
-              <div class="form-group">
-                <div class="d-flex justify-content-between mg-l-20">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                            <div class="form-group">
+                               <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} class="filled-in chk-col-pink">
+                               <label for="rememberme">Remember Me</label>
 
-                        <label class="form-check-label" for="remember">
-                            {{ __('Remember Me') }}
-                        </label>
+                               @if (Route::has('password.request'))
+                                  <a class="pull-right" href="">
+                                      {{ __('Forgot Password?') }}
+                                  </a>
+                               @endif
+
+                            </div>
+
+                            <div>
+                               <button class="btn btn-primary btn-login submit btn-sm pull-left form-control" style="margin-top: 5px;">Sign In</button>
+                            </div>
+
+                        </form>
+
+                        <div class="clearfix"></div>
+                        <div class="separator">
+                            <p class="change_link">New to site?
+                                <a href="{{ route('register') }}" class="to_register"> Create Account </a>
+                            </p>
+                            <div class="clearfix"></div>
+                            <br />
+
+                        </div>
+                        <p class="info">Your data will not be used outside of digizigs. By signing up you agree that your statistics may be used anonymously inside www.digizigs.com.</p>
+
                     </div>
                 </div>
-              </div>
-
-              <button class="btn btn-brand-02 btn-block">{{ __('Login') }}</button>
-            </form>
-
-            <div class="divider-text">or</div>
-            <button class="btn btn-outline-facebook btn-block">Sign In With Facebook</button>
-            <button class="btn btn-outline-twitter btn-block">Sign In With Twitter</button>
-            <div class="tx-13 mg-t-20 tx-center">Don't have an account? <a href="{{route('register')}}">Create an Account</a></div>
-          </div>
-        </div><!-- sign-wrapper -->
-      </div><!-- media -->
-    </div><!-- container -->
-  </div><!-- content -->
+            </div>
+        </div>
+    </div>
 @endsection

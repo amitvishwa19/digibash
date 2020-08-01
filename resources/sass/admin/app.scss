@@ -38,7 +38,7 @@ $select2_background:#7987a1;
 $select2_tag_background:#7987a1;
 
 
-$admin_content_body:#F0F3F9; //#EFF1F4 
+$admin_content_body:#F0F3F9; //#EFF1F4
 
 $sidebar_theme_color:#192F49;
 $sidebar_list_item:#8695a7;
@@ -50,3 +50,4 @@ $sidebar_list_item_active:#fff;
 @import './snippets/wpinput';
 @import './material/button';
 @import './snippets/nestable';
+@import './snippets/login';

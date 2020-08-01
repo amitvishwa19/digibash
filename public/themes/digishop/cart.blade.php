@@ -23,13 +23,13 @@
     <div class="container">
         <div class="row">
 
-            @if(\Cart::session(auth()->id())->isEmpty())
+            @if(auth()->user() ? \Cart::session(auth()->id())->isEmpty() : \Cart::isEmpty())
                 <div class="col-12">
                     <h4>No items in your cart</h4>
                 </div>
             @else
 
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <div class="cart-table-container">
                     <table class="table table-cart">
                         <thead>
@@ -46,7 +46,7 @@
                                     <td class="product-col">
                                         <figure class="product-image-container">
                                             <a href="product.html" class="product-image">
-                                                <img src="{{$item->associatedModel->feature_image}}" alt="{{$item->name}}" >
+                                                <img src="{{$item->associatedModel->feature_image ? $item->associatedModel->feature_image : asset('public/admin/images/default-product-image.jpg')}}" alt="{{$item->name}}" >
                                             </a>
                                         </figure>
                                         <h2 class="product-title">
@@ -105,7 +105,7 @@
                 </div><!-- End .cart-discount -->
             </div><!-- End .col-lg-8 -->
 
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="cart-summary">
                     <h3>Summary</h3>
 
@@ -113,7 +113,7 @@
                         <tbody>
                             <tr>
                                 <td>Subtotal</td>
-                                <td>₹ {{Cart::session(auth()->id())->getSubTotal()}}</td>
+                                <td>₹ {{$subtotal}}</td>
                             </tr>
 
                             <tr>
@@ -124,7 +124,7 @@
                         <tfoot>
                             <tr>
                                 <td>Order Total</td>
-                                <td>₹ {{Cart::session(auth()->id())->getSubTotal()}}</td>
+                                <td>₹ {{$subtotal}}</td>
                             </tr>
                         </tfoot>
                     </table>

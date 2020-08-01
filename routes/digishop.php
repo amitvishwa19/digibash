@@ -4,8 +4,14 @@
 Route::get('/','Client\DigiShopController@index')->name('home');
 Route::get('/product/{product}','Client\DigiShopController@product')->name('product');
 Route::get('/products/category/{category}','Client\DigiShopController@category_products')->name('category.products');
-Route::get('/cart','Client\DigiShopController@cart')->name('cart');
-Route::get('/cart/add/{product}','Client\DigiShopController@add_to_cart')->name('cart.item.add');
-Route::get('/cart/delete/{productid}','Client\DigiShopController@delete_item_from_cart')->name('cart.item.delete');
-Route::get('/cart/delete','Client\DigiShopController@delete_cart')->name('cart.delete');
-Route::get('/cart/checkout','Client\DigiShopController@checkout')->name('cart.checkout');
+
+Route::group(['prefix' => 'cart','middleware'=>['auth']],function(){
+
+    Route::get('/','Client\DigiShop\CartController@cart')->name('cart');
+    Route::get('/add/{product}','Client\DigiShop\CartController@add_to_cart')->name('cart.item.add');
+    Route::get('/delete/{productid}','Client\DigiShop\CartController@delete_item_from_cart')->name('cart.item.delete');
+    Route::get('/delete','Client\DigiShop\CartController@delete_cart')->name('cart.delete');
+    Route::get('/checkout','Client\DigiShop\CartController@checkout')->name('cart.checkout');
+
+});
+

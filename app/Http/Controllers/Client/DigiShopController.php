@@ -6,6 +6,7 @@ use App\Models\Page;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Category;
+use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -28,7 +29,7 @@ class DigiShopController extends Controller
         if(auth()->user()){
             $cartItems = \Cart::session(auth()->id())->getContent();
         }else{
-            $cartItems = \Cart::session(4)->getContent();
+            $cartItems = \Cart::getContent();
         }
         return view($this->theme .'.home',compact('cartItems'));
     }
@@ -81,48 +82,12 @@ class DigiShopController extends Controller
         return view($this->theme .'.category_products',compact('products','category'));
     }
 
-    public function cart()
-    {
-        $items = \Cart::session(auth()->id())->getContent();
-        //dd($items);
-        return view($this->theme .'.cart',compact('items'));
-    }
 
-    public function add_to_cart(Product $product)
-    {
-
-        \Cart::session(auth()->id())->add(array(
-            'id' => $product->id,
-            'name' => $product->name,
-            'price' => $product->price,
-            'quantity' => 1,
-            'attributes' => array(),
-            'associatedModel' => $product
-        ));
-
-        return redirect()->back();
-    }
-
-    public function delete_item_from_cart($productid)
-    {
-        // delete an item on cart
-        \Cart::session(auth()->id())->remove($productid);
-        return redirect()->back();
-    }
-
-    public function delete_cart()
-    {
-        \Cart::session(auth()->id())->clear();
-        return redirect()->back();
-    }
 
     public function account()
     {
         return view($this->theme .'.account');
     }
 
-    public function checkout()
-    {
-        return view($this->theme .'.checkout');
-    }
+
 }

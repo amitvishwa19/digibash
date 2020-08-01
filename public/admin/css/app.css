@@ -80914,3 +80914,49 @@ textarea:focus {
 
 /********** END NESTABLE CSS **********/
 
+.login-page {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.login-page .left-area {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.login-page .left-area img {
+  max-height: 100vh;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  background-color: rgba(48, 48, 48, 0.8);
+  opacity: 0.9;
+  vertical-align: middle;
+}
+
+.login-page .right-area {
+  margin: 0 !important;
+  padding: 0 !important;
+  padding: 30px !important;
+}
+
+.login-page .right-area .login-content .brand-logo {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+.login-page .right-area .login-content .brand-logo a {
+  text-align: center;
+}
+
+.login-page .right-area .login-content .login-form h5 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-page .right-area .login-content .login-form button {
+  color: #fff !important;
+  margin-bottom: 10px;
+}
+

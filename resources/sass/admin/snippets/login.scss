@@ -1,0 +1,45 @@
+.login-page{
+    margin: 0 !important;
+    padding: 0 !important;
+    .left-area{
+        margin: 0 !important;
+        padding: 0 !important;
+        img{
+            max-height: 100vh;
+            width: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            background-color: rgba(48, 48, 48, 0.8);
+            opacity: 0.9;
+            vertical-align: middle;
+        }
+
+    }
+    .right-area{
+        margin: 0 !important;
+        padding: 0 !important;
+        padding: 30px !important;
+
+        .login-content{
+
+            .brand-logo{
+                text-align: center;
+                a{
+                    text-align: center;
+                }
+                margin-bottom: 20px;
+                margin-top: 30px;
+            }
+            .login-form{
+                h5{
+                    text-align: center;
+                    margin-bottom: 30px;
+                }
+                button{
+                    color:#fff !important;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}

@@ -31,7 +31,7 @@
                            <div class="product-single-carousel owl-carousel owl-theme">
                               @foreach($product->images as $image)
                                  <div class="product-item">
-                                       <img class="product-single-image" src="{{$image->url}}" data-zoom-image="{{$image->url}}"/>
+                                       <img class="product-single-image" src="{{$$image->url ? $product->feature_image : asset('public/admin/images/default-product-image.jpg')}}" data-zoom-image="{{$image->url}}"/>
                                  </div>
                               @endforeach
                            </div>
