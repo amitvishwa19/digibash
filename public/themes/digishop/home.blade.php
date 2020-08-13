@@ -126,13 +126,13 @@
                             @foreach (products(null, 3) as $product)
                                 <div class="product-default left-details product-widget mb-3">
                                     <figure>
-                                    <a href="product.html">
+                                    <a href="{{route('product',$product->slug)}}">
                                         <img src="{{$product->feature_image ? $product->feature_image : asset('public/admin/images/default-product-image.jpg')}}">
                                     </a>
                                     </figure>
                                     <div class="product-details">
                                     <h2 class="product-title">
-                                        <a href="product.html">{{$product->name}}</a>
+                                        <a href="{{route('product',$product->slug)}}">{{$product->name}}</a>
                                     </h2>
                                     <div class="ratings-container">
                                         <div class="product-ratings">
@@ -157,13 +157,13 @@
                             @foreach (products(null, 3) as $product)
                                 <div class="product-default left-details product-widget mb-3">
                                     <figure>
-                                    <a href="product.html">
+                                    <a href="{{route('product',$product->slug)}}">
                                         <img src="{{$product->feature_image ? $product->feature_image : asset('public/admin/images/default-product-image.jpg')}}">
                                     </a>
                                     </figure>
                                     <div class="product-details">
                                     <h2 class="product-title">
-                                        <a href="product.html">{{$product->name}}e</a>
+                                        <a href="{{route('product',$product->slug)}}">{{$product->name}}e</a>
                                     </h2>
                                     <div class="ratings-container">
                                         <div class="product-ratings">
@@ -188,13 +188,13 @@
                             @foreach (products(null, 3) as $product)
                                 <div class="product-default left-details product-widget mb-3">
                                     <figure>
-                                    <a href="product.html">
+                                    <a href="{{route('product',$product->slug)}}">
                                         <img src="{{$product->feature_image ? $product->feature_image : asset('public/admin/images/default-product-image.jpg')}}">
                                     </a>
                                     </figure>
                                     <div class="product-details">
                                     <h2 class="product-title">
-                                        <a href="product.html">{{$product->name}}</a>
+                                        <a href="{{route('product',$product->slug)}}">{{$product->name}}</a>
                                     </h2>
                                     <div class="ratings-container">
                                         <div class="product-ratings">

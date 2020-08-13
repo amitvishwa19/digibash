@@ -39,7 +39,7 @@ Route::delete('/menu/{menu}/builder/{item}/delete','Admin\MenuController@deleteM
 
 
 //Media
-Route::get('/media','Admin\MediaController@index')->name('media.index');
+Route::resource('/media','Admin\MediaController');
 
 //Themes
 Route::resource('/theme','Admin\ThemeController');
@@ -72,5 +72,8 @@ Route::resource('/activity','Admin\ActivityLogController');
 Route::get('/log','Admin\LogController@index')->name('app.admin.log');
 
 //Ecommerce
+Route::resource('/brand','Admin\BrandController');
+Route::resource('/coupon','Admin\CouponController');
 Route::resource('/shop','Admin\ShopController');
 Route::resource('/product','Admin\ProductController');
+Route::resource('/order','Admin\OrderController');

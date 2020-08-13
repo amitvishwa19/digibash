@@ -183,6 +183,7 @@ return [
         App\Providers\AppConfigServiceProvider::class,
         App\Providers\SettingServiceProvider::class,
         App\Providers\DigizigsServiceProvider::class,
+        App\Providers\DigiCartServiceProvider::class,
 
     ],
 
@@ -238,6 +239,7 @@ return [
         'AppConfig' => App\Facades\AppConfigFacade::class,
         'Settings' => App\Facades\SettingFacade::class,
         'Digizigs' => App\Facades\Digizigs::class,
+        'DigiCart' => App\Facades\DigiCartFacade::class,
 
     ],
 

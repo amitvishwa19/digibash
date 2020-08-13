@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Storage;
 //Digishop route file
 Route::prefix('/')->group(base_path('routes/'.setting('app.theme').'.php'));
 
+//Paytm callback action
+Route::post('/payment/paytm/status', 'Admin\PaytmWalletController@paymentCallback')->name('payment.paytm.status');
 
 //Auto Deploy from github push
 Route::post('/deploy/github-notify', 'Admin\GithubDeployController@notify')->name('git.notify');

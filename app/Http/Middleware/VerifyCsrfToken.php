@@ -19,6 +19,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        '/deploy/github-notify'
+        '/deploy/github-notify',
+        '/cart/payment/paytm/status'
     ];
 }

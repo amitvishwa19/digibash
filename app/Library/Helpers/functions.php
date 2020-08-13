@@ -61,7 +61,7 @@ if(! function_exists('category')){
 }
 
 if(! function_exists('uploadImage')){
-    function uploadImage($image = null){
+    function uploadImage($image = null,$path = null){
         if(!$image){ return 'Please provide image';}
         $image_name = time().'_'.$image->getClientOriginalName();
         $path = 'uploads/images';
@@ -78,6 +78,14 @@ if(! function_exists('url_link')){
     function url_link($path = null){
         if(!$path){ return 'Please provide a valid path';}
         return url($path);
+    }
+}
+
+if(! function_exists('upload_media')){
+    function upload_media($image = null,$path = null){
+        if(!$image){ return 'Please provide image';}
+
+        return array('name'=>'file_name','ssASA'=>'adasdasd');
     }
 }
 

@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers\Client\digishop;
 
+use Cart;
+use PaytmWallet;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Cart as DCart;
 use App\Http\Controllers\Controller;
+use App\Events\Order\OrderProcessEvent;
 
 class CartController extends Controller
 {
 
     protected $theme = '';
+    protected $orderId = '';
 
     public function __construct()
     {
@@ -18,64 +24,140 @@ class CartController extends Controller
 
     public function cart()
     {
-        if(auth()->user()){
-            $items = \Cart::session(auth()->id())->getContent();
-            $subtotal = \Cart::session(auth()->id())->getSubTotal();
-        }else{
-            $items = \Cart::getContent();
-            $subtotal = \Cart::getSubTotal();
-        }
+        $items = Cart::getContent();
+        $subtotal = Cart::getSubTotal();
 
         //dd($items);
         return view($this->theme .'.cart',compact('items','subtotal'));
     }
 
-    public function checkout()
+    public function add_item(Product $product)
     {
-        return view($this->theme .'.checkout');
-    }
 
-    public function add_to_cart(Product $product)
-    {
-        if(auth()->user()){
-            \Cart::session(auth()->id())->add(array(
-                'id' => $product->id,
-                'name' => $product->name,
-                'price' => $product->price,
-                'quantity' => 1,
-                'attributes' => array(),
-                'associatedModel' => $product
-            ));
-        }else{
-            \Cart::add(array(
-                'id' => $product->id,
-                'name' => $product->name,
-                'price' => $product->price,
-                'quantity' => 1,
-                'attributes' => array(),
-                'associatedModel' => $product
-            ));
-        }
-
-
+        Cart::add(array(
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => 1,
+            'attributes' => array(),
+            'associatedModel' => $product
+        ));
 
         return redirect()->back();
     }
 
-    public function delete_item_from_cart($productid)
+    public function remove_item($productid)
     {
         // delete an item on cart
-        if(auth()->user()){
-            \Cart::session(auth()->id())->remove($productid);
-        }else{
-            \Cart::remove($productid);
-        }
+        Cart::remove($productid);
         return redirect()->back();
     }
+
 
     public function delete_cart()
     {
-        \Cart::session(auth()->id())->clear();
+        \Cart::clear();
         return redirect()->back();
+    }
+
+    public function applyCouponCode(Request $request){
+
+        $condition = new \Darryldecode\Cart\CartCondition(array(
+            'name' => 'SALE 5%',
+            'type' => 'sale',
+            'target' => 'subtotal',
+            'value' => '-10%',
+            'attributes' => array(
+                'description' => 'october fest promo sale',
+                'sale_start_date' => '2015-01-20',
+                'sale_end_date' => '2015-01-30'
+            )
+        ));
+
+        \Cart::condition($condition);
+
+        return redirect()->back();
+    }
+
+    public function checkout()
+    {
+        $items = Cart::getContent();
+        $subtotal = Cart::getSubTotal();
+        return view($this->theme .'.checkout',compact('items','subtotal'));
+    }
+
+    public function payment(Request $request)
+    {
+        $paymentMethod = $request->payment_method;
+
+        if($paymentMethod == 'paytm'){
+            return redirect()->route('cart.payment.paytm');
+        }else{
+            return redirect()->back();
+        }
+    }
+
+    public function paymen_status()
+    {
+        return view($this->theme .'.payment_status');
+    }
+
+    public function paytm_payment()
+    {
+        $order = new Order;
+        $order->user_id = auth()->user()->id;
+        $order->cart = serialize(Cart::getContent());
+        $order->payment_gateway = 'paytm';
+        $order->payment_status = 'pending';
+        $order->payment_amount = Cart::getSubTotal();
+        $order->save();
+        $this->orderId = $order->id;
+
+        // $order = Order::findOrFail($this->orderId);
+        // $order->payment_id = 'dASasASsdasdasdasdasdasdasdasdasd';
+        // $order->payment_status = 'success';
+        // $order->save();
+        // dd($order);
+
+        $payment = PaytmWallet::with('receive');
+
+        $payment->prepare([
+            'order' => $order->id, // your order id taken from cart
+            'user' => auth()->user()->id, // your user id
+            'mobile_number' => auth()->user()->mobile, // your customer mobile no
+            'email' => auth()->user()->email, // your user email address
+            'amount' => Cart::getSubTotal(), // amount will be paid in INR.
+            'callback_url' => 'http://localhost/digibash/cart/payment/paytm/status' // callback URL
+        ]);
+        return $payment->receive();
+    }
+
+    public function paytm_payment_callback()
+    {
+
+        $transaction = PaytmWallet::with('receive');
+        $response = $transaction->response(); // To get raw response as array
+        $msg = $transaction->getResponseMessage(); //Get Response Message If Available
+        $orderId = $transaction->getOrderId(); // Get order id
+        $transactionId = $transaction->getTransactionId(); // Get transaction id
+
+
+        //Check out response parameters sent by paytm here -> http://paywithpaytm.com/developer/paytm_api_doc?target=interpreting-response-sent-by-paytm
+        if($transaction->isSuccessful()){
+
+            $order = Order::findOrFail($orderId);
+            $order->payment_id = $transaction->getTransactionId();
+            $order->payment_status = 'success';
+            $order->save();
+            Cart::clear();
+            event(new OrderProcessEvent('success',$orderId));
+            return redirect()->route('cart.payment.status')->with('success','Payment success of order,- Transaction id is  ' .$transactionId);
+
+        }else if($transaction->isFailed()){
+
+        }else if($transaction->isOpen()){
+
+        }
+
     }
 }

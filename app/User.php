@@ -46,6 +46,14 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Models\Shop');
     }
 
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
+
+
+
+
     public function routeNotificationForSlack($notification)
     {
         return config('app.slack_webhook');

@@ -15,17 +15,19 @@
         "cross-env": "^5.1",
         "jquery": "^3.5.1",
         "laravel-mix": "^4.0.7",
-        "lodash": "^4.17.13",
+        "lodash": "^4.17.19",
         "popper.js": "^1.12",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17",
+        "vue2-dropzone": "^3.5.8",
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
         "nestable2": "^1.6.0",
         "nprogress": "^0.2.0",
-        "sweetalert2": "^7.32.2"
+        "sweetalert2": "^7.32.2",
+        "v-tooltip": "^2.0.3"
     }
 }

@@ -8,7 +8,7 @@
                      <a href="#">Links</a>
                      <div class="header-menu">
                         <ul>
-                            <li><a href="my-account.html">MY ACCOUNT </a></li>
+                            <li><a href="{{route('account.dashboard')}}">MY ACCOUNT </a></li>
                             <li><a href="#">MY WISHLIST </a></li>
                             <li><a href="blog.html">BLOG</a></li>
                             <li><a href="contact.html">Contact</a></li>
@@ -80,11 +80,7 @@
                <div class="dropdown cart-dropdown">
                      <a href="{{route('cart')}}" class="dropdown-toggle" role="button">
                         <span class="cart-count">
-                            @if(auth()->user())
-                                {{Cart::session(auth()->id())->getContent()->count()}}
-                            @else
-                                {{Cart::getContent()->count()}}
-                            @endif
+                            {{Cart::getContent()->count()}}
                         </span>
                      </a>
 

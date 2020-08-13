@@ -5,16 +5,14 @@
 
 
 @section('style')
-
-	
-
+    {{-- <link href="{{asset('public/admin/css/dropzone.css')}}" rel="stylesheet"> --}}
 @endsection
 
 
 @section('content')
-	
+
 <div class="content-body " id="contentbody">
-    
+
   <div class="card">
 
     <div class="d-sm-flex align-items-right justify-content-between mg-b-5 mg-lg-b-5 mg-xl-b-5">
@@ -25,48 +23,33 @@
             <li class="breadcrumb-item active" aria-current="page">Media</li>
           </ol>
         </nav>
-      </div> 
+      </div>
     </div>
 
     <div class="">
-      <h4>Media</h4>
-
-      <media-manager 
-        base-path="{{ config('digizigs.media.path', '/') }}"
-        :show-folders="{{ config('digizigs.media.show_folders', true) ? 'true' : 'false' }}"
-        :allow-upload="{{ config('digizigs.media.allow_upload', true) ? 'true' : 'false' }}"
-        :allow-move="{{ config('digizigs.media.allow_move', true) ? 'true' : 'false' }}"
-        :allow-delete="{{ config('digizigs.media.allow_delete', true) ? 'true' : 'false' }}"
-        :allow-create-folder="{{ config('digizigs.media.allow_create_folder', true) ? 'true' : 'false' }}"
-        :allow-rename="{{ config('digizigs.media.allow_rename', true) ? 'true' : 'false' }}"
-        :allow-crop="{{ config('digizigs.media.allow_crop', true) ? 'true' : 'false' }}"
-        :details="{{ json_encode(['thumbnails' => config('digizigs.media.thumbnails', []), 'watermark' => config('digizigs.media.watermark', (object)[])]) }}"
-        
-        ></media-manager>
-
-
-
+        <h4>Media</h4>
+        <media-manager></media-manager>
     </div><!-- row -->
 
   </div>
 
 </div>
-	    
+
 @endsection
 
 
 @section('modal')
 
-	
+
 
 @endsection
 
 
 @section('javascript')
+    {{-- <script src="{{asset('public/admin/js/dropzone.js')}}"></script> --}}
 
-	
   	<script>
-  		
+
   	</script>
 
 @endsection

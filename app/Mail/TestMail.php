@@ -28,6 +28,8 @@ class TestMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mails.testmailmarkdown');
+        //return $this->markdown('mails.testmailmarkdown');
+        return $this->from('info@dev.digizigs.com')->subject('New order shipped, Order id:JDJJD43472744NNXKDNDNDND')
+                ->view('mails.OrderPlaced');
     }
 }

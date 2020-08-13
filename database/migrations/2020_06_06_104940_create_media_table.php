@@ -13,11 +13,18 @@ class CreateMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('Media', function (Blueprint $table) {
-            
-            $table->increments('id');
+        Schema::create('media', function (Blueprint $table) {
 
-            $table->softDeletes();
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->text('filename');
+            $table->string('url');
+            $table->string('type');
+            $table->string('extention');
+            $table->boolean('public')->default(0);
+            $table->integer('height')->nullable();
+            $table->integer('width')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
 
         });
@@ -30,6 +37,6 @@ class CreateMediaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Media');
+        Schema::dropIfExists('media');
     }
 }

@@ -32,7 +32,14 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\Product\ProductPublishEvent' => [
             'App\Listeners\Product\ProductPublishListner',
+        ],
+        'App\Events\Order\OrderProcessEvent' => [
+            'App\Listeners\Order\OrderProcessListner',
+        ],
+        'App\Events\Login\LoginEvent' => [
+            'App\Listeners\Login\LoginListner',
         ]
+
     ];
 
     /**

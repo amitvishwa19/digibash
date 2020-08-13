@@ -54,9 +54,18 @@
         <li class="nav-item">
             <a href="{{route('media.index')}}" class="nav-link"><i class="fa fa-picture-o" aria-hidden="true"></i>Media</a>
         </li>
-        {{-- Shops --}}
+
 
         <li class="nav-label mg-t-15">E-Commerce</li>
+        {{-- Brands --}}
+        <li class="nav-item">
+            <a href="{{route('brand.index')}}" class="nav-link"><i class="fa fa-at" aria-hidden="true"></i>Brands</a>
+        </li>
+        {{-- Coupons --}}
+        <li class="nav-item">
+            <a href="{{route('coupon.index')}}" class="nav-link"><i class="fa fa-money" aria-hidden="true"></i>Coupons</a>
+        </li>
+        {{-- Shops --}}
         <li class="nav-item">
             <a href="{{route('shop.index')}}" class="nav-link"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>Shops</a>
         </li>
@@ -64,9 +73,19 @@
         <li class="nav-item">
             <a href="{{route('product.index')}}" class="nav-link"><i class="fa fa-product-hunt" aria-hidden="true"></i>Products</a>
         </li>
+        {{-- Order --}}
+        <li class="nav-item">
+            <a href="{{route('order.index')}}" class="nav-link"><i class="fa fa-usd" aria-hidden="true"></i>Orders</a>
+        </li>
+
+
+        {{-- Learning management system --}}
+        <li class="nav-label mg-t-15">Learning Management</li>
 
 
 
+        {{-- Education Management --}}
+        <li class="nav-label mg-t-15">Institute Management</li>
 
 
         {{-- <li class="nav-label mg-t-15">CRM</li>

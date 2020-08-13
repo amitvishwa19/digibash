@@ -10151,9 +10151,9 @@ tbody .product-col {
 }
 
 .product-col .product-image-container {
-    -ms-flex: 0 0 180px;
-    flex: 0 0 180px;
-    max-width: 180px;
+    -ms-flex: 0 0 80px;
+    flex: 0 0 80px;
+    max-width: 80px;
     margin-right: 1.8rem;
     margin-bottom: 0;
     border: 1px solid #ccc;
