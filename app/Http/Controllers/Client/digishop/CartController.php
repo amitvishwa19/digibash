@@ -111,7 +111,7 @@ class CartController extends Controller
         $order->payment_status = 'pending';
         $order->payment_amount = Cart::getSubTotal();
         $order->save();
-        $this->orderId = $order->id;
+
 
         // $order = Order::findOrFail($this->orderId);
         // $order->payment_id = 'dASasASsdasdasdasdasdasdasdasdasd';
