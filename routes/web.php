@@ -8,8 +8,11 @@ use Illuminate\Support\Facades\Storage;
 //     return $request->server('HTTP_USER_AGENT');
 // });
 
-//Digishop route file
-Route::prefix('/')->group(base_path('routes/'.setting('app.theme').'.php'));
+//Digishop theme route file
+Route::prefix('/')->group(base_path('routes/digishop.php'));
+
+//Default theme Route file
+//Route::prefix('/')->group(base_path('routes/default.php'));
 
 //Paytm callback action
 Route::post('/payment/paytm/status', 'Admin\PaytmWalletController@paymentCallback')->name('payment.paytm.status');

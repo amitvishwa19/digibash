@@ -40,8 +40,8 @@ class CrudGenerator extends Command
         $name = $this->argument('name');
         $this->model($name);
         $this->controller($name);
-        $this->apicontroller($name);
-        $this->apiresource($name);
+        //$this->apicontroller($name);
+        //$this->apiresource($name);
         $this->request($name);
         $this->view($name);
         $this->view_add($name);
@@ -230,7 +230,7 @@ class CrudGenerator extends Command
         $datePrefix = date('Y_m_d_His');
         $name  = strtolower($name);
         $name  = str_plural($name);
-        
+
         file_put_contents(base_path("/database/migrations/{$datePrefix}_create_{$name}_table.php"), $requestTemplate);
         $this->info('Migration created successfully');
     }
