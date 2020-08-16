@@ -2,8 +2,10 @@
 
 namespace App\Listeners\Order;
 
+use Cart;
 use App\Models\Order;
 use App\Mail\OrderPlaced;
+use App\Jobs\OrderPlaceJob;
 use Illuminate\Support\Facades\Mail;
 use App\Events\Order\OrderProcessEvent;
 use Illuminate\Queue\InteractsWithQueue;
@@ -29,15 +31,6 @@ class OrderProcessListner
      */
     public function handle(OrderProcessEvent $event)
     {
-        //app('log')->debug($event->status);
-        //app('log')->debug($event->orderId);
-
-        $order = Order::findOrFail($event->orderId);
-        $email = $order->user->email;
-
-        Mail::to($email)
-            ->send(new OrderPlaced);
-
-
+        dispatch(new OrderPlaceJob($event->status, $event->orderId));
     }
 }

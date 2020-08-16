@@ -7,18 +7,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderPlaced extends Mailable
+class SuccessOrder extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public $items;
+    public function __construct($items)
     {
-        //
+        $this->items = $items;
     }
 
     /**
@@ -28,6 +24,7 @@ class OrderPlaced extends Mailable
      */
     public function build()
     {
-        //return $this->markdown('mails.OrderPlaced');
+        return $this->from('info@dev.digizigs.com')->subject('New order placed successfully')->view('mails.OrderPlaced');
+        //app('log')->debug($this->items);
     }
 }

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Client\digishop;
 
 use Cart;
 use PaytmWallet;
+use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Product;
+use App\Jobs\OrderPlaceJob;
 use Illuminate\Http\Request;
 use App\Models\Cart as DCart;
 use App\Http\Controllers\Controller;
@@ -15,7 +17,7 @@ class CartController extends Controller
 {
 
     protected $theme = '';
-    protected $orderId = '';
+    protected $status;
 
     public function __construct()
     {
@@ -105,6 +107,7 @@ class CartController extends Controller
     public function paytm_payment()
     {
         $order = new Order;
+        $order->order_id = substr(auth()->user()->firstname, 0, 1).substr(auth()->user()->lastname, 0, 1).Carbon::now()->timestamp;
         $order->user_id = auth()->user()->id;
         $order->cart = serialize(Cart::getContent());
         $order->payment_gateway = 'paytm';
@@ -112,7 +115,7 @@ class CartController extends Controller
         $order->payment_amount = Cart::getSubTotal();
         $order->save();
 
-
+        //dd(substr($str, 0, 1));
         // $order = Order::findOrFail($this->orderId);
         // $order->payment_id = 'dASasASsdasdasdasdasdasdasdasdasd';
         // $order->payment_status = 'success';
@@ -122,7 +125,7 @@ class CartController extends Controller
         $payment = PaytmWallet::with('receive');
 
         $payment->prepare([
-            'order' => $order->id, // your order id taken from cart
+            'order' => $order->order_id, // your order id taken from cart
             'user' => auth()->user()->id, // your user id
             'mobile_number' => auth()->user()->mobile, // your customer mobile no
             'email' => auth()->user()->email, // your user email address
@@ -134,6 +137,7 @@ class CartController extends Controller
 
     public function paytm_payment_callback()
     {
+        $status;
 
         $transaction = PaytmWallet::with('receive');
         $response = $transaction->response(); // To get raw response as array
@@ -144,13 +148,14 @@ class CartController extends Controller
 
         //Check out response parameters sent by paytm here -> http://paywithpaytm.com/developer/paytm_api_doc?target=interpreting-response-sent-by-paytm
         if($transaction->isSuccessful()){
-
-            $order = Order::findOrFail($orderId);
+            $order = Order::where('order_id',$orderId)->first();
             $order->payment_id = $transaction->getTransactionId();
             $order->payment_status = 'success';
             $order->save();
+            $status = 'success';
             Cart::clear();
-            event(new OrderProcessEvent('success',$orderId));
+            event(new OrderProcessEvent($status,$orderId));
+
             return redirect()->route('cart.payment.status')->with('success','Payment success of order,- Transaction id is  ' .$transactionId);
 
         }else if($transaction->isFailed()){
