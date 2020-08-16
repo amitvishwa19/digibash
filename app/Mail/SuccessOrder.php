@@ -24,7 +24,7 @@ class SuccessOrder extends Mailable
      */
     public function build()
     {
-        return $this->from('info@dev.digizigs.com')->subject('New order placed successfully')->view('mails.OrderPlaced');
+        return $this->from('info@dev.digizigs.com','digishop')->subject('New order placed successfully')->view('mails.OrderPlaced');
         //app('log')->debug($this->items);
     }
 }
