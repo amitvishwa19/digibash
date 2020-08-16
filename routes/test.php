@@ -20,6 +20,6 @@ Route::get('/job',function(){
 Route::get('/ptm',function(){
     $status = 'success';
     $orderId = 'SA1597488700';
-
-    event(new OrderProcessEvent($status,$orderId));
+    dd(config('services.paytm-wallet.callback_url')) ;
+    //event(new OrderProcessEvent($status,$orderId));
 });

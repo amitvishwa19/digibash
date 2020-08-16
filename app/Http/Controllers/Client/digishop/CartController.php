@@ -130,7 +130,7 @@ class CartController extends Controller
             'mobile_number' => auth()->user()->mobile, // your customer mobile no
             'email' => auth()->user()->email, // your user email address
             'amount' => Cart::getSubTotal(), // amount will be paid in INR.
-            'callback_url' => 'http://localhost/digibash/cart/payment/paytm/status' // callback URL
+            'callback_url' => config('services.paytm-wallet.callback_url') // callback URL
         ]);
         return $payment->receive();
     }
