@@ -8,9 +8,9 @@ Route::get('/products/category/{category}','Client\digishop\ProductController@ca
 
 //Account
 Route::get('/account',[
-        'uses' => 'Client\digishop\AccountController@index',
-        'as' =>'account.dashboard'
-    ]);
+    'uses' => 'Client\digishop\AccountController@index',
+    'as' =>'account.dashboard'
+]);
 
 
 //cart
