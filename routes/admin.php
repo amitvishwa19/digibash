@@ -77,3 +77,10 @@ Route::resource('/coupon','Admin\CouponController');
 Route::resource('/shop','Admin\ShopController');
 Route::resource('/product','Admin\ProductController');
 Route::resource('/order','Admin\OrderController');
+
+//Institute Management
+Route::resource('/section','Admin\SectionController');
+Route::resource('/course','Admin\CourseController');
+Route::resource('/lesson','Admin\LessonController');
+Route::resource('/student','Admin\StudentController');
+Route::resource('/teacher','Admin\TeacherController');

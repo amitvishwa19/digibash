@@ -52,25 +52,21 @@
             <input type="email" class="form-control"  name="email" value="{{$user->email}}{{old('email')}}">
         </div>
 
-        {{-- <!--Roles select2-->
+        <!-- Type -->
         <div class="form-group">
-          <label for="formGroupExampleInput2" class="d-block" style="font-weight:600">Roles</label>
-          <div data-label="Example" class="">
-              <select class="form-control select2" multiple="multiple" name="roles[]" multiple="">
-                <option label="Choose one"></option>
-                @foreach($roles as $role)
-                  <option value="{{$role->name}}"
-                    @foreach($user->roles as $rl)
-                      @if($rl->id == $role->id)
-                        selected
-                      @endif
-                    @endforeach
-                    >{{$role->name}}
-                  </option>
-                @endforeach
-              </select>
-          </div><!-- df-example -->
-        </div> --}}
+            <label class="d-block"><b>User Type</b></label>
+            <input type="text" class="form-control"  name="type" value="{{$user->type}}{{old('type')}}">
+        </div>
+
+        <!-- Status -->
+        <div class="form-group">
+            <label class="d-block"><b>Status</b></label>
+            <select name="status" id="" class="form-control col-md-2">
+                <option value="1" {{$user->status == '1' ? 'selected' : null}}>Active</option>
+                <option value="0" {{$user->status == '0' ? 'selected' : null}}>InActive</option>
+            </select>
+        </div>
+
 
         <div class="form-group">
             <label class="d-block"><b>Roles</b></label>

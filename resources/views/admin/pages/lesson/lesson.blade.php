@@ -1,7 +1,7 @@
 
 @extends('admin.layout.admin')
 
-@section('title','User')
+@section('title','Lesson')
 
 @section('style')
 @endsection
@@ -18,7 +18,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb breadcrumb-style1 mg-b-10">
             <li class="breadcrumb-item"><a href="{{route('app.admin.home')}}">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">User</li>
+            <li class="breadcrumb-item active" aria-current="page">Lesson</li>
           </ol>
         </nav>
       </div>
@@ -27,8 +27,8 @@
     <div class="">
 
       <div class="d-flex mg-b-20">
-        <h4>Users</h4>
-        <a href="{{route('user.create')}}" class="btn btn-primary btn-xs mg-l-10 pd-t-8"> Add New User</a>
+        <h4>Lessons</h4>
+        <a href="{{route('lesson.create')}}" class="btn btn-primary btn-xs mg-l-10">Add New Lesson</a>
       </div>
 
 
@@ -37,11 +37,7 @@
             <table id="datatable" class="table table-color-primary">
               <thead>
               <tr style="padding-left:20px">
-                  <th style="" class=""><b>Name</b></th>
-                  <th style="" class=""><b>Roles</b></th>
-                  <th style="" class=""><b>User Type</b></th>
-                  <th style="" class=""><b>Email</b></th>
-                  <th style="" class=""><b>Status</b></th>
+                  <th style="width:70%" class=""><b>Name</b></th>
                   <th style="width:15%" class=""><b>Created</b></th>
                   <th style="width:15%" class=""><b>Actions</b></th>
               </tr>
@@ -82,13 +78,9 @@
       $('#datatable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{!! route('user.index') !!}',
+        ajax: '{!! route('lesson.index') !!}',
         columns:[
             { data: 'name', name: 'name'},
-            { data: 'roles', name: 'roles'},
-            { data: 'type', name: 'type'},
-            { data: 'email', name: 'email'},
-            { data: 'status', name: 'status'},
             { data: 'created_at', name: 'created_at' },
             { data: 'action', name: 'action' },
         ]
@@ -99,7 +91,7 @@
       $(document).on('click','.delete',function(){
         var id =  $(this).attr('id');
         swalWithBootstrapButtons({
-            title: "Delete Selected User?",
+            title: "Delete Selected Lesson?",
             text: "You won't be able to revert this!",
             type: "warning",
             showCancelButton: true,
@@ -109,14 +101,14 @@
         }).then(result => {
             if (result.value) {
               $.ajax({
-                  url: "user/"+id,
+                  url: "lesson/"+id,
                   type:"post",
                   data: {_method: 'delete', _token: "{{ csrf_token() }}"},
                   success: function(result){
                     location.reload();
                     toast({
                         type: "success",
-                        title: "User Deleted Successfully"
+                        title: "Lesson Deleted Successfully"
                     });
                   }
               });

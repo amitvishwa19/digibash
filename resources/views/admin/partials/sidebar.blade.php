@@ -81,11 +81,28 @@
 
         {{-- Learning management system --}}
         <li class="nav-label mg-t-15">Learning Management</li>
+        {{-- Classes --}}
+        <li class="nav-item">
+            <a href="{{route('section.index')}}" class="nav-link"><i class="fa fa-clone" aria-hidden="true"></i>Sections & Classes</a>
+        </li>
+        {{-- Course --}}
+        <li class="nav-item">
+            <a href="{{route('course.index')}}" class="nav-link"><i class="fa fa-book" aria-hidden="true"></i>Course</a>
+        </li>
+        {{-- Course --}}
+        <li class="nav-item">
+            <a href="{{route('lesson.index')}}" class="nav-link"><i class="fa fa-book" aria-hidden="true"></i>Lessons</a>
+        </li>
+        {{-- Students --}}
+        <li class="nav-item">
+            <a href="{{route('student.index')}}" class="nav-link"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Students</a>
+        </li>
+        {{-- Teathers --}}
+        <li class="nav-item">
+            <a href="{{route('teacher.index')}}" class="nav-link"><i class="fa fa-user-secret" aria-hidden="true"></i>Teachers</a>
+        </li>
 
 
-
-        {{-- Education Management --}}
-        <li class="nav-label mg-t-15">Institute Management</li>
 
 
         {{-- <li class="nav-label mg-t-15">CRM</li>
@@ -147,7 +164,7 @@
         <li class="nav-item with-sub">
             <a href="" class="nav-link"><i class="fa fa-universal-access" aria-hidden="true"></i> <span>Access Control</span></a>
             <ul>
-            <li><a href="{{ route('user.index') }}">User</a></li>
+            <li><a href="{{ route('user.index') }}">Users</a></li>
             <li><a href="{{ route('role.index') }}">Roles</a></li>
             <li><a href="{{ route('permission.index') }}">Permissions</a></li>
             </ul>

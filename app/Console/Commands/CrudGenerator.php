@@ -223,12 +223,12 @@ class CrudGenerator extends Command
 
         $requestTemplate = str_replace(
             ['{{modelName}}'],
-            [str_plural($name)],
+            [strtolower(str_plural($name))],
             $this->getStub('Migration')
         );
 
         $datePrefix = date('Y_m_d_His');
-        $name  = strtolower($name);
+        $name  = str_plural(strtolower($name));
         $name  = str_plural($name);
 
         file_put_contents(base_path("/database/migrations/{$datePrefix}_create_{$name}_table.php"), $requestTemplate);

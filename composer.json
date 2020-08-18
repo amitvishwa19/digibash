@@ -18,6 +18,7 @@
         "intervention/image": "^2.5",
         "laravel/framework": "6.0.*",
         "laravel/helpers": "^1.2",
+        "lab404/laravel-impersonate": "1.6.0",
         "laravel/slack-notification-channel": "^2.0",
         "laravel/tinker": "^1.0",
         "spatie/laravel-activitylog": "^3.14",
@@ -29,6 +30,7 @@
         "yajra/laravel-datatables": "^1.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.4",
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",

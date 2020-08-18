@@ -39,6 +39,13 @@ class UserController extends Controller
                 }
                 return $rl;
             })
+            ->addColumn('status',function(User $user){
+                if($user->status == true){
+                    return '<div class="badge badge-success">Active</div>';
+                }else{
+                    return '<div class="badge badge-warning">InActive</div>';
+                }
+            })
             ->addColumn('action',function($data){
                         $link = '<div class="d-flex">'.
                                     '<a href="'.route('user.edit',$data->id).'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn">Edit</a>'.
@@ -46,7 +53,7 @@ class UserController extends Controller
                                 '</div>';
                         return $link;
                     })
-            ->rawColumns(['action','roles','name'])
+            ->rawColumns(['action','roles','name','status'])
             ->make(true);
 
 
@@ -75,6 +82,8 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
+        $user->type = $request->type;
+        $user->status = $request->status;
         $user->save();
 
         $user->syncRoles($request->roles);
@@ -115,6 +124,8 @@ class UserController extends Controller
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
+        $user->type = $request->type;
+        $user->status = $request->status;
         $user->save();
 
 

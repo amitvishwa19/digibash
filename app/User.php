@@ -51,7 +51,15 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Models\Order');
     }
 
+    public function student_profile()
+    {
+        return $this->belongsTo('App\Student');
+    }
 
+    public function teacher_profile()
+    {
+        return $this->belongsTo('App\Teacher');
+    }
 
 
     public function routeNotificationForSlack($notification)

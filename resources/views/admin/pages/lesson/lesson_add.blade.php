@@ -1,7 +1,7 @@
 
 @extends('admin.layout.admin')
 
-@section('title','Add {{modelName}}')
+@section('title','Add Lesson')
 
 
 @section('style')
@@ -22,23 +22,23 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb breadcrumb-style1 mg-b-10">
             <li class="breadcrumb-item"><a href="{{route('app.admin.home')}}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{{route('{{modelNameSingularLowerCase}}.index')}}">{{modelName}}s</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{modelName}}</li>
+            <li class="breadcrumb-item"><a href="{{route('lesson.index')}}">Lessons</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Lesson</li>
           </ol>
         </nav>
       </div>
     </div>
 
     <div class="">
-      <h4>Add New {{modelName}}</h4>
+      <h4>Add New Lesson</h4>
 
       <div class="mg-t-50">
-        <form method="post" action="{{route('{{modelNameSingularLowerCase}}.store')}}">
+        <form method="post" action="{{route('lesson.store')}}">
           @csrf
 
           <div class="wpinput form-group">
               <label class="d-block"><b>Example Title</b></label>
-              <input type="text" class="form-control @error('name') is-invalid @enderror"  name="name" value="{{old('name')}}">
+              <input type="text" class="form-control"  name="name" value="{{old('name')}}">
               @error('name')
                   <span class="" role="alert">
                      <strong><i>{{ $message }}</i></strong>
@@ -48,7 +48,7 @@
 
 
           <button class="btn btn-primary btn-xs" id="btnpublish">Save</button>
-          <a href="{{route('{{modelNameSingularLowerCase}}.index')}}" class="btn btn-dark btn-xs">Cancel</a>
+          <a href="{{route('lesson.index')}}" class="btn btn-dark btn-xs">Cancel</a>
 
 
         </form>

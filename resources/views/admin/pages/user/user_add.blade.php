@@ -32,50 +32,53 @@
 
       <div class="mg-t-50">
         <form method="post" action="{{route('user.store')}}">
-          @csrf
+        @csrf
 
-          <!--First Name -->
-          <div class="form-group">
-              <label class="d-block"><b>User Name</b></label>
-              <input type="text" class="form-control"  name="firstname" value="{{old('firstname')}}">
-          </div>
+        <!--First Name -->
+        <div class="form-group">
+            <label class="d-block"><b>User Name</b></label>
+            <input type="text" class="form-control"  name="firstname" value="{{old('firstname')}}">
+        </div>
 
-          <!-- Last Name -->
-          <div class="form-group">
+        <!-- Last Name -->
+        <div class="form-group">
             <label class="d-block"><b>User Name</b></label>
             <input type="text" class="form-control"  name="lastname" value="{{old('lastname')}}">
         </div>
 
-          <!-- Email -->
-          <div class="form-group">
-              <label class="d-block"><b>User Email</b></label>
-              <input type="email" class="form-control"  name="email" value="{{old('email')}}">
-          </div>
+        <!-- Email -->
+        <div class="form-group">
+            <label class="d-block"><b>User Email</b></label>
+            <input type="email" class="form-control"  name="email" value="{{old('email')}}">
+        </div>
 
-          <!--Permissions-->
-          {{-- <div class="form-group">
-            <label for="formGroupExampleInput2" class="d-block" style="font-weight:600">Roles</label>
-            <div data-label="Example" class="">
-                <select class="form-control select2" multiple="multiple" name="roles[]" multiple="">
-                  <option label="Choose one"></option>
-                  @foreach($roles as $role)
-                    <option value="{{$role->id}}">{{$role->name}}</option>
-                  @endforeach
-                </select>
-            </div><!-- df-example -->
-          </div> --}}
+          <!-- Type -->
+        <div class="form-group">
+            <label class="d-block"><b>User Type</b></label>
+            <input type="text" class="form-control"  name="type" value="{{old('type')}}">
+        </div>
 
-          <div class="form-group">
-            <label class="d-block"><b>Roles</b></label>
-            <div class="row">
-                @foreach($roles as $role)
-                    <div class="col-3">
-                        <input type="checkbox" value="{{$role->id}}" name="roles[]">
-                        <label for="roles" class="mg-l-5">{{$role->name}}</label>
-                    </div>
-                @endforeach
-            </div>
-          </div>
+        <!-- Status -->
+        <div class="form-group">
+            <label class="d-block"><b>Status</b></label>
+            <select name="status" id="" class="form-control col-md-2">
+                <option value="1">Active</option>
+                <option value="0" selected>InActive</option>
+            </select>
+        </div>
+
+        {{-- Roles --}}
+        <div class="form-group">
+        <label class="d-block"><b>Roles</b></label>
+        <div class="row">
+            @foreach($roles as $role)
+                <div class="col-3">
+                    <input type="checkbox" value="{{$role->id}}" name="roles[]">
+                    <label for="roles" class="mg-l-5">{{$role->name}}</label>
+                </div>
+            @endforeach
+        </div>
+        </div>
 
 
           <button class="btn btn-primary btn-xs" id="btnpublish">Save</button>
