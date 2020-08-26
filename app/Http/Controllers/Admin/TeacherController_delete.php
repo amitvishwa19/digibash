@@ -14,6 +14,8 @@ class TeacherController extends Controller
 {
     public function index(Request $request)
     {
+        //$teachers = Teacher::orderby('created_at','desc')->with('sections')->get();
+        //dd($teachers);
         if ($request->ajax()) {
             $teachers = Teacher::orderby('created_at','desc')->latest('id');
 
@@ -34,6 +36,18 @@ class TeacherController extends Controller
                 }
                 return $sec;
             })
+            ->addColumn('courses',function(Teacher $teacher){
+                $sections = $teacher->sections;
+                $sec = '';
+                if($sections){
+                    foreach($sections as $section){
+                        foreach($section->courses as $course){
+                            $sec = $sec. '<div class="badge badge-info mr-1" >'. $course->name .'</div>';
+                        }
+                    };
+                }
+                return $sec;
+            })
             ->addColumn('status',function(Teacher $teacher){
                 if($teacher->status == true){
                     return '<div class="badge badge-success">Active</div>';
@@ -49,7 +63,7 @@ class TeacherController extends Controller
                                 '</div>';
                         return $link;
                     })
-            ->rawColumns(['action','status','sections'])
+            ->rawColumns(['action','status','sections','courses'])
             ->make(true);
 
 
@@ -145,8 +159,8 @@ class TeacherController extends Controller
 
     public function destroy($id)
     {
-        Teacher::destroy($id);
-
+        $teacher = Teacher::findOrFail($id);
+        User::destroy($teacher->user_id);
         return response()->json(null, 204);
     }
 }

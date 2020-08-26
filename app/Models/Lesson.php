@@ -10,4 +10,14 @@ class Lesson extends Model
 
     protected $guarded = ['id'];
     
+     public function courses()
+    {
+        return $this->belongsToMany('App\Models\Course','courses_lessons');
+    }
+
+    public function exams()
+    {
+        return $this->belongsToMany('App\Models\Exam','lesson_exams');
+    }
+
 }

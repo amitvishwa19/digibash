@@ -29288,7 +29288,7 @@ textarea.parsley-success:focus {
 /* ###### 4.10 Select2 ###### */
 
 .select2-results__option {
-  border-radius: 0;
+  border-radius: 4px;
   margin: 1px;
   font-size: inherit;
 }
@@ -29382,11 +29382,12 @@ textarea.parsley-success:focus {
 
 .select2-container--default.select2-container--focus .select2-selection--multiple {
   border-color: #c0ccda;
+  border-radius: 4px !important;
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field {
   border-color: #c0ccda;
-  border-radius: 0;
+  border-radius: 4px;
   padding: 5px 10px;
 }
 
@@ -79805,6 +79806,14 @@ body ul li {
           transition-duration: 0.05s;
   -webkit-transition-timing-function: ease-in-out;
           transition-timing-function: ease-in-out;
+}
+
+.avatar-name {
+  color: #fff !important;
+}
+
+.avatar-name:hover {
+  color: #fff !important;
 }
 
 .tag {

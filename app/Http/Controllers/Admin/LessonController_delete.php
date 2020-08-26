@@ -17,22 +17,25 @@ class LessonController extends Controller
 
             return Datatables::of($lessons)
             ->editColumn('created_at',function(Lesson $lesson){
-                    return $lesson->created_at->diffForHumans();
-                })
+                return $lesson->created_at->diffForHumans();
+            })
+            ->editColumn('feature_image',function(Lesson $lesson){
+                return '<div class="avatar avatar-md"><img src="'.$lesson->feature_image.'" alt="" class="rounded"></div>';
+            })
             ->addColumn('action',function($data){
                         $link = '<div class="d-flex">'.
                                     '<a href="'.route('lesson.show',$data->id).'" class="btn btn-default btn-xs mg-r-10 dt-action-btn">View</a>'.
                                     '<a href="'.route('lesson.edit',$data->id).'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn">Edit</a>'.
                                     '<a href="javascript:void(0);" id="'.$data->id.'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn btn-del delete">Delete</a>'.
-                                '</div>';   
+                                '</div>';
                         return $link;
                     })
-            ->rawColumns(['action'])
+            ->rawColumns(['action','feature_image'])
             ->make(true);
 
 
         }
-        
+
 
         return view('admin.pages.lesson.lesson');
 
@@ -94,7 +97,7 @@ class LessonController extends Controller
             'alert-type' => 'success',
         ]);
 
-        
+
     }
 
     public function destroy($id)

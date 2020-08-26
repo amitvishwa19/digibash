@@ -78,29 +78,9 @@
             <a href="{{route('order.index')}}" class="nav-link"><i class="fa fa-usd" aria-hidden="true"></i>Orders</a>
         </li>
 
+        <!---------------------------------------------------------------------------------------------------------------------------------------------->
 
-        {{-- Learning management system --}}
-        <li class="nav-label mg-t-15">Learning Management</li>
-        {{-- Classes --}}
-        <li class="nav-item">
-            <a href="{{route('section.index')}}" class="nav-link"><i class="fa fa-clone" aria-hidden="true"></i>Sections & Classes</a>
-        </li>
-        {{-- Course --}}
-        <li class="nav-item">
-            <a href="{{route('course.index')}}" class="nav-link"><i class="fa fa-book" aria-hidden="true"></i>Course</a>
-        </li>
-        {{-- Course --}}
-        <li class="nav-item">
-            <a href="{{route('lesson.index')}}" class="nav-link"><i class="fa fa-book" aria-hidden="true"></i>Lessons</a>
-        </li>
-        {{-- Students --}}
-        <li class="nav-item">
-            <a href="{{route('student.index')}}" class="nav-link"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Students</a>
-        </li>
-        {{-- Teathers --}}
-        <li class="nav-item">
-            <a href="{{route('teacher.index')}}" class="nav-link"><i class="fa fa-user-secret" aria-hidden="true"></i>Teachers</a>
-        </li>
+
 
 
 

@@ -155,8 +155,8 @@ class StudentController extends Controller
 
     public function destroy($id)
     {
-        Student::destroy($id);
-
+        $student = Student::findOrFail($id);
+        User::destroy($student->user_id);
         return response()->json(null, 204);
     }
 }

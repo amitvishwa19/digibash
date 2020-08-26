@@ -79,7 +79,7 @@
 
         <!--Cources-->
         <div class="form-group">
-            <label for="formGroupExampleInput2" class="d-block" style="font-weight:600">Teachers</label>
+            <label for="formGroupExampleInput2" class="d-block" style="font-weight:600">Courses</label>
             <div data-label="Example" class="">
                 <select class="form-control select2" multiple="multiple" name="courses[]" multiple="">
                 <option label="Choose one"></option>

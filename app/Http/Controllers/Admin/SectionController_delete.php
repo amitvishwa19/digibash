@@ -15,7 +15,7 @@ class SectionController extends Controller
     public function index(Request $request)
     {
         //$sections = Section::orderby('created_at','desc')->latest('id');
-        //dd($sections->students->count());
+        //dd($sections);
         if ($request->ajax()) {
             $sections = Section::orderby('created_at','desc')->latest('id');
 

@@ -37,9 +37,11 @@
             <table id="datatable" class="table table-color-primary">
               <thead>
               <tr style="padding-left:20px">
-                  <th style="width:70%" class=""><b>Name</b></th>
-                  <th style="width:15%" class=""><b>Created</b></th>
-                  <th style="width:15%" class=""><b>Actions</b></th>
+                    <th style="" class=""><b></b></th>
+                    <th style="" class=""><b>Title</b></th>
+                    <th style="" class=""><b>Description</b></th>
+                    <th style="width:10%" class=""><b>Created</b></th>
+                    <th style="width:10%" class=""><b>Actions</b></th>
               </tr>
               </thead>
 
@@ -80,7 +82,9 @@
         serverSide: true,
         ajax: '{!! route('lesson.index') !!}',
         columns:[
-            { data: 'name', name: 'name'},
+            { data: 'feature_image', name: 'feature_image'},
+            { data: 'title', name: 'title'},
+            { data: 'description', name: 'description'},
             { data: 'created_at', name: 'created_at' },
             { data: 'action', name: 'action' },
         ]

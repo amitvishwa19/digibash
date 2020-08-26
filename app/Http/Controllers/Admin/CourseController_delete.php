@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CourseRequest;
-use App\Http\Controllers\Controller;
+use App\Models\Course;
+use App\Models\Lesson;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use App\Models\Course;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CourseRequest;
 
 class CourseController extends Controller
 {
@@ -21,10 +22,13 @@ class CourseController extends Controller
             })
             ->addColumn('status',function(Course $course){
                 if($course->status == true){
-                    return '<div class="badge badge-success">Active</div>';
+                    return '<div class="badge badge-success">Active <span class="badge badge-success"> '.$course->lessons->count().' </span></div>';
                 }else{
                     return '<div class="badge badge-warning">InActive</div>';
                 }
+            })
+            ->addColumn('lesson',function(Course $course){
+                return $course->lessons->count();
             })
             ->addColumn('action',function($data){
                         $link = '<div class="d-flex">'.
@@ -72,9 +76,8 @@ class CourseController extends Controller
 
     public function show($id)
     {
-        $course = Course::findOrFail($id);
-
-        return response()->json($course);
+        $lessons = Lesson::orderby('id','desc')->where('course_id',$id)->get();
+        return view('admin.pages.course.course_view',compact('lessons'));
     }
 
     public function edit($id)

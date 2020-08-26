@@ -12,6 +12,12 @@ Route::resource('/post','Admin\PostController');
 //     'uses' => 'PostController@index'
 // ]);
 
+//Imporsonate
+if ('production' != config('app.env')) {
+    Route::get('/impersonate', 'Admin\ImpersonateController@index')->name('impersonate.index');
+    Route::get('/impersonate/enter/{user_id}', 'Admin\ImpersonateController@impersonate')->name('impersonate.enter');
+    Route::get('/impersonate/leave', 'Admin\ImpersonateController@impersonate_leave')->name('impersonate.leave');
+}
 
 
 //Access Controls
@@ -61,7 +67,7 @@ Route::resource('/mail','Admin\MailController');
 //Settings
 Route::resource('/setting','Admin\SettingController');
 
-Route::resource('/test','Admin\TestController');
+//Route::resource('/test','Admin\TestController');
 
 //Activity Logs
 Route::delete('/activity/deleteall/{id}','Admin\ActivityLogController@deleteAll');
@@ -78,9 +84,17 @@ Route::resource('/shop','Admin\ShopController');
 Route::resource('/product','Admin\ProductController');
 Route::resource('/order','Admin\OrderController');
 
-//Institute Management
+//================================Institute Management================================
 Route::resource('/section','Admin\SectionController');
 Route::resource('/course','Admin\CourseController');
 Route::resource('/lesson','Admin\LessonController');
 Route::resource('/student','Admin\StudentController');
 Route::resource('/teacher','Admin\TeacherController');
+
+//Route::get('/book/issued','Admin\BookController@issued_book')->name('book.issued');
+//Route::get('/book/issue','Admin\BookController@issue_book')->name('book.issue');
+//Route::post('/book/issue','Admin\BookController@issue_book_save')->name('book.issue.save');
+Route::resource('/book','Admin\BookController');
+
+
+Route::resource('/issuedbook','Admin\IssuedBookController');

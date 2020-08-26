@@ -43,7 +43,6 @@
                   <th style="" class=""><b>Teachers</b></th>
                   <th style="" class=""><b>Students</b></th>
                   <th style="width:10%" class=""><b>Status</b></th>
-                  <th style="width:10%" class=""><b>Created</b></th>
                   <th style="width:10%" class=""><b>Actions</b></th>
               </tr>
               </thead>
@@ -65,9 +64,6 @@
 
 
 @section('modal')
-
-
-
 @endsection
 
 
@@ -91,7 +87,6 @@
             { data: 'teachers', name: 'teachers'},
             { data: 'students', name: 'students'},
             { data: 'status', name: 'status'},
-            { data: 'created_at', name: 'created_at' },
             { data: 'action', name: 'action' },
         ]
       });

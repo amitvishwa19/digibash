@@ -14,17 +14,17 @@ class CreatelessonsTable extends Migration
     public function up()
     {
         Schema::create('lessons', function (Blueprint $table) {
-            
+
             $table->increments('id');
-            $table->integer('course_id')->unsigned();
-            $table->foreign('course_id')->references('id')->on('courses');
             $table->text('title');
             $table->text('slug');
             $table->text('description')->nullable();
             $table->longText('content')->nullable();
             $table->string('feature_image')->nullable();
+            $table->string('author')->nullable();
             $table->integer('order')->default(0);
-            $table->boolean('free_lesson')->default(0);
+            $table->boolean('free')->default(0);
+            $table->float('price')->default(0)->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
 

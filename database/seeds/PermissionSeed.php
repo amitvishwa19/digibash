@@ -22,6 +22,10 @@ class PermissionSeed extends Seeder
         $writer = Role::create(['name' => 'writer','description'=>'Can write or delete post']);
         $seller = Role::create(['name' => 'seller','description'=>'Can create or delete shop']);
         $user = Role::create(['name' => 'user','description'=>'No admin releated permission']);
+        $student = Role::create(['name' => 'student','description'=>'All students']);
+        $teacher = Role::create(['name' => 'teacher','description'=>'All teachers']);
+        $accountant = Role::create(['name' => 'accountant','description'=>'All accountant']);
+        $librarian = Role::create(['name' => 'librarian','description'=>'All librarian']);
 
         //Create Permission for manage app ################################################################
         Permission::create(['name' => 'manage app'],['description' => 'Manage application']);

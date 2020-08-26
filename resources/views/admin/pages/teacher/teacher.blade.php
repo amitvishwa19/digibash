@@ -39,6 +39,7 @@
               <tr style="padding-left:20px">
                   <th style="" class=""><b>Name</b></th>
                   <th style="" class=""><b>Sections</b></th>
+                  <th style="" class=""><b>Courses</b></th>
                   <th style="" class=""><b>Status</b></th>
                   <th style="" class=""><b>Created</b></th>
                   <th style="" class=""><b>Actions</b></th>
@@ -84,6 +85,7 @@
         columns:[
             { data: 'name', name: 'name'},
             { data: 'sections', name: 'sections'},
+            { data: 'courses', name: 'courses'},
             { data: 'status', name: 'status'},
             { data: 'created_at', name: 'created_at' },
             { data: 'action', name: 'action' },

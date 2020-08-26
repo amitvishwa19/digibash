@@ -14,4 +14,14 @@ class Course extends Model
     {
         return $this->belongsToMany('App\Models\Section','sections_courses');
     }
+
+    public function lessons()
+    {
+        return $this->belongsToMany('App\Models\Lesson','courses_lessons');
+    }
+
+    public function exams()
+    {
+        return $this->hasMany('App\Models\Exam','course_exams');
+    }
 }

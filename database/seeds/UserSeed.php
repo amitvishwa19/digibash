@@ -1,11 +1,12 @@
 <?php
 
+use App\User;
 use App\Models\Profile;
+use App\Models\Section;
 use App\Models\Student;
 use App\Models\Teacher;
-use App\User;
-use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
 
 
 class UserSeed extends Seeder
@@ -53,7 +54,7 @@ class UserSeed extends Seeder
 
         $faker = Faker\Factory::create();
 
-        for($i=0; $i <= 4; $i++){
+        for($i=1; $i <= 2; $i++){
 
             //Create Student
             $student = User::create([
@@ -66,8 +67,9 @@ class UserSeed extends Seeder
                 'api_token' => hash('sha256',Str::random(60)),
                 'verify_token' => Str::random(60),
             ]);
+            $student->assignRole('student');
             $profile = Profile::create(['user_id' => $student->id]);
-            $student_profile = Student::create(['user_id' => $student->id]);
+            $student_profile = Student::create(['user_id' => $student->id,'section_id' => $faker->numberBetween(1,Section::count())]);
 
             //Create Teachers
             $teacher = User::create([
@@ -80,6 +82,7 @@ class UserSeed extends Seeder
                 'api_token' => hash('sha256',Str::random(60)),
                 'verify_token' => Str::random(60),
             ]);
+            $teacher->assignRole('teacher');
             $profile = Profile::create(['user_id' => $teacher->id]);
             $teacher_profile = Teacher::create(['user_id' => $teacher->id]);
 

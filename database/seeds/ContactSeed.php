@@ -13,7 +13,7 @@ class ContactSeed extends Seeder
     {
         $faker = Faker\Factory::create();
 
-    	for($i=0; $i < 10; $i++){
+    	for($i=1; $i < 10; $i++){
 
     		Contact::create([
     			'name' => $name = $faker->name,
@@ -23,7 +23,7 @@ class ContactSeed extends Seeder
                 'type' => 'contact',
     		]);
 
-    		
-    	}  
+
+    	}
     }
 }

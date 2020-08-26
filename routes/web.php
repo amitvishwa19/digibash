@@ -34,3 +34,5 @@ Route::get('/logout/{device_id}', 'Admin\LoggedInDeviceManager@logoutDevice')->n
 //Admin route
 Route::prefix('appadmin')->middleware('auth')->group(base_path('routes/admin.php'));
 
+Route::prefix('lms')->middleware('auth')->group(base_path('routes/lms.php'));
+

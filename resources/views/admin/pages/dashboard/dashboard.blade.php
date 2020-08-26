@@ -5,12 +5,12 @@
 
 
 @section('style')
-	
+
 @endsection
 
 
 @section('content')
-	
+
 <div class="content-body " id="contentbody">
     <div class="card">
 
@@ -21,7 +21,7 @@
               <li class="breadcrumb-item active" aria-current="page">Website Analytics</li>
             </ol>
           </nav>
-        </div> 
+        </div>
       </div>
 
 
@@ -82,11 +82,11 @@
             </div>
           </div>
         </div><!-- col -->
-        
+
       </div>
     </div>
 </div>
-	    
+
 @endsection
 
 
@@ -96,10 +96,10 @@
       $(function(){
         'use strict'
 
-       
-        
+
+
 
       })
   </script>
-  
+
 @endsection

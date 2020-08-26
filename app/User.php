@@ -9,11 +9,13 @@ use Spatie\Activitylog\Traits\CausesActivity;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Lab404\Impersonate\Models\Impersonate;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
     use HasRoles;
+    use Impersonate;
 
     use LogsActivity;
     use CausesActivity;
@@ -49,6 +51,11 @@ class User extends Authenticatable implements JWTSubject
     public function orders()
     {
         return $this->hasMany('App\Models\Order');
+    }
+
+    public function books()
+    {
+        return $this->belongsToMany('App\Models\Book','issued_books');
     }
 
     public function student_profile()
