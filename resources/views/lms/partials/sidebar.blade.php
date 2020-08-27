@@ -36,7 +36,7 @@
         </li>
         {{-- Classes --}}
         <li class="nav-item">
-            <a href="{{route('section.index')}}" class="nav-link"><i class="fa fa-clone" aria-hidden="true"></i>Sections & Classes</a>
+            <a href="{{route('section.index')}}" class="nav-link"><i class="fa fa-clone" aria-hidden="true"></i>Sections</a>
         </li>
         {{-- Course --}}
         <li class="nav-item">
@@ -56,11 +56,11 @@
         </li>
         {{-- Notice --}}
         <li class="nav-item">
-            <a href="{{route('teacher.index')}}" class="nav-link"><i class="fa fa-info-circle" aria-hidden="true"></i>Notices</a>
+            <a href="" class="nav-link"><i class="fa fa-info-circle" aria-hidden="true"></i>Notices</a>
         </li>
         {{-- Event --}}
         <li class="nav-item">
-            <a href="{{route('teacher.index')}}" class="nav-link"><i class="fa fa-calendar-o" aria-hidden="true"></i>Events</a>
+            <a href="" class="nav-link"><i class="fa fa-calendar-o" aria-hidden="true"></i>Events</a>
         </li>
 
         <li class="nav-item with-sub">
@@ -96,7 +96,7 @@
 
         {{-- Acadmic Settings --}}
         <li class="nav-item">
-            <a href="{{route('teacher.index')}}" class="nav-link"><i class="fa fa-cog" aria-hidden="true"></i>Academic Settings</a>
+            <a href="" class="nav-link"><i class="fa fa-cog" aria-hidden="true"></i>Academic Settings</a>
         </li>
 
 

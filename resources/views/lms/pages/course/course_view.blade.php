@@ -27,28 +27,43 @@
 
     <div class="">
 
-      <div class="d-flex mg-b-20">
-        <h4>Course Lessons</h4>
-      </div>
+        <div class="d-flex mg-b-20">
+            <h4>Course</h4>
+        </div>
 
 
-      <div class="mg-t-20">
-            <div id="accordion1" class="accordion ui-accordion ui-widget ui-helper-reset" role="tablist">
-                @foreach($lessons as $lesson)
-                    <h6 class="accordion-title ui-accordion-header ui-corner-top ui-state-default ui-accordion-icons ui-accordion-header-collapsed ui-corner-all" role="tab" id="ui-id-1" aria-controls="ui-id-2" aria-selected="false" aria-expanded="false" tabindex="-1">
-                        <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>
-                        <strong>{{$lesson->title}}</strong> ( <small>by <strong>{{$lesson->author}}</strong> at <strong>{{$lesson->created_at->diffForHumans()}}</strong></small> )
-                    </h6>
-                    <div class="accordion-body ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-2" aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="true" style="display: none;">
-                        <b>Description</b>
-                        <p>{{$lesson->description}}</p>
-                        <hr>
-                        <b>Content</b>
-                        <p>{{$lesson->content}}</p>
-                    </div>
-                @endforeach
+        <div class="mg-t-20">
+
+            <div class="card mg-b-20 mg-lg-b-25">
+                <div class="card-header pd-y-15 pd-x-20 d-flex align-items-center justify-content-between">
+                    <h6 class="tx-uppercase tx-semibold mg-b-0">{{ $course->name }}</h6>
+                </div><!-- card-header -->
+                <div class="card-body pd-25">
+                    <div class="media d-block d-sm-flex">
+                        <div class="wd-80 ht-80 bg-ui-04 rounded d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase tx-white-7 wd-40 ht-40"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                        </div>
+                        <div class="media-body pd-t-25 pd-sm-t-0 pd-sm-l-25">
+                            <span class="d-block tx-13 tx-color-03">{{ $course->created_at->diffForHumans() }}</span>
+                            <p class="mg-b-3 tx-color-02">{{ $course->description }}</p>
+
+                                <h5 class="mg-t-20">Lessons</h5>
+                                @if($course->lessons->count() >= 1)
+                                    <ul class="pd-l-10 mg-0 tx-13">
+                                        @foreach($course->lessons as $lesson)
+                                            <li><a href="{{route('lesson.show',$lesson->id)}}">{{ $lesson->title }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <small>No lessons found for this course</small>
+                                @endif
+
+                        </div>
+                    </div><!-- media -->
+                </div>
             </div>
-      </div>
+
+        </div>
 
     </div><!-- row -->
 

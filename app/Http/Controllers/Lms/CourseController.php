@@ -29,6 +29,17 @@ class CourseController extends Controller
             ->addColumn('lesson',function(Course $course){
                 return $course->lessons->count();
             })
+            ->addColumn('exams',function(Course $course){
+                //return $course->lessons->exams->count();
+                $lessons = $course->lessons;
+                $exm = 0;
+                if($lessons){
+                    foreach($lessons as $lesson){
+                       $exm  = $exm + $lesson->exams->count();
+                    };
+                }
+                return $exm;
+            })
             ->addColumn('action',function($data){
                         $link = '<div class="d-flex">'.
                                     '<a href="'.route('course.show',$data->id).'" class="btn btn-default btn-xs mg-r-10 dt-action-btn">View</a>'.
@@ -50,7 +61,8 @@ class CourseController extends Controller
 
     public function create()
     {
-        return view('lms.pages.course.course_add');
+        $lessons = lesson::orderby('created_at','desc')->get();
+        return view('lms.pages.course.course_add',compact('lessons'));
     }
 
     public function store(Request $request)
@@ -65,6 +77,8 @@ class CourseController extends Controller
         $course->status = $request->status;
         $course->save();
 
+        $course->lessons()->sync($request->lessons);
+
         return redirect()->route('course.index')
         ->with([
             'message'    =>'Course Added Successfully',
@@ -75,17 +89,18 @@ class CourseController extends Controller
 
     public function show($id)
     {
-        $lessons = Lesson::orderby('id','desc')->where('course_id',$id)->get();
-        return view('lms.pages.course.course_view',compact('lessons'));
+        $course = Course::findOrFail($id);
+        $lessons = Lesson::orderby('id','desc')->where('id',$id)->get();
+        return view('lms.pages.course.course_view',compact('lessons','course'));
     }
 
     public function edit($id)
     {
         $course = Course::findOrFail($id);
-
+        $lessons = lesson::orderby('created_at','desc')->get();
         //return response()->json($course);
 
-        return view('lms.pages.course.course_edit',compact('course'));
+        return view('lms.pages.course.course_edit',compact('course','lessons'));
     }
 
     public function update(Request $request, $id)
@@ -100,6 +115,10 @@ class CourseController extends Controller
         $course->description = $request->description;
         $course->status = $request->status;
         $course->save();
+
+        $course->lessons()->sync($request->lessons);
+
+        //$lesson->courses()->sync($request->courses);
 
         return redirect()->route('course.index')
         ->with([

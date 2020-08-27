@@ -13,9 +13,13 @@ Route::get('/','Lms\LmsController@index')->name('lms.dashboard');
 
 
 Route::resource('/section','Lms\SectionController');
+
 Route::resource('/course','Lms\CourseController');
+
 Route::resource('/lesson','Lms\LessonController');
+
 Route::resource('/student','Lms\StudentController');
+
 Route::resource('/teacher','Lms\TeacherController');
 
 //Route::get('/book/issued','Admin\BookController@issued_book')->name('book.issued');

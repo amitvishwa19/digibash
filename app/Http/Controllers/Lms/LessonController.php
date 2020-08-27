@@ -37,7 +37,7 @@ class LessonController extends Controller
                 $crs = '';
                 if($courses){
                     foreach($courses as $course){
-                       $crs = $crs. '<div class="badge badge-info mr-1" >'. $course->name .'</div>';
+                       $crs = $crs. '<a href="'.route('course.show',$course->id).'"><div class="badge badge-info mr-1" >'. $course->name .'</div></a>';
                     };
                 }
                 return $crs;
@@ -47,7 +47,7 @@ class LessonController extends Controller
                 $exm = '';
                 if($exams){
                     foreach($exams as $exam){
-                       $exm = $exm. '<div class="badge badge-info mr-1" >'. $exam->title .'</div>';
+                       $exm = $exm. '<a href="'.route('exam.show',$exam->id).'" ><div class="badge badge-info mr-1" >'. $exam->title .'</div></a>';
                     };
                 }
                 return $exm;
@@ -116,7 +116,7 @@ class LessonController extends Controller
     public function show($id)
     {
         $lesson = Lesson::findOrFail($id);
-
+        return view('lms.pages.lesson.lesson_view',compact('lesson'));
         return response()->json($lesson);
     }
 

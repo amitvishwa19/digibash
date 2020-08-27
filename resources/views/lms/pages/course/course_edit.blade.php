@@ -5,9 +5,7 @@
 
 
 @section('style')
-
-
-
+    <link href="{{asset('public/admin/lib/select2/css/select2.min.css')}}" rel="stylesheet">
 @endsection
 
 
@@ -52,11 +50,31 @@
             <textarea class="form-control" name="description" id="" cols="30" rows="5">{{$course->description}}{{old('description')}}</textarea>
         </div>
 
+
+        <!--Lessons-->
         <div class="form-group">
-            <label class="d-block"><b>Section Status</b></label>
+            <label for="formGroupExampleInput2" class="d-block" style="font-weight:600">Lessons</label>
+            <div data-label="Example" class="">
+                <select class="form-control select2" multiple="multiple" name="lessons[]" multiple="">
+                <option label="Choose Course(s)"></option>
+                @foreach($lessons as $lesson)
+                    <option value="{{$lesson->id}}"
+                        @foreach($course->lessons as $lsn)
+                            @if($lsn->id == $lesson->id)
+                                selected
+                            @endif
+                        @endforeach
+                    >{{$lesson->title}}</option>
+                @endforeach
+                </select>
+            </div><!-- df-example -->
+        </div>
+
+        <div class="form-group">
+            <label class="d-block"><b>Course Status</b></label>
             <select name="status" id="" class="form-control col-md-2">
-                <option value="1" {{$course->status == '1' ? 'selected' : null}}>Active</option>
-                <option value="0" {{$course->status == '0' ? 'selected' : null}}>InActive</option>
+                <option value="0" {{$course->status == '0' ? 'selected' : null}} selected>Draft</option>
+                <option value="1" {{$course->status == '1' ? 'selected' : null}}>Publish</option>
             </select>
         </div>
 
@@ -86,10 +104,19 @@
 
 
 @section('javascript')
+    <script src="{{asset('public/admin/lib/select2/js/select2.min.js')}}"></script>
+
+    <script>
+    $(function(){
+        'use strict'
 
 
-  	<script>
+        $('.select2').select2({
+            placeholder: 'Choose one',
+            searchInputPlaceholder: 'Search options'
+        });
 
-  	</script>
+    });
+    </script>
 
 @endsection

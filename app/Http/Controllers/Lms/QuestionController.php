@@ -25,7 +25,7 @@ class QuestionController extends Controller
                 $exm = '';
                 if($exams){
                     foreach($exams as $exam){
-                       $exm = $exm. '<div class="badge badge-info mr-1" >'. $exam->title .'</div>';
+                        $exm = $exm. '<a href="'.route('exam.show',$exam->id).'" ><div class="badge badge-info mr-1" >'. $exam->title .'</div></a>';
                     };
                 }
                 return $exm;

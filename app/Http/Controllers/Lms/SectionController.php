@@ -35,7 +35,7 @@ class SectionController extends Controller
                 $crs = '';
                 if($courses){
                     foreach($courses as $course){
-                       $crs = $crs. '<div class="badge badge-info mr-1" >'. $course->name .'</div>';
+                       $crs = $crs. '<a href="'.route('course.show',$course->id).'"><div class="badge badge-info mr-1" >'. $course->name .'</div></a>';
                     };
                 }
                 return $crs;
@@ -45,7 +45,7 @@ class SectionController extends Controller
                 $tcr = '';
                 if($teachers){
                     foreach($teachers as $teacher){
-                       $tcr = $tcr. '<div class="badge badge-info mr-1" >'. $teacher->user->firstname .','.$teacher->user->lastname.'</div>';
+                       $tcr = $tcr. '<a href=""><div class="badge badge-info mr-1" >'. $teacher->user->firstname .','.$teacher->user->lastname.'</div></a>';
                     };
                 }
                 return $tcr;
@@ -55,7 +55,7 @@ class SectionController extends Controller
             })
             ->addColumn('action',function($data){
                         $link = '<div class="d-flex">'.
-                                    '<a href="'.route('section.show',$data->id).'" class="btn btn-default btn-xs mg-r-10 dt-action-btn">View</a>'.
+                                    '<a href="'.route('section.show',$data->id).'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn">View</a>'.
                                     '<a href="'.route('section.edit',$data->id).'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn">Edit</a>'.
                                     '<a href="javascript:void(0);" id="'.$data->id.'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn btn-del delete">Delete</a>'.
                                 '</div>';
@@ -107,8 +107,7 @@ class SectionController extends Controller
     public function show($id)
     {
         $section = Section::findOrFail($id);
-
-        return response()->json($section);
+        return view('lms.pages.section.section_view',compact('section'));
     }
 
     public function edit($id)

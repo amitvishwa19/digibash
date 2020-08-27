@@ -79793,10 +79793,6 @@ body {
   overflow: hidden;
 }
 
-body ul li {
-  list-style: none;
-}
-
 .wp {
   color: #0073aa !important;
   font-style: italic;

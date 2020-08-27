@@ -84,6 +84,7 @@ class ExamController extends Controller
     public function show($id)
     {
         $exam = Exam::findOrFail($id);
+        return view('lms.pages.exam.exam_view',compact('exam'));
 
         return response()->json($exam);
     }

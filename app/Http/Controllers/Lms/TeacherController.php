@@ -31,7 +31,7 @@ class TeacherController extends Controller
                 $sec = '';
                 if($sections){
                     foreach($sections as $section){
-                       $sec = $sec. '<div class="badge badge-info mr-1" >'. $section->name .'</div>';
+                       $sec = $sec. '<a href="'.route('section.show',$section->id).'"><div class="badge badge-info mr-1" >'. $section->name .'</div></a>';
                     };
                 }
                 return $sec;
@@ -42,7 +42,7 @@ class TeacherController extends Controller
                 if($sections){
                     foreach($sections as $section){
                         foreach($section->courses as $course){
-                            $sec = $sec. '<div class="badge badge-info mr-1" >'. $course->name .'</div>';
+                            $sec = $sec. '<a href="'.route('course.show',$course->id).'"><div class="badge badge-info mr-1" >'. $course->name .'</div></a>';
                         }
                     };
                 }

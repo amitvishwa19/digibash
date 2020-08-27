@@ -40,8 +40,9 @@
                   <th style="" class=""><b>Name</b></th>
                   <th style="" class=""><b>Description</b></th>
                   <th style="" class=""><b>Total Lessons</b></th>
-                  <th style="width:10%" class=""><b>Status</b></th>
-                  <th style="width:10%" class=""><b>Actions</b></th>
+                  <th style="" class=""><b>Total Exams</b></th>
+                  <th style="" class=""><b>Status</b></th>
+                  <th style="" class=""><b>Actions</b></th>
               </tr>
               </thead>
 
@@ -85,6 +86,7 @@
             { data: 'name', name: 'name'},
             { data: 'description', name: 'description'},
             { data: 'lesson', name: 'lesson'},
+            { data: 'exams', name: 'exams'},
             { data: 'status', name: 'status'},
             { data: 'action', name: 'action' },
         ]
