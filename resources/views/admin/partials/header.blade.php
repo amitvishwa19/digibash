@@ -9,8 +9,7 @@
     <meta name="twitter:creator" content="">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="DashForge">
-    <meta name="twitter:description" content="Responsive Bootstrap 4 Dashboard Template">
-    <meta name="twitter:image" content="http://themepixels.me/dashforge/img/dashforge-social.png">
+
 
 
 
@@ -23,7 +22,7 @@
     <meta name="user-id" content="{{Auth::check() ? Auth::user()->id : ''}}">
 
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('public/admin/assets/d-fevicon.png')}}" type="image/ico" />
+    <link rel="icon" href="{{setting('app.fevicon')}}" type="image/ico" />
 
     <title>DIgibash | @yield('title') </title>
 

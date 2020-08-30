@@ -77,19 +77,19 @@ Route::resource('/activity','Admin\ActivityLogController');
 //Error Logs
 Route::get('/log','Admin\LogController@index')->name('app.admin.log');
 
-//Ecommerce
-Route::resource('/brand','Admin\BrandController');
-Route::resource('/coupon','Admin\CouponController');
-Route::resource('/shop','Admin\ShopController');
-Route::resource('/product','Admin\ProductController');
-Route::resource('/order','Admin\OrderController');
+// //Ecommerce
+// Route::resource('/brand','Admin\BrandController');
+// Route::resource('/coupon','Admin\CouponController');
+// Route::resource('/shop','Admin\ShopController');
+// Route::resource('/product','Admin\ProductController');
+// Route::resource('/order','Admin\OrderController');
 
-//================================Institute Management================================
-Route::resource('/section','Admin\SectionController');
-Route::resource('/course','Admin\CourseController');
-Route::resource('/lesson','Admin\LessonController');
-Route::resource('/student','Admin\StudentController');
-Route::resource('/teacher','Admin\TeacherController');
+// //================================Institute Management================================
+// Route::resource('/section','Admin\SectionController');
+// Route::resource('/course','Admin\CourseController');
+// Route::resource('/lesson','Admin\LessonController');
+// Route::resource('/student','Admin\StudentController');
+// Route::resource('/teacher','Admin\TeacherController');
 
 //Route::get('/book/issued','Admin\BookController@issued_book')->name('book.issued');
 //Route::get('/book/issue','Admin\BookController@issue_book')->name('book.issue');
@@ -98,3 +98,7 @@ Route::resource('/book','Admin\BookController');
 
 
 Route::resource('/issuedbook','Admin\IssuedBookController');
+
+Route::resource('/subscription','Admin\SubscriptionController');
+
+Route::resource('/inquiry','Admin\InquiryController');

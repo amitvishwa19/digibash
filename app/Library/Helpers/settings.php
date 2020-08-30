@@ -2,8 +2,8 @@
 
 use App\Models\Menu;
 use App\Models\Setting;
-use App\Facades\Digizig;
-use App\Classes\Digizigs;
+//use App\Facades\Digizig;
+//use App\Classes\Digizigs;
 
 if (! function_exists('setting')) {
 
@@ -32,7 +32,8 @@ if (! function_exists('setting')) {
                 
                 foreach (Setting::all() as $setting) {
                     $keys = explode('.', $setting->key);
-                    @$setting_cache[$keys[0]][$keys[1]] = $setting->value;
+                    $keys = $setting->key;
+                    @$setting_cache[$keys] = $setting->value;
 
                     if ($globalCache) {
                         Cache::tags('settings')->forever($setting->key, $setting->value);
@@ -40,13 +41,14 @@ if (! function_exists('setting')) {
                 }
             }
 
-            $parts = explode('.', $key);
-
-            if (count($parts) == 2) {
-                return @$setting_cache[$parts[0]][$parts[1]] ?: $default;
-            } else {
-                return @$setting_cache[$parts[0]] ?: $default;
-            }
+            //$parts = explode('.', $key);
+            
+            return @$setting_cache[$key] ?: $default;
+            // if (count($parts) == 2) {
+            //     return @$setting_cache[$parts[0]][$parts[1]] ?: $default;
+            // } else {
+            //     return @$setting_cache[$parts[0]] ?: $default;
+            // }
         }else{
             Setting::updateOrCreate(['key'=>$key],['value'=>$value]);
         }

@@ -18,8 +18,8 @@ class CreateSubscriptionsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email');
+            $table->string('mobile')->nullable();
             $table->boolean('status')->default(1);
-            $table->softDeletes();
             $table->timestamps();
 
         });

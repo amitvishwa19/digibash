@@ -2,7 +2,7 @@
 
   <div class="aside-header">
     <a href="{{route('app.admin.home')}}" class="aside-logo" style="text-align:center">
-      <img src="{{asset('public/admin/assets/d-logo.png')}}" alt="d-logo" style="height:25px;">
+      <img src="{{setting('app.fevicon')}}" alt="d-logo" style="height:25px;">
       digi<span>zigs</span>
     </a>
     <img src="" alt="">
@@ -54,6 +54,15 @@
         <li class="nav-item">
             <a href="{{route('media.index')}}" class="nav-link"><i class="fa fa-picture-o" aria-hidden="true"></i>Media</a>
         </li>
+        {{-- Subscriptions --}}
+        <li class="nav-item">
+            <a href="{{route('subscription.index')}}" class="nav-link"><i class="fa fa-rss" aria-hidden="true"></i>Subscriptions</a>
+        </li>
+        {{-- Inquiry --}}
+        <li class="nav-item">
+            <a href="{{route('inquiry.index')}}" class="nav-link"><i class="fa fa-binoculars" aria-hidden="true"></i>Inquiries</a>
+        </li>
+
 
 
         <li class="nav-label mg-t-15">E-Commerce</li>

@@ -1885,6 +1885,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 var currentFile = null;
@@ -32054,29 +32061,31 @@ var render = function() {
         "div",
         { staticClass: "row" },
         _vm._l(_vm.media, function(m, key) {
-          return _c("div", { key: key, staticClass: "col-2 thumb mg-b-20" }, [
+          return _c("div", { key: key, staticClass: "col-3 thumb mg-b-20" }, [
             _c("img", {
               staticClass: "img-thumbnail",
               staticStyle: { height: "150px !important", width: "150px" },
               attrs: { src: m.url, alt: "Responsive image" }
             }),
             _vm._v(" "),
-            _c("div", { staticClass: "actions" }, [
+            _c("div", { staticClass: "actions mg-l-5" }, [
               _vm._m(0, true),
               _vm._v(" "),
               _c(
                 "a",
                 {
-                  attrs: { href: "" },
+                  attrs: {
+                    href: "",
+                    "data-container": "body",
+                    "data-toggle": "popover",
+                    "data-placement": "right",
+                    "data-content":
+                      "Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                  },
                   on: {
-                    click: [
-                      function($event) {
-                        $event.preventDefault()
-                      },
-                      function($event) {
-                        return _vm.copyurl(m.url)
-                      }
-                    ]
+                    click: function($event) {
+                      $event.preventDefault()
+                    }
                   }
                 },
                 [_c("i", { staticClass: "fa fa-link" })]

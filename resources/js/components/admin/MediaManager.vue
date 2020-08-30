@@ -16,18 +16,25 @@
     </div>
     <div class="col-12 mg-t-40">
       <div class="row">
-        <div class="col-2 thumb mg-b-20" v-for="(m, key) in media" v-bind:key="key">
+        <div class="col-3 thumb mg-b-20" v-for="(m, key) in media" v-bind:key="key">
           <img
             v-bind:src="m.url"
             class="img-thumbnail"
             alt="Responsive image"
             style="height:150px !important;width:150px;"
           />
-          <div class="actions">
+          <div class="actions mg-l-5">
             <a href>
               <i class="fa fa-download"></i>
             </a>
-            <a href v-on:click.prevent @click="copyurl(m.url)">
+            <a
+              href
+              v-on:click.prevent
+              data-container="body"
+              data-toggle="popover"
+              data-placement="right"
+              data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+            >
               <i class="fa fa-link"></i>
             </a>
             <a href v-on:click.prevent @click="deleteimage(m.id)">

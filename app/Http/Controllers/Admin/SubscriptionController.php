@@ -4,33 +4,61 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\SubscriptionRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 use App\Models\Subscription;
 
 class SubscriptionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $subscriptions = Subscription::latest()->get();
-        Session::flash('message', "Special message goes here");
-        return view('admin.pages.subscription.subscription',compact('subscriptions'))->with('message', 'Subscribed successfully');
+        if ($request->ajax()) {
+            $subscriptions = Subscription::orderby('created_at','desc')->get();
 
+            return Datatables::of($subscriptions)
+            ->editColumn('created_at',function(Subscription $subscription){
+                    return $subscription->created_at->diffForHumans();
+                })
+            ->addColumn('action',function($data){
+                        $link = '<div class="d-flex">'.
+                                    '<a href="'.route('subscription.show',$data->id).'" class="btn btn-default btn-xs mg-r-10 dt-action-btn">View</a>'.
+                                    '<a href="'.route('subscription.edit',$data->id).'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn">Edit</a>'.
+                                    '<a href="javascript:void(0);" id="'.$data->id.'" class="btn btn-default edit btn-xs mg-r-10 dt-action-btn btn-del delete">Delete</a>'.
+                                '</div>';   
+                        return $link;
+                    })
+            ->rawColumns(['action'])
+            ->make(true);
+
+
+        }
+        
+
+        return view('admin.pages.subscription.subscription');
 
     }
 
     public function create()
     {
-        $subscriptions = Subscription::latest()->get();
-
-        return response()->json($subscriptions);
+        return view('admin.pages.subscription.subscription_add');
     }
 
     public function store(SubscriptionRequest $request)
     {
-        $subscription = Subscription::create($request->all());
+        $validate = $request->validate([
+            'name' => 'required'
+        ]);
 
-        return view('comingsoon.index');
+        $subscription = New Subscription;
+        $subscription->name = $request->name;
+        $subscription->save();
 
-        return response()->json($subscription, 201);
+        return redirect()->route('subscription.index')
+        ->with([
+            'message'    =>'Subscription Added Successfully',
+            'alert-type' => 'success',
+        ]);
+
     }
 
     public function show($id)
@@ -40,12 +68,33 @@ class SubscriptionController extends Controller
         return response()->json($subscription);
     }
 
-    public function update(SubscriptionRequest $request, $id)
+    public function edit($id)
     {
         $subscription = Subscription::findOrFail($id);
-        $subscription->update($request->all());
 
-        return response()->json($subscription, 200);
+        //return response()->json($subscription);
+
+        return view('admin.pages.subscription.subscription_edit',compact('subscription'));
+    }
+
+    public function update(SubscriptionRequest $request, $id)
+    {
+
+        $validate = $request->validate([
+            'name' => 'required'
+        ]);
+
+        $subscription = Subscription::findOrFail($id);
+        $subscription->name = $request->name;
+        $subscription->save();
+
+        return redirect()->route('subscription.index')
+        ->with([
+            'message'    =>'Subscription Updated Successfully',
+            'alert-type' => 'success',
+        ]);
+
+        
     }
 
     public function destroy($id)

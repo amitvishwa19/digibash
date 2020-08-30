@@ -86,12 +86,10 @@
             <div class="form-group row">
                <label for="" class="col-4 control-label">Application Logo</label>
                <div class="d-flex col-8">
-
                   <input type="file" class="" id="imageUpload" name="app_logo" value="Upload Image">
 
-                  <div id="" class="mg-t-20 icon-preview avatar-preview img-thumbnail pull-left" @if(setting('app.icon')) style="
-                     display:block;
-                     background-image:url({{setting('app.icon')}});" @else style="display:none" @endif>
+                  <div id="" class="mg-t-20 icon-preview">
+                     <img src="{{setting('app.logo')}}" alt="" style="height:40px;">
                   </div>
                </div>
                <div class="remove-image" style="display:none"><b>Remove image</b></div>
@@ -104,9 +102,8 @@
 
                   <input type="file" class="" id="imageUpload" name="app_fevicon" value="Upload Image">
 
-                  <div id="" class="mg-t-20 icon-preview avatar-preview img-thumbnail pull-left" @if(setting('app.fevicon')) style="
-                     display:block;
-                     background-image:url({{setting('app.fevicon')}});" @else style="display:none" @endif>
+                  <div id="" class="mg-t-20 icon-preview">
+                     <img src="{{setting('app.fevicon')}}" alt="" style="height:40px;">
                   </div>
                </div>
                <div class="remove-image" style="display:none"><b>Remove image</b></div>
