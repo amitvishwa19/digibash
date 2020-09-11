@@ -4,9 +4,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-// Route::get('/',function(Request $request){
-//     return $request->server('HTTP_USER_AGENT');
-// });
+Route::get('/',[
+    'uses' => 'Client\ClientController@home',
+    'as' =>'app.home'
+]);
 
 
 
