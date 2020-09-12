@@ -33,6 +33,12 @@ class AuthController extends Controller
         return response()->json(['error' => 'Unauthorized'], 401);
     }
 
+    public function user(){
+
+        return response()->json(['user' => 'Vishwa'], 200);
+
+    }
+
     public function logout()
     {
         $this->guard()->logout();
