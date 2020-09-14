@@ -27,10 +27,12 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
         if ($token = $this->guard()->attempt($credentials)) {
-            return $this->respondWithToken($token);
+            $user = auth()->user();
+            //return $this->respondWithToken($token);
+            return response()->json(['success' => true,'token'=>$token,'user'=>$user], 401);
         }
 
-        return response()->json(['error' => 'Unauthorized'], 401);
+        return response()->json(['success' => false,'message'=>'Invalid email or password'], 401);
     }
 
     public function user(){
