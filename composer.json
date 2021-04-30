@@ -16,7 +16,7 @@
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.5",
         "intervention/image": "^2.5",
-        "laravel/framework": "6.0.*",
+        "laravel/framework": "6.20.*",
         "laravel/helpers": "^1.2",
         "lab404/laravel-impersonate": "1.6.0",
         "laravel/slack-notification-channel": "^2.0",
